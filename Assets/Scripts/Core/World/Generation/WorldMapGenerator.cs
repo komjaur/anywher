@@ -18,6 +18,11 @@ public static class WorldMapGenerator
     static bool[]    _isSolid, _isLiquid;            // tileID → bool
     static TileData[] _tileCache;                    // tileID → TileData
 
+    // chunk-column noise caches reused between chunks
+    static float[] s_cosCache;
+    static float[] s_fbmCache;
+    static float[] s_ridgeCache;
+
     static void BuildTileMeta(TileDatabase db)
     {
         int max = db.tiles.Length;                   // IDs == indices (after your sorter)
@@ -94,10 +99,17 @@ public static class WorldMapGenerator
 
     static ColumnNoise BuildNoiseCache(int wx0, int cs, int seed, WorldData d)
     {
+        if (s_cosCache == null || s_cosCache.Length != cs)
+        {
+            s_cosCache   = new float[cs];
+            s_fbmCache   = new float[cs];
+            s_ridgeCache = new float[cs];
+        }
+
         ColumnNoise n;
-        n.Cos   = new float[cs];
-        n.Fbm   = new float[cs];
-        n.Ridge = new float[cs];
+        n.Cos   = s_cosCache;
+        n.Fbm   = s_fbmCache;
+        n.Ridge = s_ridgeCache;
 
         float lowFreq   = d.skyLowFreq;
         float ridgeFreq = d.skyRidgeFreq;

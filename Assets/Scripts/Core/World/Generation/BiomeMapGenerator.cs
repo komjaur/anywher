@@ -62,8 +62,9 @@ public static class BiomeMapGenerator
         int ptsSU    = data.areaPointsCount;
         int owStrips = data.areaOverworldStripes;
 
-        List<Vector2> centres = new();
-        List<byte>    areaIDs = new();
+        Vector2[] centres = new Vector2[ptsSU + owStrips];
+        byte[]    areaIDs = new byte[ptsSU + owStrips];
+        int ci = 0;
 
         float owTopNorm    = data.overworldStarts;
         float owBottomNorm = data.overworldStarts - data.overworldDepth;
@@ -85,8 +86,9 @@ public static class BiomeMapGenerator
             float heatTarget = 1f - 2f * (xPx / w);     // +1 hot-left → −1 cold-right
             int idx = PickDepthHeatArea(data.areasDatabase, zone, nY, heatTarget, rng);
 
-            centres.Add(new Vector2(xPx, yPx));
-            areaIDs.Add((byte)idx);
+            centres[ci] = new Vector2(xPx, yPx);
+            areaIDs[ci] = (byte)idx;
+            ci++;
         }
 
         /* B) Overworld stripe centres chosen by heat (area choice only) */
@@ -100,13 +102,14 @@ public static class BiomeMapGenerator
 
             int idx = PickAreaByHeat(data.areasDatabase, heat, rng);
 
-            centres.Add(new Vector2(xPx, midY));
-            areaIDs.Add((byte)idx);
+            centres[ci] = new Vector2(xPx, midY);
+            areaIDs[ci] = (byte)idx;
+            ci++;
         }
 
         /* C) Voronoi raster fill */
         byte[,] map = new byte[w, h];
-        int total   = centres.Count;
+        int total   = ci;
 
         for (int y = 0; y < h; y++)
         for (int x = 0; x < w; x++)
