@@ -25,8 +25,11 @@ public static class WorldPostProcessor
     {
         TableCache.Clear();   // fresh drop-tables each run
 
-        for (int cy = 0; cy < world.Data.heightInChunks; cy++)
-        for (int cx = 0; cx < world.Data.widthInChunks;  cx++)
+        int chunksH = world.Data.heightInChunks;
+        int chunksW = world.Data.widthInChunks;
+
+        for (int cy = 0; cy < chunksH; cy++)
+        for (int cx = 0; cx < chunksW;  cx++)
         {
             Vector2Int coord = new(cx, cy);
             Chunk chunk = world.GetChunk(coord);

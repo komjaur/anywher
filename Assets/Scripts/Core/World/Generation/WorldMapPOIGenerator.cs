@@ -11,16 +11,21 @@ public static void PlaceAllPois(World world, WorldData data)
 {
     s_spawnCounts.Clear();
 
+    int chunksW   = world.Data.widthInChunks;
+    int chunksH   = world.Data.heightInChunks;
+    int chunkSize = world.Data.chunkSize;
+    int seed      = world.seed;
+
     /* pick cell sizes – tweak as you like */
     const int cellSideGeneric = 5;
     const int cellSideSurface = 4;   // a bit denser on the surface
 
     // 1 — iterate over jittered cells for generic / cave POIs
-    for (int cellY = 0; cellY < world.Data.heightInChunks; cellY += cellSideGeneric)
-    for (int cellX = 0; cellX < world.Data.widthInChunks;  cellX += cellSideGeneric)
+    for (int cellY = 0; cellY < chunksH; cellY += cellSideGeneric)
+    for (int cellX = 0; cellX < chunksW;  cellX += cellSideGeneric)
     {
         /* anchor inside this 5×5 cell */
-        Vector2Int off = PickAnchorOffsetInCell(cellX, cellY, world.seed);
+        Vector2Int off = PickAnchorOffsetInCell(cellX, cellY, seed);
         int cx = cellX + off.x;
         int cy = cellY + off.y;
 
@@ -34,11 +39,11 @@ public static void PlaceAllPois(World world, WorldData data)
     }
 
     // 2 — iterate over surface cells (different size + salt)
-    for (int cellY = 0; cellY < world.Data.heightInChunks; cellY += cellSideSurface)
-    for (int cellX = 0; cellX < world.Data.widthInChunks;  cellX += cellSideSurface)
+    for (int cellY = 0; cellY < chunksH; cellY += cellSideSurface)
+    for (int cellX = 0; cellX < chunksW;  cellX += cellSideSurface)
     {
         Vector2Int off = PickAnchorOffsetInCell(
-                             cellX, cellY, world.seed ^ kSurfaceSalt,
+                             cellX, cellY, seed ^ kSurfaceSalt,
                              cellSideSurface);
         int cx = cellX + off.x;
         int cy = cellY + off.y;

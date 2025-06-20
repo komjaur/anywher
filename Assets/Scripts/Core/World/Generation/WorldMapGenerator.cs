@@ -4,23 +4,32 @@
    – NO ScriptableObject look-ups in hot loops
    – skyline & mask noise still per-tile (see step-2 guide to cache rows)
    =========================================================================*/
+
 using UnityEngine;
 using System.Runtime.CompilerServices;               // MethodImpl
 
 public static class WorldMapGenerator
 {
     /* ──────────────────────────  cached refs  ────────────────────────── */
-    static BiomeData[] _biomes;
-    static AreaData[]  _areas;
+    static BiomeData[]  _biomes;
+    static AreaData[]   _areas;
     static OreSetting[] _ores;
 
     /* ──────────  fast per-tile meta (built once at startup)  ─────────── */
-    static bool[]    _isSolid, _isLiquid;            // tileID → bool
+    static bool[]     _isSolid, _isLiquid;           // tileID → bool
     static TileData[] _tileCache;                    // tileID → TileData
 
+    /* chunk-column noise caches reused between chunks (to avoid GC) */
+    static float[] s_cosCache;
+    static float[] s_fbmCache;
+    static float[] s_ridgeCache;
+
+    /* =================================================================== */
+    /*  one-time meta build                                                */
+    /* =================================================================== */
     static void BuildTileMeta(TileDatabase db)
     {
-        int max = db.tiles.Length;                   // IDs == indices (after your sorter)
+        int max = db.tiles.Length;                   // IDs == indices
         _isSolid   = new bool[max];
         _isLiquid  = new bool[max];
         _tileCache = db.tiles;                       // cheap alias
@@ -38,15 +47,17 @@ public static class WorldMapGenerator
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static bool IsLiquidFast(int id) => id > 0 && _isLiquid[id];
 
-    /* ────────────────────────  public entry  ─────────────────────────── */
+    /* =================================================================== */
+    /*  public entry                                                       */
+    /* =================================================================== */
     public static void GenerateWorldTiles(World world, WorldData data)
     {
-        /* build meta tables once */
-        if (_isSolid == null) BuildTileMeta(data.tileDatabase);
+        if (_isSolid == null)                 // build meta tables once
+            BuildTileMeta(data.tileDatabase);
 
         _biomes = data.biomeDatabase?.biomelist;
         _areas  = data.areasDatabase?.areas;
-        _ores   = data.oresDatabase ? data.oresDatabase.ores : null;
+        _ores   = data.oresDatabase != null ? data.oresDatabase.ores : null;
 
         int seed = data.seed;
 
@@ -59,9 +70,9 @@ public static class WorldMapGenerator
         }
     }
 
-
-
-    /* ────────────────────────── Helpers ───────────────────────────── */
+    /* =================================================================== */
+    /*  helpers                                                            */
+    /* =================================================================== */
 
     // 1-D fractal Brownian motion (3 octaves, lacunarity 2, gain 0.5)
     static float FBM(float x)
@@ -85,19 +96,29 @@ public static class WorldMapGenerator
     }
 
     /* ------------------------------------------------------------------ */
-    /*  Small helper containers                                           */
+    /*  small helper container                                             */
     /* ------------------------------------------------------------------ */
     struct ColumnNoise
     {
         public float[] Cos, Fbm, Ridge;
     }
 
+    /* ------------------------------------------------------------------ */
+    /*  per-chunk column-noise cache                                       */
+    /* ------------------------------------------------------------------ */
     static ColumnNoise BuildNoiseCache(int wx0, int cs, int seed, WorldData d)
     {
+        if (s_cosCache == null || s_cosCache.Length != cs)
+        {
+            s_cosCache   = new float[cs];
+            s_fbmCache   = new float[cs];
+            s_ridgeCache = new float[cs];
+        }
+
         ColumnNoise n;
-        n.Cos   = new float[cs];
-        n.Fbm   = new float[cs];
-        n.Ridge = new float[cs];
+        n.Cos   = s_cosCache;
+        n.Fbm   = s_fbmCache;
+        n.Ridge = s_ridgeCache;
 
         float lowFreq   = d.skyLowFreq;
         float ridgeFreq = d.skyRidgeFreq;
@@ -105,8 +126,10 @@ public static class WorldMapGenerator
         for (int lx = 0; lx < cs; ++lx)
         {
             int wx = wx0 + lx;
+
             n.Cos[lx] = Mathf.Cos((wx + seed) * d.skyLineWaveScale) *
                         0.5f * d.skyLineWaveAmplitude;
+
             n.Fbm[lx]   = FBM((wx + seed) * lowFreq);
             n.Ridge[lx] = Ridge((wx + seed) * ridgeFreq);
         }
@@ -114,17 +137,21 @@ public static class WorldMapGenerator
         return n;
     }
 
-    static (AreaOverworldData main, AreaOverworldData blend, float blendT) GetAreaBlend(
-        Chunk chunk, int lx, int ly, int smoothW)
+    /* ------------------------------------------------------------------ */
+    /*  area-blend lookup                                                  */
+    /* ------------------------------------------------------------------ */
+    static (AreaOverworldData main, AreaOverworldData blend, float blendT)
+        GetAreaBlend(Chunk chunk, int lx, int ly, int smoothW)
     {
         byte areaIx = chunk.areaIDs[lx, ly];
         AreaOverworldData aMain = (areaIx < _areas?.Length)
-                                 ? _areas[areaIx] as AreaOverworldData
-                                 : null;
+                                  ? _areas[areaIx] as AreaOverworldData
+                                  : null;
 
         float blendT = 0f;
         AreaOverworldData aBlend = null;
 
+        /* ── look left ── */
         if (lx > 0)
         {
             byte leftIx = chunk.areaIDs[lx - 1, ly];
@@ -135,11 +162,12 @@ public static class WorldMapGenerator
                     if (chunk.areaIDs[lx - dx, ly] == leftIx) dist++; else break;
 
                 aBlend = (leftIx < _areas?.Length)
-                        ? _areas[leftIx] as AreaOverworldData : null;
+                         ? _areas[leftIx] as AreaOverworldData : null;
                 blendT = 1f - (float)dist / (smoothW + 1);
             }
         }
 
+        /* ── look right ── */
         if (aBlend == null && lx < chunk.size - 1)
         {
             byte rightIx = chunk.areaIDs[lx + 1, ly];
@@ -150,7 +178,7 @@ public static class WorldMapGenerator
                     if (chunk.areaIDs[lx + dx, ly] == rightIx) dist++; else break;
 
                 aBlend = (rightIx < _areas?.Length)
-                        ? _areas[rightIx] as AreaOverworldData : null;
+                         ? _areas[rightIx] as AreaOverworldData : null;
                 blendT = (float)dist / (smoothW + 1);
             }
         }
@@ -158,26 +186,30 @@ public static class WorldMapGenerator
         return (aMain, aBlend, blendT);
     }
 
-    static float ComputeSkyline(WorldData d,
-                                AreaOverworldData main,
-                                AreaOverworldData blend,
-                                float blendT,
-                                float cosBase, float fbmBase, float ridgeBase,
-                                int wx, int wy, int seed,
-                                float baseSkyNorm)
+    /* ------------------------------------------------------------------ */
+    /*  skyline height                                                     */
+    /* ------------------------------------------------------------------ */
+    static float ComputeSkyline(
+        WorldData d,
+        AreaOverworldData main,
+        AreaOverworldData blend,
+        float blendT,
+        float cosBase, float fbmBase, float ridgeBase,
+        int wx, int wy, int seed,
+        float baseSkyNorm)
     {
         float lowFreq   = d.skyLowFreq,   lowAmp   = d.skyLowAmp;
         float ridgeFreq = d.skyRidgeFreq, ridgeAmp = d.skyRidgeAmp;
-        float cosMul = main ? main.skyCosAmpMul : 1f;
-        float cosOff = main ? main.skyCosOffset : 0f;
 
-        float rugMain  = (main && main.skylineRuggedness >= 0f)
+        float cosMul = main != null ? main.skyCosAmpMul : 1f;
+        float cosOff = main != null ? main.skyCosOffset : 0f;
+
+        float rugMain  = (main != null && main.skylineRuggedness >= 0f)
                          ? main.skylineRuggedness : 0.5f;
-        float rugBlend = 0.5f;
-        if (blend) rugBlend = (blend.skylineRuggedness >= 0f)
-                               ? blend.skylineRuggedness : 0.5f;
+        float rugBlend = blend != null && blend.skylineRuggedness >= 0f
+                         ? blend.skylineRuggedness : 0.5f;
 
-        if (blend && blendT > 0f)
+        if (blend != null && blendT > 0f)
         {
             cosMul  = Mathf.Lerp(cosMul,  blend.skyCosAmpMul, blendT);
             cosOff  = Mathf.Lerp(cosOff,  blend.skyCosOffset, blendT);
@@ -190,8 +222,8 @@ public static class WorldMapGenerator
         float mountainAmpLocal = d.skyMountainAmp * ampMul;
 
         float cosWave = cosBase * cosMul + cosOff;
-        float fbm    = fbmBase   * lowAmp;
-        float ridges = ridgeBase * ridgeAmp;
+        float fbm     = fbmBase   * lowAmp;
+        float ridges  = ridgeBase * ridgeAmp;
 
         float mNoise = Mathf.PerlinNoise((wx + seed) * d.skyMountainFreq,
                                          (wy + seed) * d.skyMountainFreq);
@@ -211,9 +243,13 @@ public static class WorldMapGenerator
         return baseSkyNorm + cosWave + fbm + ridges + mountain;
     }
 
-    static (bool frontMasked, float areaNoise, float blendNoise) ComputeMaskAndAreaNoise(
-        int wx, int wy, int seed, BiomeData biome, AreaData area,
-        bool useWorldMask, WorldData d)
+    /* ------------------------------------------------------------------ */
+    /*  front-mask + area-noise sampling                                   */
+    /* ------------------------------------------------------------------ */
+    static (bool frontMasked, float areaNoise, float blendNoise)
+        ComputeMaskAndAreaNoise(
+            int wx, int wy, int seed, BiomeData biome, AreaData area,
+            bool useWorldMask, WorldData d)
     {
         bool frontMasked = false;
         if (useWorldMask && biome != null && biome.worldNoiseThreshold > 0f)
@@ -227,13 +263,17 @@ public static class WorldMapGenerator
         float areaNoise  = 0f;
         if (blendNoise > 0f)
         {
-            float areaFreq = area ? area.areaNoiseFrequency : 0.003f;
+            float areaFreq = area != null ? area.areaNoiseFrequency : 0.003f;
             areaNoise = Mathf.PerlinNoise((wx + seed) * areaFreq,
                                           (wy + seed) * areaFreq);
         }
 
         return (frontMasked, areaNoise, blendNoise);
     }
+
+    /* ------------------------------------------------------------------ */
+    /*  tile pickers & writers                                             */
+    /* ------------------------------------------------------------------ */
 
     static void PickTiles(
         BiomeData biome, AreaData area,
@@ -244,17 +284,20 @@ public static class WorldMapGenerator
         out int front, out int back, WorldData d)
     {
         front = back = -1;
+
         bool isAboveSky = nY > skyNorm;
         bool biomeIsSky = area != null && area.zone == ZoneType.Sky;
 
         if (isAboveSky && !biomeIsSky)
         {
+            /* clear sky */
             front = SafeID(d.tileDatabase.SkyAirTile);
             back  = 0;
             skyFound = true;
         }
         else
         {
+            /* sample overworld-layer or generic blocks */
             float depthPx = Mathf.Max(0f, skyNorm * (d.heightInChunks * d.chunkSize) - wy);
 
             bool usedLayer = biome is BiomeOverworldData ow &&
@@ -273,6 +316,7 @@ public static class WorldMapGenerator
                                       wx, wy, seed, areaNoise, blendNoise);
             }
 
+            /* safe fallbacks */
             if (front < 0)
                 front = SafeID(isAboveSky
                                ? d.tileDatabase.SkyAirTile
@@ -281,6 +325,7 @@ public static class WorldMapGenerator
             if (back < 0)
                 back = 0;
 
+            /* ore injection on solid tiles */
             if (!frontMasked && IsSolidFast(front))
             {
                 if (biome?.Ores is { Length: > 0 })
@@ -296,10 +341,12 @@ public static class WorldMapGenerator
             if (IsSolidFast(front) || IsSolidFast(back)) solidFound = true;
         }
 
+        /* never leave air in the background layer */
         if (back == d.tileDatabase.SkyAirTile?.tileID ||
             back == d.tileDatabase.UndergroundAirTile?.tileID)
             back = 0;
 
+        /* global world-mask overrides */
         if (frontMasked)
             front = SafeID(d.tileDatabase.UndergroundAirTile);
     }
@@ -347,93 +394,93 @@ public static class WorldMapGenerator
         chunk.SetFlags(cf);
     }
 
-public static void FillChunkTiles(Chunk chunk, WorldData d, int seed)
-{
-    chunk.SetFlags(ChunkFlags.None);
-
-    int  cs   = chunk.size;
-    int  wx0  = chunk.position.x * cs;
-    int  wy0  = chunk.position.y * cs;
-    int  mapH = d.heightInChunks * d.chunkSize;
-
-    float baseSkyNorm = d.overworldStarts - d.overworldDepth * 0.5f;
-    bool  useWorldMask = d.worldNoiseFrequency > 0f;
-    int   smoothW      = Mathf.Clamp(d.borderSmoothWidth, 0, cs - 1);
-
-    ColumnNoise n = BuildNoiseCache(wx0, cs, seed, d);
-
-    bool skyFound = false, ugAirFound = false,
-         solidFound = false, liquidFound = false;
-
-    for (int ly = 0; ly < cs; ++ly)
+    /* ------------------------------------------------------------------ */
+    /*  main chunk-fill routine                                            */
+    /* ------------------------------------------------------------------ */
+    public static void FillChunkTiles(Chunk chunk, WorldData d, int seed)
     {
-        int   wy = wy0 + ly;
-        float nY = (float)wy / mapH;
+        chunk.SetFlags(ChunkFlags.None);
 
-        for (int lx = 0; lx < cs; ++lx)
+        int  cs   = chunk.size;
+        int  wx0  = chunk.position.x * cs;
+        int  wy0  = chunk.position.y * cs;
+        int  mapH = d.heightInChunks * d.chunkSize;
+
+        float baseSkyNorm = d.overworldStarts - d.overworldDepth * 0.5f;
+        bool  useWorldMask = d.worldNoiseFrequency > 0f;
+        int   smoothW      = Mathf.Clamp(d.borderSmoothWidth, 0, cs - 1);
+
+        ColumnNoise n = BuildNoiseCache(wx0, cs, seed, d);
+
+        bool skyFound = false, ugAirFound = false,
+             solidFound = false, liquidFound = false;
+
+        for (int ly = 0; ly < cs; ++ly)
         {
-            int wx = wx0 + lx;
+            int   wy = wy0 + ly;
+            float nY = (float)wy / mapH;
 
-            var (aMain, aBlend, blendT) = GetAreaBlend(chunk, lx, ly, smoothW);
+            for (int lx = 0; lx < cs; ++lx)
+            {
+                int wx = wx0 + lx;
 
-            float skyNorm = ComputeSkyline(d, aMain, aBlend, blendT,
-                                           n.Cos[lx], n.Fbm[lx], n.Ridge[lx],
-                                           wx, wy, seed, baseSkyNorm);
+                var (aMain, aBlend, blendT) = GetAreaBlend(chunk, lx, ly, smoothW);
 
-            byte biomeIx = chunk.biomeIDs[lx, ly];
-            BiomeData biome = (biomeIx < _biomes?.Length) ? _biomes[biomeIx] : null;
-            AreaData  area  = aMain ?? ((chunk.areaIDs[lx, ly] < _areas?.Length)
-                                         ? _areas[chunk.areaIDs[lx, ly]] : null);
+                float skyNorm = ComputeSkyline(d, aMain, aBlend, blendT,
+                                               n.Cos[lx], n.Fbm[lx], n.Ridge[lx],
+                                               wx, wy, seed, baseSkyNorm);
 
-            var maskArea = ComputeMaskAndAreaNoise(wx, wy, seed, biome, area,
-                                                   useWorldMask, d);
+                byte biomeIx = chunk.biomeIDs[lx, ly];
+                BiomeData biome = (biomeIx < _biomes?.Length) ? _biomes[biomeIx] : null;
 
-            int front, back;
-            PickTiles(biome, area, nY, skyNorm, maskArea.frontMasked,
-                      maskArea.areaNoise, maskArea.blendNoise,
-                      wx, wy, seed,
-                      ref skyFound, ref ugAirFound, ref solidFound,
-                      out front, out back, d);
+                AreaData area = aMain ??
+                                ((chunk.areaIDs[lx, ly] < _areas?.Length)
+                                 ? _areas[chunk.areaIDs[lx, ly]] : null);
 
-            WriteLayers(chunk, lx, ly, front, back, ref liquidFound, d);
+                var maskArea = ComputeMaskAndAreaNoise(wx, wy, seed,
+                                                       biome, area,
+                                                       useWorldMask, d);
+
+                int front, back;
+                PickTiles(biome, area, nY, skyNorm, maskArea.frontMasked,
+                          maskArea.areaNoise, maskArea.blendNoise,
+                          wx, wy, seed,
+                          ref skyFound, ref ugAirFound, ref solidFound,
+                          out front, out back, d);
+
+                WriteLayers(chunk, lx, ly, front, back, ref liquidFound, d);
+            }
         }
+
+        SetChunkFlags(chunk, d, skyFound, ugAirFound, solidFound, liquidFound);
     }
 
-    SetChunkFlags(chunk, d, skyFound, ugAirFound, solidFound, liquidFound);
-}
-
-
-
-
-
-
-
-
-
-
     /* ------------------------------------------------------------------ */
-    /*  overworld depth-layer helper                                      */
+    /*  overworld depth-layer helper                                       */
     /* ------------------------------------------------------------------ */
     static bool TryPickOverworldLayer(
         BiomeOverworldData ow, float depthPx,
-        int wx,int wy,int seed,
-        float areaNoise,float blend,
-        out int front,out int back)
+        int wx, int wy, int seed,
+        float areaNoise, float blend,
+        out int front, out int back)
     {
         foreach (var L in ow.overworldLayers)
             if (depthPx >= L.minDepth && depthPx <= L.maxDepth)
             {
                 front = PickFromSubTiles(L.FrontLayerTiles,
-                                         ow.OverworldnoiseScale, ow.OverworldnoiseIntensity,
+                                         ow.OverworldnoiseScale,
+                                         ow.OverworldnoiseIntensity,
                                          wx, wy, seed,
                                          areaNoise, blend);
 
                 back  = PickFromSubTiles(L.BackgroundLayerTiles,
-                                         ow.OverworldnoiseScale, ow.OverworldnoiseIntensity,
+                                         ow.OverworldnoiseScale,
+                                         ow.OverworldnoiseIntensity,
                                          wx, wy, seed,
                                          areaNoise, blend);
                 return true;
             }
+
         front = back = -1;
         return false;
     }
@@ -441,24 +488,24 @@ public static void FillChunkTiles(Chunk chunk, WorldData d, int seed)
     /* ------------------------------------------------------------------ */
     /*  block & subtile pickers                                           */
     /* ------------------------------------------------------------------ */
-    static int PickFromBlock(BiomeBlock blk,BiomeData biome,
-                             int wx,int wy,int seed,
-                             float areaNoise,float blend)
+    static int PickFromBlock(BiomeBlock blk, BiomeData biome,
+                             int wx, int wy, int seed,
+                             float areaNoise, float blend)
     {
-        if (blk == null || blk.subTiles is not { Length: >0 }) return -1;
+        if (blk == null || blk.subTiles is not { Length: > 0 }) return -1;
 
         float n = SampleBiomeNoise(biome, wx, wy, seed, blk.NoiseOffset,
                                    areaNoise, blend);
         return NearestThreshold(blk.subTiles, n);
     }
 
-    static int PickFromSubTiles(BiomeSubTile[] subs,float scale,float intens,
-                                int wx,int wy,int seed,
-                                float areaNoise,float blend)
+    static int PickFromSubTiles(BiomeSubTile[] subs, float scale, float intens,
+                                int wx, int wy, int seed,
+                                float areaNoise, float blend)
     {
         if (subs == null || subs.Length == 0) return -1;
 
-        float nBiome = Mathf.PerlinNoise(wx*scale,(seed+wy)*scale)*intens;
+        float nBiome = Mathf.PerlinNoise(wx * scale, (seed + wy) * scale) * intens;
         float n = blend > 0f ? Mathf.Lerp(nBiome, areaNoise, blend) : nBiome;
         return NearestThreshold(subs, n);
     }
@@ -474,7 +521,7 @@ public static void FillChunkTiles(Chunk chunk, WorldData d, int seed)
         AreaData area,
         WorldData d)
     {
-        if (!IsSolidFast(front) || ores == null || ores.Length == 0) return;
+        if (!IsSolidFast(front) || ores is not { Length: > 0 }) return;
 
         TileData host = _tileCache[front];
 
@@ -482,11 +529,11 @@ public static void FillChunkTiles(Chunk chunk, WorldData d, int seed)
         {
             if (!o.oreTile) continue;
             if (depthNorm < o.minDepthNorm || depthNorm > o.maxDepthNorm) continue;
-            if (o.validHostTiles?.Count > 0 && !o.validHostTiles.Contains(host)) continue;
+            if (o.validHostTiles is { Count: > 0 } && !o.validHostTiles.Contains(host))
+                continue;
 
-            float n = Mathf.PerlinNoise(
-                        (wx + seed) * o.noiseFrequency,
-                        (wy + seed) * o.noiseFrequency);
+            float n = Mathf.PerlinNoise((wx + seed) * o.noiseFrequency,
+                                        (wy + seed) * o.noiseFrequency);
 
             if (n > o.threshold && Random.value < o.chance)
             {
@@ -507,7 +554,7 @@ public static void FillChunkTiles(Chunk chunk, WorldData d, int seed)
         AreaData area,
         WorldData d)
     {
-        if (!IsSolidFast(front) || ores == null || ores.Length == 0) return;
+        if (!IsSolidFast(front) || ores is not { Length: > 0 }) return;
 
         TileData host = _tileCache[front];
 
@@ -515,10 +562,12 @@ public static void FillChunkTiles(Chunk chunk, WorldData d, int seed)
         {
             if (!g.oreTile) continue;
             if (depthNorm < g.minDepthNorm || depthNorm > g.maxDepthNorm) continue;
-            if (g.allowedAreas != null && g.allowedAreas.Count > 0 &&
+
+            if (g.allowedAreas is { Count: > 0 } &&
                 (area == null || !g.allowedAreas.Contains(area)))
                 continue;
-            if (g.validHostTiles?.Count > 0 && !g.validHostTiles.Contains(host))
+
+            if (g.validHostTiles is { Count: > 0 } && !g.validHostTiles.Contains(host))
                 continue;
 
             float n = Mathf.PerlinNoise(
@@ -536,26 +585,31 @@ public static void FillChunkTiles(Chunk chunk, WorldData d, int seed)
     /* ------------------------------------------------------------------ */
     /*  closest-threshold (binary search)                                 */
     /* ------------------------------------------------------------------ */
-    static int NearestThreshold(BiomeSubTile[] subs,float n)
+    static int NearestThreshold(BiomeSubTile[] subs, float n)
     {
         int lo = 0, hi = subs.Length - 1;
         while (lo <= hi)
         {
             int mid = (lo + hi) >> 1;
-            if (subs[mid].threshold < n) lo = mid + 1; else hi = mid - 1;
+            if (subs[mid].threshold < n) lo = mid + 1;
+            else                         hi = mid - 1;
         }
+
         int low = Mathf.Clamp(hi, 0, subs.Length - 1);
         int up  = Mathf.Clamp(lo, 0, subs.Length - 1);
+
         int pick = Mathf.Abs(n - subs[low].threshold) <= Mathf.Abs(n - subs[up].threshold)
                    ? low : up;
+
         return subs[pick].tileData ? subs[pick].tileData.tileID : -1;
     }
 
     /* ------------------------------------------------------------------ */
     /*  FBm per-biome noise (plus optional blend)                         */
     /* ------------------------------------------------------------------ */
-    static float SampleBiomeNoise(BiomeData b,int wx,int wy,int seed,Vector2 off,
-                                  float areaNoise,float blend)
+    static float SampleBiomeNoise(
+        BiomeData b, int wx, int wy, int seed, Vector2 off,
+        float areaNoise, float blend)
     {
         if (b == null) return areaNoise;
 
@@ -570,6 +624,7 @@ public static void FillChunkTiles(Chunk chunk, WorldData d, int seed)
             freq *= b.lacunarity;
             amp  *= b.persistence;
         }
+
         float biomeN = Mathf.Clamp01(sum * b.strength);
         return blend > 0f ? Mathf.Lerp(biomeN, areaNoise, blend) : biomeN;
     }
@@ -577,8 +632,10 @@ public static void FillChunkTiles(Chunk chunk, WorldData d, int seed)
     /* ------------------------------------------------------------------ */
     /*  tiny helpers                                                      */
     /* ------------------------------------------------------------------ */
-    static int  SafeID(TileData td) => td ? td.tileID : 0;
-    static bool IsUGAir(int id,WorldData d)=>
-        id>0 && d.tileDatabase.UndergroundAirTile &&
-        id==d.tileDatabase.UndergroundAirTile.tileID;
+    static int SafeID(TileData td) => td ? td.tileID : 0;
+
+    static bool IsUGAir(int id, WorldData d) =>
+        id > 0 &&
+        d.tileDatabase.UndergroundAirTile &&
+        id == d.tileDatabase.UndergroundAirTile.tileID;
 }
