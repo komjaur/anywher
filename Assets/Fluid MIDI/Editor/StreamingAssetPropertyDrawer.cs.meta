@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 1576086faba94674bbd7fb3571f4ed7b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 173680
+  packageName: Fluid MIDI Player
+  packageVersion: 1.1
+  assetPath: Assets/Fluid MIDI/Editor/StreamingAssetPropertyDrawer.cs
+  uploadId: 461094

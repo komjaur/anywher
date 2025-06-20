@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b460c8d875054c409a774e6d92f9bce, type: 3}
+  m_Name: Blueprint_Tree_Normal
+  m_EditorClassIdentifier: 
+  description: Optional notes
+  FreeHeightRequired: 5
+  FreeWidthRequired: 3
+  SuitableGroundTiles:
+  - {fileID: 11400000, guid: 8ba7893825cf72246b277fe817ce56a3, type: 2}
+  trunkTile: {fileID: 11400000, guid: 2006a3d9fdcc1c149ae480d3dac318d6, type: 2}
+  leafTile: {fileID: 11400000, guid: 89eb92e0d722a6045b797e328985632d, type: 2}
+  crownTile: {fileID: 11400000, guid: c1d57898363643248b41a8cc76c58cfc, type: 2}
+  trunkHeightMin: 4
+  trunkHeightMax: 11
+  branchChance: 0.166

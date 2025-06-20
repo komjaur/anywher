@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 004a0d924ccf91947bbbb1ec287e0670, type: 3}
+  m_Name: Blueprint_OreVein
+  m_EditorClassIdentifier: 
+  description: Optional notes
+  requiresFullInBounds: 0
+  canBePlacedInAir: 0
+  structureWidth: 1
+  structureHeight: 1
+  anchorIsCenter: 1
+  possibleOres:
+  - oreTile: {fileID: 11400000, guid: 649c3883d3df8d649981cd86d351880a, type: 2}
+    weight: 5.89
+    minDepthNorm: 0
+    maxDepthNorm: 0.439
+  - oreTile: {fileID: 11400000, guid: b695462c470df9447aae439891c0eb9b, type: 2}
+    weight: 5.23
+    minDepthNorm: 0.349
+    maxDepthNorm: 0.806
+  - oreTile: {fileID: 11400000, guid: cb6b94b4b21a44c43b7923f7ae785eb8, type: 2}
+    weight: 4.23
+    minDepthNorm: 0
+    maxDepthNorm: 1
+  - oreTile: {fileID: 11400000, guid: dadc9d21c0bb446489aac85ba1147df8, type: 2}
+    weight: 5.23
+    minDepthNorm: 0.396
+    maxDepthNorm: 1
+  - oreTile: {fileID: 11400000, guid: 14897a163de9a6f4bbc2bf9b0b957355, type: 2}
+    weight: 5.58
+    minDepthNorm: 0.452
+    maxDepthNorm: 1
+  possibleShapes:
+  - minVeinLength: 5
+    maxVeinLength: 15
+    veinRadius: 5
+    radiusTapers: 0
+    startAngleDeg: 0
+    maxTurnAngle: 20
+    turnChance: 0.106
+    spawnBranches: 1
+    branchChance: 0.864
+    branchMaxLength: 55
+    branchRadius: 1
+    fillChance: 0.045
+    weight: 5
+  - minVeinLength: 15
+    maxVeinLength: 25
+    veinRadius: 1
+    radiusTapers: 0
+    startAngleDeg: 0
+    maxTurnAngle: 20
+    turnChance: 0.106
+    spawnBranches: 0
+    branchChance: 0.267
+    branchMaxLength: 35
+    branchRadius: 1
+    fillChance: 1
+    weight: 5
+  - minVeinLength: 15
+    maxVeinLength: 155
+    veinRadius: 1
+    radiusTapers: 0
+    startAngleDeg: 0
+    maxTurnAngle: 20
+    turnChance: 0.106
+    spawnBranches: 0
+    branchChance: 0.901
+    branchMaxLength: 55
+    branchRadius: 0
+    fillChance: 0.17
+    weight: 5

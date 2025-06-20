@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2919fb0dd86b85041be2c7862f5cf3ef, type: 3}
+  m_Name: Biome_SW_clear
+  m_EditorClassIdentifier: 
+  biomeName: "New\_Biome"
+  description: "Short biome blurb\u2026"
+  color: {r: 0, g: 0.10369022, b: 0.4339623, a: 1}
+  elevation: 0.631
+  worldNoiseThreshold: 0
+  areaNoiseBlend: 0
+  noiseType: 0
+  frequency: 0.14
+  strength: 1
+  stretch: {x: 1, y: 1}
+  octaves: 1
+  lacunarity: 2
+  persistence: 0.5
+  offset: {x: 0, y: 0}
+  FrontLayerTiles:
+    NoiseOffset: {x: 0, y: 0}
+    subTiles: []
+  BackgroundLayerTiles:
+    NoiseOffset: {x: 0, y: 0}
+    subTiles: []
+  Ores: []
+  Foliage: []
+  Decor: []
+  Trees: []
+  foliageChanceMul: 1
+  vineChanceMul: 1
+  treeChanceMul: 1
+  decorChanceMul: 1
+  cloudCoverage: 0.5

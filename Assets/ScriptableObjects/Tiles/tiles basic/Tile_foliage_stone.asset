@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6392e9782d4fad4498ffc831df3952c, type: 3}
+  m_Name: Tile_foliage_stone
+  m_EditorClassIdentifier: 
+  tileID: 19
+  tileName: foliage stone
+  color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
+  tileBase: {fileID: 11400000, guid: 34215c8ee2b7e7a4d9ada388b6674d66, type: 2}
+  behavior: 0
+  tag: 3
+  renderLayer: 5
+  unbreakable: 0
+  requiredToolPower: 0
+  health: 1
+  xpOnMine: 0
+  lightStrength: 0
+  lightColor: {r: 0, g: 0, b: 0, a: 0}
+  lightFalloff: 0.3
+  grassTile: {fileID: 0}
+  vineTile: {fileID: 0}
+  vineMinLength: 1
+  vineMaxLength: 6
+  canPlaceOnTiles:
+  - {fileID: 11400000, guid: ab0c6e7bd221d5f4cb397dc65e80f7e6, type: 2}
+  BlueprintGrowableMatured: {fileID: 0}
+  dropItem: {fileID: 0}

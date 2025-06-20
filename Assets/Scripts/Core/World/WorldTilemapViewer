@@ -1,0 +1,462 @@
+/*********************************************************
+ *  WorldTilemapViewer.cs  —  camera-driven chunk renderer
+ *  ------------------------------------------------------
+ *  ▸ Call Initialise(WorldManager) exactly once, after the
+ *    World has been constructed.
+ *  ▸ Call SetCamera(Camera) whenever you want (including 0).
+ *********************************************************/
+
+using System;                       // Action<T>
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Tilemaps;
+
+[DisallowMultipleComponent]
+[RequireComponent(typeof(Grid))]              // auto-added if missing
+[RequireComponent(typeof(LightingSystem))]    // ditto
+public class WorldTilemapViewer : MonoBehaviour
+{
+    /* ────────────────── Inspector ────────────────── */
+    [Header("Culling padding (chunks)")]
+    [Min(0)] public Vector2Int preloadChunks = new(1, 1);
+
+    [Header("Layer visibilities")]
+    public bool[] layerVisible = /*  Wall UWDec Liqu Solid Plat Veg Deco Wire */
+        {   true, true,  true,  true, true, true, true, true };
+
+    /* ────────────────── Public API ────────────────── */
+    public WorldManager worldManager { get; private set; }
+    public Camera       ViewCamera   => _cam;
+    public Tilemap[]    layerMaps    { get; private set; }
+
+    public event Action<Vector2Int> ChunkRendered;
+    public event Action<Vector2Int> ChunkCleared;
+
+    public bool ChunkIsVisible(Vector2Int c) => _visibleNow.Contains(c);
+
+    /// <summary>
+    /// Distance (in chunk units) from the current visible rectangle.
+    /// 0 = inside, 1 = immediately adjacent, etc.
+    /// </summary>
+    public int DistanceFromVisibleRect(Vector2Int c)
+    {
+        if (!_rectValid) return 0;
+        int dx = c.x < _rectMin.x ? _rectMin.x - c.x :
+                 c.x > _rectMax.x ? c.x - _rectMax.x : 0;
+        int dy = c.y < _rectMin.y ? _rectMin.y - c.y :
+                 c.y > _rectMax.y ? c.y - _rectMax.y : 0;
+        return Mathf.Max(dx, dy);
+    }
+
+    /* ────────────────── Internal state ────────────────── */
+    LightingSystem _lighting;
+    Camera         _cam;
+    bool           _initialised;
+
+    sealed class RenderCache
+    {
+        public Vector3Int[] cells;          // length = cs*cs
+        public TileBase[][] groupTiles;     // [RenderGroup][cell]
+    }
+
+    readonly Dictionary<Vector2Int,RenderCache> _chunkCache = new();
+    readonly HashSet<Vector2Int> _visibleNow  = new();
+    readonly HashSet<Vector2Int> _visibleLast = new();
+    readonly Dictionary<(int,int),TileBase[]> _clearArrays = new();
+      Transform      _tilemapRoot;          // NEW ― holds all layer maps
+    TileBase[] _tileByIndex;
+    TileBase   _skyTile, _undergroundTile;
+
+    /* rectangle bounds of the current visible set */
+    Vector2Int _rectMin, _rectMax;
+    bool       _rectValid;
+
+    /* =====================================================================
+     *  Initialise AFTER the World exists
+     * ===================================================================*/
+         public void Initialize()
+    {
+        if (_initialised) return;
+
+        worldManager = GameManager.Instance?.WorldManager;
+        if (!worldManager)
+        {
+            Debug.LogError("[Viewer] Initialise() failed – WorldManager missing.");
+            return;
+        }
+
+        /* guarantee LightingSystem and hook-up */
+        _lighting = GetComponent<LightingSystem>() ??
+                    gameObject.AddComponent<LightingSystem>();
+        _lighting.Initialize(this);
+
+        /* ----------------------------------------------------------------
+         *  Create one “Tilemaps” root then build every layer under it
+         * ---------------------------------------------------------------*/
+        _tilemapRoot = new GameObject("Tilemaps").transform;
+        _tilemapRoot.SetParent(transform, false);
+
+        int groups = (int)RenderGroup.Count;
+        layerMaps  = new Tilemap[groups];
+
+        for (int g = 0; g < groups; ++g)
+        {
+            var go  = new GameObject($"{(RenderGroup)g}Map");
+            go.transform.SetParent(_tilemapRoot, false);      // ← NEW parent
+
+            var map = go.AddComponent<Tilemap>();
+            var ren = go.AddComponent<TilemapRenderer>();
+            ren.sortingOrder = 10 + g;
+
+            if (g == (int)RenderGroup.Solid)
+            {
+                int ground = LayerMask.NameToLayer("Ground");
+                if (ground >= 0) go.layer = ground;
+                EnsureSolidCollider(map);
+            }
+            layerMaps[g] = map;
+        }
+
+        _initialised = true;
+    }
+
+    /* --------------------------------------------------------------------
+     *  Swap / set camera whenever you like
+     * ------------------------------------------------------------------ */
+     public void SetCamera(Camera cam)
+    {
+        _cam = cam;
+        _lighting?.SetCamera(cam);          //<── propagate change
+    }
+
+    /* =====================================================================
+     *  Unity life-cycle
+     * ===================================================================*/
+
+    void LateUpdate()
+    {
+        if (!_initialised) return;
+
+        World world = worldManager.GetCurrentWorld();
+        if (world == null) return;
+
+        CacheTileBases(world.tiles);
+        BuildVisibleSet(world);
+        CullOldChunks();
+        RenderNewChunks(world);
+
+        _visibleLast.Clear();
+        _visibleLast.UnionWith(_visibleNow);
+    }
+
+    /* =====================================================================
+     *  Helper routines
+     * ===================================================================*/
+
+    private void CacheTileBases(TileDatabase db)
+    {
+        if (_tileByIndex != null || db == null) return;
+
+        int n = db.tiles?.Length ?? 0;
+        _tileByIndex     = new TileBase[n];
+        _skyTile         = db.SkyAirTile          ? db.SkyAirTile.tileBase         : null;
+        _undergroundTile = db.UndergroundAirTile ? db.UndergroundAirTile.tileBase : null;
+    }
+
+    void BuildVisibleSet(World world)
+    {
+        _visibleNow.Clear();
+        _rectValid = false;
+        if (_cam == null) return;
+
+        int cs = world.chunkSize;
+        float z = -_cam.transform.position.z;
+
+        Vector3 bl = _cam.ViewportToWorldPoint(new Vector3(0,0,z));
+        Vector3 tr = _cam.ViewportToWorldPoint(new Vector3(1,1,z));
+
+        int cxMin = Mathf.FloorToInt(bl.x / cs) - preloadChunks.x;
+        int cyMin = Mathf.FloorToInt(bl.y / cs) - preloadChunks.y;
+        int cxMax = Mathf.FloorToInt(tr.x / cs) + preloadChunks.x;
+        int cyMax = Mathf.FloorToInt(tr.y / cs) + preloadChunks.y;
+
+        cxMin = Mathf.Max(0, cxMin);
+        cyMin = Mathf.Max(0, cyMin);
+        cxMax = Mathf.Min(world.widthInChunks  - 1, cxMax);
+        cyMax = Mathf.Min(world.heightInChunks - 1, cyMax);
+
+        _rectMin   = new Vector2Int(cxMin, cyMin);
+        _rectMax   = new Vector2Int(cxMax, cyMax);
+        _rectValid = true;
+
+        for (int cy = cyMin; cy <= cyMax; ++cy)
+        for (int cx = cxMin; cx <= cxMax; ++cx)
+            _visibleNow.Add(new Vector2Int(cx, cy));
+    }
+    /* ---------- cull / render ---------- */
+
+      void CullOldChunks()
+    {
+        foreach (var c in _visibleLast)
+        {
+            if (_visibleNow.Contains(c)) continue;
+
+            if (_chunkCache.TryGetValue(c, out var rc))
+            {
+                for (int g = 0; g < layerMaps.Length; ++g)
+                    if (layerVisible[g])
+                        layerMaps[g].SetTiles(rc.cells, GetNullArray(rc.cells.Length, g));
+                _chunkCache.Remove(c);
+            }
+            ChunkCleared?.Invoke(c);
+        }
+    }
+
+    void RenderNewChunks(World world)
+    {
+        int cs = world.chunkSize;
+
+        foreach (var c in _visibleNow)
+        {
+            if (_chunkCache.ContainsKey(c)) continue;
+
+            Chunk ch = world.GetChunk(c);
+            if (ch == null) continue;
+
+            var rc = BuildCache(ch, world.tiles, cs);
+            _chunkCache[c] = rc;
+
+            for (int g = 0; g < layerMaps.Length; ++g)
+                if (layerVisible[g])
+                    layerMaps[g].SetTiles(rc.cells, rc.groupTiles[g]);
+
+            ChunkRendered?.Invoke(c);
+        }
+    }
+
+    /* ---------- cache builder ---------- */
+
+    private static RenderCache BuildCache(Chunk ch, TileDatabase db, int cs)
+    {
+        int len = cs * cs;
+        var cells = new Vector3Int[len];
+        var gt    = new TileBase[(int)RenderGroup.Count][];
+        for (int g = 0; g < gt.Length; ++g) gt[g] = new TileBase[len];
+
+        int wx0 = ch.position.x * cs;
+        int wy0 = ch.position.y * cs;
+        int i   = 0;
+
+        for (int y = 0; y < cs; ++y)
+        for (int x = 0; x < cs; ++x, ++i)
+        {
+            cells[i] = new Vector3Int(wx0 + x, wy0 + y, 0);
+
+            gt[(int)RenderGroup.Wall][i] =
+                Lookup(db, ch.backgroundLayerTileIndexes[x, y]);
+
+            gt[(int)RenderGroup.Liquid][i] =
+                Lookup(db, ch.liquidLayerTileIndexes[x, y]);
+
+            gt[(int)RenderGroup.Wiring][i] =
+                Lookup(db, ch.overlayLayerTileIndexes[x, y]);
+
+            gt[(int)RenderGroup.UnderwaterDecor][i] =
+                Lookup(db, ch.oreLayerTileIndexes[x, y]);
+
+            int fid = ch.frontLayerTileIndexes[x, y];
+            if (fid != 0)
+            {
+                TileData ftd = db.GetTileDataByIndex(fid);
+                RenderGroup dst = ftd ? ftd.renderLayer : RenderGroup.Solid;
+                gt[(int)dst][i] = ftd ? ftd.tileBase : Lookup(db, fid);
+            }
+        }
+        return new RenderCache { cells = cells, groupTiles = gt };
+    }
+
+    /* ---------- tile lookup + misc helpers ---------- */
+
+    private static TileBase Lookup(TileDatabase db, int id)
+    {
+        if (id < 0)  return db.UndergroundAirTile ? db.UndergroundAirTile.tileBase : null;
+        if (id == 0) return db.SkyAirTile         ? db.SkyAirTile.tileBase         : null;
+        return db.GetTileDataByIndex(id)?.tileBase;
+    }
+
+    private TileBase[] GetNullArray(int len, int grp)
+    {
+        if (!_clearArrays.TryGetValue((len, grp), out var arr))
+        {
+            arr = new TileBase[len];
+            _clearArrays[(len, grp)] = arr;
+        }
+        return arr;
+    }
+
+/* ---------------------------------------------------------------
+ *  SOLID-layer collider helper - final, bullet-proof version
+ * --------------------------------------------------------------*/
+static void EnsureSolidCollider(Tilemap map)
+{
+    // 1 ─ TilemapCollider2D
+    TilemapCollider2D col = map.GetComponent<TilemapCollider2D>();
+    if (col == null)
+    {
+        col = map.gameObject.AddComponent<TilemapCollider2D>();
+        if (col == null)                          // Physics-2D module missing
+        {
+            Debug.LogWarning("[Viewer] Physics-2D not available – "
+                           + "Solid layer will have no collider.");
+            return;
+        }
+    }
+    col.usedByComposite = true;
+
+    // 2 ─ Rigidbody2D (only if absent)
+    Rigidbody2D rb = map.GetComponent<Rigidbody2D>();
+    if (rb == null)
+    {
+        rb = map.gameObject.AddComponent<Rigidbody2D>();
+        rb.bodyType  = RigidbodyType2D.Static;
+        rb.simulated = true;
+    }
+
+    // 3 ─ CompositeCollider2D
+    CompositeCollider2D comp = map.GetComponent<CompositeCollider2D>();
+    if (comp == null)
+        comp = map.gameObject.AddComponent<CompositeCollider2D>();
+
+    comp.geometryType   = CompositeCollider2D.GeometryType.Polygons;
+    comp.generationType = CompositeCollider2D.GenerationType.Synchronous;
+}
+
+
+
+    /* --------------------------------------------------------------------
+     *  Runtime helper – update a single on-screen tile (unchanged)
+     * ------------------------------------------------------------------ */
+    public bool SetTile(World world, int wx, int wy,
+                        int tileID, ChunkLayer srcLayer = ChunkLayer.Front)
+    {
+        int cs = world.chunkSize;
+        var cKey = new Vector2Int(wx / cs, wy / cs);
+        if (!_chunkCache.TryGetValue(cKey, out var rc)) return false;
+
+        int lx = wx - rc.cells[0].x;
+        int ly = wy - rc.cells[0].y;
+        int idx = ly * cs + lx;
+
+        RenderGroup grp = srcLayer switch
+        {
+            ChunkLayer.Background => RenderGroup.Wall,
+            ChunkLayer.Liquid     => RenderGroup.Liquid,
+            ChunkLayer.Overlay    => RenderGroup.Wiring,
+            ChunkLayer.Ore        => RenderGroup.UnderwaterDecor,
+            _                     => RenderGroup.Solid
+        };
+        if (srcLayer == ChunkLayer.Front)
+        {
+            TileData td = world.tiles.GetTileDataByID(tileID);
+            if (td) grp = td.renderLayer;
+        }
+
+        TileBase tb = Lookup(world.tiles, tileID);
+        rc.groupTiles[(int)grp][idx] = tb;
+        if (layerVisible[(int)grp])
+            layerMaps[(int)grp].SetTile(rc.cells[idx], tb);
+
+        _lighting?.InvalidateLighting();
+        return true;
+    }
+
+    /* ───────────────────── Lighting-system helpers (unchanged) ───────────────────── */
+
+    public bool GetBounds(HashSet<Vector2Int> set,
+                          out Vector2Int min, out Vector2Int max)
+    {
+        min = max = default;
+        bool first = true;
+        World w = worldManager?.GetCurrentWorld();
+        if (w == null) return false;
+
+        foreach (var c in set)
+        {
+            Chunk ch = w.GetChunk(c);
+            if (ch == null) continue;
+            int cs = ch.size;
+            int sx = c.x * cs, sy = c.y * cs, ex = sx + cs, ey = sy + cs;
+            if (first)
+            {
+                min = new Vector2Int(sx, sy);
+                max = new Vector2Int(ex, ey);
+                first = false;
+            }
+            else
+            {
+                if (sx < min.x) min.x = sx;
+                if (sy < min.y) min.y = sy;
+                if (ex > max.x) max.x = ex;
+                if (ey > max.y) max.y = ey;
+            }
+        }
+        return !first;
+    }
+
+    public void CollectChunkLights(HashSet<Vector2Int> chunks,
+                                   Vector2Int min, Vector2Int max,
+                                   ref Color[] buffer,
+                                   Queue<(Vector2Int, Color)> q)
+    {
+        World world = worldManager.GetCurrentWorld();
+        TileDatabase db = world.tiles;
+        int cs  = world.chunkSize;
+        int wPx = max.x - min.x;
+
+        foreach (var cPos in chunks)
+        {
+            Chunk ch = world.GetChunk(cPos);
+            if (ch == null) continue;
+
+            for (int y = 0; y < cs; ++y)
+            for (int x = 0; x < cs; ++x)
+            {
+                int fid = ch.frontLayerTileIndexes[x, y];
+                int bid = ch.backgroundLayerTileIndexes[x, y];
+
+                TileData td = db.GetTileDataByIndex(fid),
+                         bd = db.GetTileDataByIndex(bid);
+
+                TileData emitter = td ? td : bd;
+                if (emitter == null || emitter.lightStrength <= 0f) continue;
+
+                int wx  = cPos.x * cs + x;
+                int wy  = cPos.y * cs + y;
+                int idx = (wy - min.y) * wPx + (wx - min.x);
+
+                Color energy = emitter.lightColor * emitter.lightStrength;
+                if (energy.maxColorComponent <= buffer[idx].maxColorComponent) continue;
+
+                buffer[idx] = energy;
+                q.Enqueue((new Vector2Int(wx - min.x, wy - min.y), energy));
+            }
+        }
+    }
+
+    public float GetTileFalloff(int wx, int wy)
+    {
+        World w = worldManager.GetCurrentWorld();
+        int cs  = w.chunkSize;
+        int cx  = wx / cs, cy = wy / cs;
+        Chunk ch = w.GetChunk(new Vector2Int(cx, cy));
+        if (ch == null) return 1f;
+
+        int lx = wx - cx * cs, ly = wy - cy * cs;
+        TileData td = w.tiles.GetTileDataByIndex(ch.frontLayerTileIndexes[lx, ly]),
+                 bd = w.tiles.GetTileDataByIndex(ch.backgroundLayerTileIndexes[lx, ly]);
+
+        if (td != null) return td.lightFalloff;
+        if (bd != null) return bd.lightFalloff;
+        return 0.1f;
+    }
+}

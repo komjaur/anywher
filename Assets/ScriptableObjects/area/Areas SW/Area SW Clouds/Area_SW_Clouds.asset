@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7bc72852839d9641a382ea76d3d7899, type: 3}
+  m_Name: Area_SW_Clouds
+  m_EditorClassIdentifier: 
+  areaName: 
+  color: {r: 0.6839622, g: 0.86367, b: 1, a: 1}
+  zone: 0
+  biomes:
+  - {fileID: 11400000, guid: 94a96f795f6ba58409f65b3774108756, type: 2}
+  areaNoiseFrequency: 0.05
+  Foliage: []
+  Decor: []
+  Trees: []
+  Ores: []
+  foliageSpawnChance: 0.4
+  decorSpawnChance: 0.15
+  vineSpawnChance: 0.3
+  treeSpawnChance: 0.3
+  defaultDirt: {fileID: 0}
+  defaultStone: {fileID: 0}
+  defaultGrass: {fileID: 0}
+  parallax: {fileID: 0}
+  minDepth: 0.711
+  maxDepth: 1
+  minHeat: 0.182
+  maxHeat: 1

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2982038ac837345ab783ba77e44b80, type: 3}
+  m_Name: Biome_UW_Caverns_underground beach
+  m_EditorClassIdentifier: 
+  biomeName: underground beach
+  description: A brief description of this biome...
+  color: {r: 0.518, g: 0.29267, b: 0, a: 1}
+  elevation: 0.559
+  worldNoiseThreshold: 0.105
+  areaNoiseBlend: 0.214
+  noiseType: 0
+  frequency: 0.01
+  strength: 1
+  stretch: {x: 1, y: 1}
+  octaves: 1
+  lacunarity: 2
+  persistence: 0.5
+  offset: {x: 0, y: 0}
+  FrontLayerTiles:
+    NoiseOffset: {x: 0, y: 0}
+    subTiles:
+    - tileData: {fileID: 11400000, guid: ab0c6e7bd221d5f4cb397dc65e80f7e6, type: 2}
+      threshold: 0.256
+    - tileData: {fileID: 11400000, guid: a2b3a4216ebf8f44887be311fcb59e0a, type: 2}
+      threshold: 0.467
+    - tileData: {fileID: 11400000, guid: f996dc00ed5bcc9449954c68f0fe6479, type: 2}
+      threshold: 0.556
+    - tileData: {fileID: 11400000, guid: 9d4490b140cedec43937e12897c1fd32, type: 2}
+      threshold: 0.581
+  BackgroundLayerTiles:
+    NoiseOffset: {x: 66.97, y: 0}
+    subTiles:
+    - tileData: {fileID: 11400000, guid: adb12e7bb2191f94f94a52aaec6fda06, type: 2}
+      threshold: 0.185
+    - tileData: {fileID: 11400000, guid: 973cd6f750a2c694a9228f9b9142869a, type: 2}
+      threshold: 0.56
+  Ores: []
+  Foliage: []
+  Decor: []
+  Trees: []
+  foliageChanceMul: 1
+  vineChanceMul: 1
+  treeChanceMul: 1
+  decorChanceMul: 1
+  lavaFlowIntensity: 1

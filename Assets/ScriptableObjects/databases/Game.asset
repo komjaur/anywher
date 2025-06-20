@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4469a3d3eb89fce45a0e803dbc0e2fed, type: 3}
+  m_Name: Game
+  m_EditorClassIdentifier: 
+  world: {fileID: 11400000, guid: 3eb9f56869b5ade45baafedb62e4de3c, type: 2}
+  settings: {fileID: 11400000, guid: c733fae3cac37fe4a975cd8cc5667684, type: 2}
+  levelUpClip: {fileID: 8300000, guid: 9b2057c86c717c542879775790955678, type: 3}
+  soundFont:
+    path: GeneralUser GS v1.471.sf2
+  skillDatabase: {fileID: 11400000, guid: d50414ec89cf6a945ab9da2fb1c91f7e, type: 2}
+  recipeDatabase: {fileID: 11400000, guid: 0ad02f1530e0f7943bdaa244765efe69, type: 2}
+  playerUnit: {fileID: 11400000, guid: 8772ab2a099c92c4eb1200f0cf8a997c, type: 2}
+  uiToast: {fileID: 7590007529370827511, guid: 85214a8b929e1f6408a49c377538d563, type: 3}
+  crackStages:
+  - {fileID: 3482941332764597540, guid: a4cb00d0b43ba1d4abbf4d34c9a7721b, type: 3}
+  - {fileID: -1530575748779189984, guid: a4cb00d0b43ba1d4abbf4d34c9a7721b, type: 3}
+  - {fileID: 2198484994752340008, guid: a4cb00d0b43ba1d4abbf4d34c9a7721b, type: 3}
+  - {fileID: 1927023721, guid: a4cb00d0b43ba1d4abbf4d34c9a7721b, type: 3}
+  - {fileID: 1932956263, guid: a4cb00d0b43ba1d4abbf4d34c9a7721b, type: 3}

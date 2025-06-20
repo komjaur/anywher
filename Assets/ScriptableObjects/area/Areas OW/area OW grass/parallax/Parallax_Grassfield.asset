@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfcf63902a476c34fba59c40db9cc40d, type: 3}
+  m_Name: Parallax_Grassfield
+  m_EditorClassIdentifier: 
+  layers:
+  - sprite: {fileID: -855298285791758126, guid: 713f47791d129b14c8bb7d249d625d9d, type: 3}
+    speed: 0.909
+    offset: {x: 0, y: -0.8}
+    autoScrollSpeed: {x: 0.1, y: 0}
+    sortingOrder: 0
+  - sprite: {fileID: -6470460504253458178, guid: 720f95a2f038fad40a76e9687685f1aa, type: 3}
+    speed: 0.301
+    offset: {x: -3.43, y: 8.45}
+    autoScrollSpeed: {x: 0, y: 0}
+    sortingOrder: 0
+  - sprite: {fileID: -4178046375966092550, guid: 795b3dcb9c6aac0449f838c1f5b7a564, type: 3}
+    speed: 0.107
+    offset: {x: 0.24, y: -3.58}
+    autoScrollSpeed: {x: 0, y: 0}
+    sortingOrder: 0

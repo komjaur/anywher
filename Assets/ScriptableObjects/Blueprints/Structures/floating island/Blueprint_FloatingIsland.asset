@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a2db904f71040b4dad9b3110acafb41, type: 3}
+  m_Name: Blueprint_FloatingIsland
+  m_EditorClassIdentifier: 
+  description: Optional notes
+  requiresFullInBounds: 1
+  canBePlacedInAir: 1
+  structureWidth: 32
+  structureHeight: 30
+  anchorIsCenter: 1
+  radiusX: 20
+  radiusY: 6
+  grassTile: {fileID: 11400000, guid: 8ba7893825cf72246b277fe817ce56a3, type: 2}
+  dirtTile: {fileID: 11400000, guid: a2b3a4216ebf8f44887be311fcb59e0a, type: 2}
+  dirtDepth: 3
+  FrontLayerTiles:
+    NoiseOffset: {x: 0, y: 0}
+    subTiles:
+    - tileData: {fileID: 11400000, guid: ab0c6e7bd221d5f4cb397dc65e80f7e6, type: 2}
+      threshold: 0.407
+    - tileData: {fileID: 11400000, guid: a2b3a4216ebf8f44887be311fcb59e0a, type: 2}
+      threshold: 0.567
+  BackgroundLayerTiles:
+    NoiseOffset: {x: 0, y: 0}
+    subTiles:
+    - tileData: {fileID: 11400000, guid: 973cd6f750a2c694a9228f9b9142869a, type: 2}
+      threshold: 0.403
+    - tileData: {fileID: 11400000, guid: adb12e7bb2191f94f94a52aaec6fda06, type: 2}
+      threshold: 0.679
+  edgeNoiseStrength: 0.976
+  edgeNoiseScale: 0.1
+  noiseSeed: 64
+  treeChance: 0.115
+  treeBlueprints:
+  - {fileID: 11400000, guid: 2b24e289dd227ff418acf2019d277b4d, type: 2}
+  chestTile: {fileID: 11400000, guid: 1f5e0113afc7b3c4c9d720e88d2d9c0e, type: 2}
+  chestYOffset: 1

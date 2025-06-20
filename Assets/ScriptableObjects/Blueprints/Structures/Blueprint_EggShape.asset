@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed45fc84b7ab8845813cd147f4c83bd, type: 3}
+  m_Name: Blueprint_EggShape
+  m_EditorClassIdentifier: 
+  description: Optional notes
+  requiresFullInBounds: 1
+  canBePlacedInAir: 0
+  structureWidth: 50
+  structureHeight: 50
+  anchorIsCenter: 1
+  eggWidth: 50
+  eggHeight: 60
+  wallThickness: 4
+  wallTile: {fileID: 11400000, guid: 0c0519c3663d5444cb2be5404530a2fa, type: 2}
+  heartTile: {fileID: 11400000, guid: 0cd0ab6dbfa939e4c84504ab251931e5, type: 2}
+  fillTileFront: {fileID: 11400000, guid: 9d4490b140cedec43937e12897c1fd32, type: 2}
+  fillTileBackground: {fileID: 0}
+  heartScale: 5

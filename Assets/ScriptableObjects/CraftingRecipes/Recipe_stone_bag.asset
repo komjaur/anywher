@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebebb6c368e5fa140b057b147b8d0fe3, type: 3}
+  m_Name: Recipe_stone_bag
+  m_EditorClassIdentifier: 
+  ingredients:
+  - item: {fileID: 11400000, guid: fc7f374135f12ff4ebf8278e1da56f66, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: a9dff1f0fb56f6d46bc885396b790e74, type: 2}
+    amount: 50
+  resultItem: {fileID: 11400000, guid: b64160698620ec04a81a8cd7e71ce576, type: 2}
+  resultAmount: 1
+  xpReward: 110
+  rewardSkill: 6

@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2982038ac837345ab783ba77e44b80, type: 3}
+  m_Name: Biome_UW_Caverns 4
+  m_EditorClassIdentifier: 
+  biomeName: New Biome
+  description: A brief description of this biome...
+  color: {r: 1, g: 0.03164482, b: 0, a: 1}
+  elevation: 0.154
+  worldNoiseThreshold: 0
+  areaNoiseBlend: 0.214
+  noiseType: 0
+  frequency: 0.01
+  strength: 1
+  stretch: {x: 1, y: 1}
+  octaves: 2
+  lacunarity: 2
+  persistence: 0.5
+  offset: {x: 0, y: 0}
+  FrontLayerTiles:
+    NoiseOffset: {x: 6.68, y: 0}
+    subTiles:
+    - tileData: {fileID: 11400000, guid: ab0c6e7bd221d5f4cb397dc65e80f7e6, type: 2}
+      threshold: 0.37
+    - tileData: {fileID: 11400000, guid: a2b3a4216ebf8f44887be311fcb59e0a, type: 2}
+      threshold: 0.416
+    - tileData: {fileID: 11400000, guid: 9d4490b140cedec43937e12897c1fd32, type: 2}
+      threshold: 0.498
+    - tileData: {fileID: 11400000, guid: a2b3a4216ebf8f44887be311fcb59e0a, type: 2}
+      threshold: 0.626
+    - tileData: {fileID: 11400000, guid: 9d4490b140cedec43937e12897c1fd32, type: 2}
+      threshold: 0.719
+    - tileData: {fileID: 11400000, guid: a2b3a4216ebf8f44887be311fcb59e0a, type: 2}
+      threshold: 0.767
+    - tileData: {fileID: 11400000, guid: 9d4490b140cedec43937e12897c1fd32, type: 2}
+      threshold: 0.807
+    - tileData: {fileID: 11400000, guid: a2b3a4216ebf8f44887be311fcb59e0a, type: 2}
+      threshold: 0.863
+    - tileData: {fileID: 11400000, guid: 9d4490b140cedec43937e12897c1fd32, type: 2}
+      threshold: 0.9
+    - tileData: {fileID: 11400000, guid: a2b3a4216ebf8f44887be311fcb59e0a, type: 2}
+      threshold: 0.93
+  BackgroundLayerTiles:
+    NoiseOffset: {x: 66.97, y: 0}
+    subTiles:
+    - tileData: {fileID: 11400000, guid: adb12e7bb2191f94f94a52aaec6fda06, type: 2}
+      threshold: 0.185
+    - tileData: {fileID: 11400000, guid: 973cd6f750a2c694a9228f9b9142869a, type: 2}
+      threshold: 0.56
+  Ores: []
+  Foliage: []
+  Decor: []
+  Trees: []
+  foliageChanceMul: 1
+  vineChanceMul: 1
+  treeChanceMul: 1
+  decorChanceMul: 1
+  lavaFlowIntensity: 1

@@ -1,0 +1,311 @@
+/*  QuestSystem.cs  ─────────────────────────────────────────────────────────
+ *  One-file quest framework (no namespaces)
+ *  • Designer assets:  QuestDef, Objective ScriptableObjects, QuestDatabase
+ *  • Runtime objects : Quest, ObjectiveTracker subclasses
+ *  • Manager         : QuestManager (MonoBehaviour singleton)
+ *  • Event hub       : QuestEventBus (static)
+ *  -----------------------------------------------------------------------*/
+
+// ───────────────────────────────────  TYPES & DATA  ───────────────────────────────────
+using UnityEngine;
+using System;
+using System.Collections.Generic;
+
+public enum ObjectiveLogic  { All, Any }
+public enum ObjectiveState  { Inactive, Active, Complete, Failed }
+public enum RewardType      { Item, Currency, Experience, Unlock }
+
+[Serializable]
+public struct Reward
+{
+    public RewardType type;
+    public int        amount;
+    public string     id;      // itemID, unlockID, etc.
+}
+
+// ───────────────────────────────────  OBJECTIVE DEFS  ─────────────────────────────────
+public abstract class ObjectiveDef : ScriptableObject
+{
+    [Tooltip("Shown in quest log"), TextArea] public string description;
+    public abstract ObjectiveTracker CreateTracker();               // runtime binder
+}
+
+[CreateAssetMenu(menuName = "Game/Quests/Objective/Gather Item")]
+public class GatherItemObjectiveDef : ObjectiveDef
+{
+    public string itemID;
+    public int    amount = 1;
+    public override ObjectiveTracker CreateTracker() => new GatherItemTracker(this);
+}
+
+[CreateAssetMenu(menuName = "Game/Quests/Objective/Kill Enemy")]
+public class KillEnemyObjectiveDef : ObjectiveDef
+{
+    public string enemyID;
+    public int    amount = 1;
+    public override ObjectiveTracker CreateTracker() => new KillEnemyTracker(this);
+}
+
+[CreateAssetMenu(menuName = "Game/Quests/Objective/Reach Chunk Flag")]
+public class ReachChunkFlagObjectiveDef : ObjectiveDef
+{
+    public ChunkFlags targetFlag;
+    public override ObjectiveTracker CreateTracker() => new ReachChunkFlagTracker(this);
+}
+
+// ───────────────────────────────────  QUEST DEF  ──────────────────────────────────────
+[Serializable]
+public class QuestStep
+{
+    [TextArea] public string narrative;
+    public ObjectiveLogic   logic   = ObjectiveLogic.All;
+    public ObjectiveDef[]   objectives;
+}
+
+[CreateAssetMenu(menuName = "Game/Quest")]
+public class QuestDef : ScriptableObject
+{
+    [Header("Meta")]
+    public string questID;
+    public string displayName;
+    [TextArea] public string description;
+    public bool   repeatable;
+
+    [Header("Flow")]
+    public QuestStep[] steps;
+    public Reward[]    rewards;
+    public string[]    followUpQuestIDs;
+    public float       timeLimitSeconds;      // 0 = none
+}
+
+// ───────────────────────────────────  EVENT BUS  ──────────────────────────────────────
+public static class QuestEventBus
+{
+    public static Action<string,int> OnItemCollected;            // (itemID, amount)
+    public static Action<string>     OnEnemyKilled;              // enemyID
+    public static Action<ChunkFlags> OnChunkEntered;
+    public static Action<string>     OnNPCDialogueFinished;      // npcID
+    public static Action<string,object> OnCustom;                // (eventKey, payload)
+}
+
+// ───────────────────────────────────  OBJECTIVE TRACKERS  ─────────────────────────────
+public abstract class ObjectiveTracker
+{
+    public event Action<ObjectiveTracker> OnProgress;
+    public ObjectiveState State { get; protected set; } = ObjectiveState.Inactive;
+    public int  Current { get; protected set; }
+    public int  Target  { get; protected set; }
+
+    public virtual void Activate()   => State = ObjectiveState.Active;
+    public virtual void Deactivate() => State = ObjectiveState.Inactive;
+
+    protected void Add(int delta = 1)
+    {
+        if (State != ObjectiveState.Active) return;
+        Current = Mathf.Clamp(Current + delta, 0, Target);
+        if (Current >= Target) State = ObjectiveState.Complete;
+        OnProgress?.Invoke(this);
+    }
+}
+
+/* concrete trackers */
+public sealed class GatherItemTracker : ObjectiveTracker
+{
+    readonly GatherItemObjectiveDef def;
+    public GatherItemTracker(GatherItemObjectiveDef d){ def=d; Target=d.amount; }
+    public override void Activate(){ base.Activate(); QuestEventBus.OnItemCollected += Check; }
+    public override void Deactivate(){ QuestEventBus.OnItemCollected -= Check; base.Deactivate(); }
+    void Check(string id,int amt){ if(id==def.itemID) Add(amt); }
+}
+
+public sealed class KillEnemyTracker : ObjectiveTracker
+{
+    readonly KillEnemyObjectiveDef def;
+    public KillEnemyTracker(KillEnemyObjectiveDef d){ def=d; Target=d.amount; }
+    public override void Activate(){ base.Activate(); QuestEventBus.OnEnemyKilled += Check; }
+    public override void Deactivate(){ QuestEventBus.OnEnemyKilled -= Check; base.Deactivate(); }
+    void Check(string id){ if(id==def.enemyID) Add(); }
+}
+
+public sealed class ReachChunkFlagTracker : ObjectiveTracker
+{
+    readonly ReachChunkFlagObjectiveDef def;
+    public ReachChunkFlagTracker(ReachChunkFlagObjectiveDef d){ def=d; Target=1; }
+    public override void Activate(){ base.Activate(); QuestEventBus.OnChunkEntered += Check; }
+    public override void Deactivate(){ QuestEventBus.OnChunkEntered -= Check; base.Deactivate(); }
+    void Check(ChunkFlags f){ if(f.HasFlag(def.targetFlag)) Add(); }
+}
+
+// ───────────────────────────────────  QUEST (runtime)  ────────────────────────────────
+public sealed class Quest
+{
+    public QuestDef Def { get; }
+    public int      StepIndex  { get; private set; }
+    public bool     Completed  { get; private set; }
+    public bool     Failed     { get; private set; }
+
+    readonly List<ObjectiveTracker[]> trackers = new();
+    float timeLeft;
+
+    public Quest(QuestDef def)
+    {
+        Def = def;
+        foreach(var s in def.steps)
+        {
+            var arr = new ObjectiveTracker[s.objectives.Length];
+            for(int i=0;i<arr.Length;i++) arr[i]=s.objectives[i].CreateTracker();
+            trackers.Add(arr);
+        }
+        timeLeft = def.timeLimitSeconds;
+        ActivateStep(0);
+    }
+
+    public void Tick(float dt)
+    {
+        if (Completed || Failed) return;
+        if (timeLeft > 0)
+        {
+            timeLeft -= dt;
+            if (timeLeft <= 0) Fail();
+        }
+    }
+
+    void ActivateStep(int idx)
+    {
+        foreach(var t in trackers[idx])
+        {
+            t.OnProgress += _=>Evaluate();
+            t.Activate();
+        }
+    }
+    void DeactivateStep(int idx)
+    {
+        foreach(var t in trackers[idx])
+        {
+            t.OnProgress -= _=>Evaluate();
+            t.Deactivate();
+        }
+    }
+
+    void Evaluate()
+    {
+        var logic = Def.steps[StepIndex].logic;
+        bool done = logic == ObjectiveLogic.All
+            ? Array.TrueForAll(trackers[StepIndex], tr=>tr.State==ObjectiveState.Complete)
+            : Array.Exists(trackers[StepIndex],     tr=>tr.State==ObjectiveState.Complete);
+
+        if (!done) return;
+
+        DeactivateStep(StepIndex);
+        StepIndex++;
+        if (StepIndex >= Def.steps.Length) Completed = true;
+        else ActivateStep(StepIndex);
+    }
+    void Fail(){ Failed = true; DeactivateStep(StepIndex); }
+}
+
+// ───────────────────────────────────  DATABASE  ───────────────────────────────────────
+[CreateAssetMenu(menuName = "Game/Quest Database")]
+public class QuestDatabase : ScriptableObject
+{
+    public List<QuestDef> quests = new();
+    public QuestDef GetByID(string id) => quests.Find(q => q.questID == id);
+}
+
+// ───────────────────────────────────  MANAGER  ────────────────────────────────────────
+public sealed class QuestManager : MonoBehaviour
+{
+    public static QuestManager Instance { get; private set; }
+
+    [Header("Drag the QuestDatabase here")]
+    [SerializeField] QuestDatabase questDatabase;
+
+    readonly List<Quest>    active     = new();
+    readonly HashSet<string> completed = new();
+    readonly HashSet<string> failed    = new();
+
+    public event Action<Quest> OnStarted, OnCompleted, OnFailed;
+    public IEnumerable<Quest> ActiveQuests => active;
+
+    void Awake()
+    { if(Instance){Destroy(gameObject);return;} Instance=this; }
+
+    public void Initialize()
+    {
+        foreach(var def in questDatabase.quests)
+            if (MayStart(def)) StartQuest(def);
+    }
+
+    bool MayStart(QuestDef d)=>
+        (!completed.Contains(d.questID) || d.repeatable) &&
+         !active.Exists(q=>q.Def==d);
+
+    public void StartQuest(QuestDef def)
+    {
+        if(!MayStart(def)) return;
+        var q=new Quest(def);
+        active.Add(q);
+        OnStarted?.Invoke(q);
+    }
+
+    void Update()
+    {
+        for(int i=active.Count-1;i>=0;i--)
+        {
+            var q=active[i];
+            q.Tick(Time.deltaTime);
+
+            if(q.Completed){ Finish(q,true); }
+            else if(q.Failed){ Finish(q,false); }
+        }
+    }
+
+    void Finish(Quest q,bool success)
+    {
+        active.Remove(q);
+        if(success)
+        {
+            completed.Add(q.Def.questID);
+            Grant(q.Def.rewards);
+            OnCompleted?.Invoke(q);
+            foreach(var id in q.Def.followUpQuestIDs)
+            {
+                var next=questDatabase.GetByID(id);
+                if(next) StartQuest(next);
+            }
+        }
+        else
+        {
+            failed.Add(q.Def.questID);
+            OnFailed?.Invoke(q);
+        }
+    }
+
+    void Grant(IEnumerable<Reward> rr)
+    {
+        foreach(var r in rr)
+        {
+            switch(r.type)
+            {
+                case RewardType.Item:       GameManager.Instance.PlayerManager.Inventory.AddItem(r.id,r.amount); break;
+                case RewardType.Currency:   GameManager.Instance.PlayerManager.AddCurrency(r.amount);             break;
+                case RewardType.Experience: GameManager.Instance.PlayerManager.AddXP(r.amount);                  break;
+                case RewardType.Unlock:     GameManager.Instance.PlayerManager.AddUnlock(r.id);                  break;
+            }
+        }
+    }
+}
+
+/* ───────────────────────────── HOW TO HOOK UP ─────────────────────────────
+ * 1.  Create a QuestDatabase asset (Right-click ▸ Create ▸ Game ▸ Quest Database)
+ * 2.  Create QuestDef and Objective assets, add them to the database list.
+ * 3.  Add QuestManager to your GameManager: 
+ *          public QuestManager QuestManager { get; private set; }
+ *          QuestManager = gameObject.AddComponent<QuestManager>();
+ *          QuestManager.Initialize();
+ * 4.  Fire gameplay events, e.g.:
+ *          QuestEventBus.OnItemCollected?.Invoke(itemID, amount);
+ *          QuestEventBus.OnEnemyKilled?.Invoke(enemyID);
+ *          QuestEventBus.OnChunkEntered?.Invoke(chunk.GetFlags());
+ * 5.  (Optional) listen to QuestManager events for UI.
+ * ------------------------------------------------------------------------*/

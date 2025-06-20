@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d0b2d58ea0a7d74c80418bbf61ae0ea, type: 3}
+  m_Name: Blueprint_BoxTrap
+  m_EditorClassIdentifier: 
+  description: Optional notes
+  requiresFullInBounds: 1
+  canBePlacedInAir: 0
+  structureWidth: 1
+  structureHeight: 1
+  anchorIsCenter: 1
+  width: 30
+  height: 15
+  wallThickness: 3
+  openSide: 3
+  wallTile: {fileID: 11400000, guid: baaab1537278f634ebef64439bc1071d, type: 2}
+  turretTile: {fileID: 11400000, guid: 99fbda8a77668ba4584e3a4187e03e9f, type: 2}
+  chestTile: {fileID: 11400000, guid: 1f5e0113afc7b3c4c9d720e88d2d9c0e, type: 2}
+  backgroundTile: {fileID: 11400000, guid: b0d33a2efb8c6af44a7fc4edf1b16239, type: 2}
+  turretCount: 3
+  randomTurretPositions: 1

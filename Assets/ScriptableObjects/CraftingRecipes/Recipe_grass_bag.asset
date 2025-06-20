@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebebb6c368e5fa140b057b147b8d0fe3, type: 3}
+  m_Name: Recipe_grass_bag
+  m_EditorClassIdentifier: 
+  ingredients:
+  - item: {fileID: 11400000, guid: 303f9aa88736ce741828f2fe211294fd, type: 2}
+    amount: 50
+  - item: {fileID: 11400000, guid: 002a97e0f06630e4fadf24952ba2019e, type: 2}
+    amount: 50
+  - item: {fileID: 11400000, guid: a9dff1f0fb56f6d46bc885396b790e74, type: 2}
+    amount: 50
+  resultItem: {fileID: 11400000, guid: 714900146804ae6499c4059725b47b99, type: 2}
+  resultAmount: 1
+  xpReward: 200
+  rewardSkill: 6

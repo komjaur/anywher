@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85829d3b5b6f11f4cb34e6be2ee2721d, type: 3}
+  m_Name: Biome_OW_grass_Rolling Plains
+  m_EditorClassIdentifier: 
+  biomeName: Rolling Plains
+  description: Gentle grassy hills with wildflowers and roaming herds; sudden storms
+    can strike.
+  color: {r: 0.52884454, g: 0.6415094, b: 0.26931292, a: 1}
+  elevation: 0.186
+  worldNoiseThreshold: 0.20217858
+  areaNoiseBlend: 0
+  noiseType: 0
+  frequency: 0.06
+  strength: 1
+  stretch: {x: 1, y: 1}
+  octaves: 1
+  lacunarity: 2
+  persistence: 0.5
+  offset: {x: 0, y: 0}
+  FrontLayerTiles:
+    NoiseOffset: {x: 0, y: 0}
+    subTiles:
+    - tileData: {fileID: 11400000, guid: 8e5d8a3a8e6440946a28e97c1f25ffcd, type: 2}
+      threshold: 0
+    - tileData: {fileID: 11400000, guid: ab0c6e7bd221d5f4cb397dc65e80f7e6, type: 2}
+      threshold: 0.238
+    - tileData: {fileID: 11400000, guid: a2b3a4216ebf8f44887be311fcb59e0a, type: 2}
+      threshold: 0.408
+    - tileData: {fileID: 11400000, guid: 9d4490b140cedec43937e12897c1fd32, type: 2}
+      threshold: 0.663
+    - tileData: {fileID: 11400000, guid: a2b3a4216ebf8f44887be311fcb59e0a, type: 2}
+      threshold: 0.745
+    - tileData: {fileID: 11400000, guid: ab0c6e7bd221d5f4cb397dc65e80f7e6, type: 2}
+      threshold: 0.827
+  BackgroundLayerTiles:
+    NoiseOffset: {x: 66.97, y: 0}
+    subTiles:
+    - tileData: {fileID: 11400000, guid: adb12e7bb2191f94f94a52aaec6fda06, type: 2}
+      threshold: 0.357
+    - tileData: {fileID: 11400000, guid: 973cd6f750a2c694a9228f9b9142869a, type: 2}
+      threshold: 0.851
+  Ores: []
+  Foliage: []
+  Decor: []
+  Trees: []
+  foliageChanceMul: 1
+  vineChanceMul: 1
+  treeChanceMul: 1
+  decorChanceMul: 1
+  overworldLayers:
+  - minDepth: 0
+    maxDepth: 14.2
+    FrontLayerTiles:
+    - tileData: {fileID: 11400000, guid: a2b3a4216ebf8f44887be311fcb59e0a, type: 2}
+      threshold: 0.672
+    - tileData: {fileID: 11400000, guid: ab0c6e7bd221d5f4cb397dc65e80f7e6, type: 2}
+      threshold: 0
+    BackgroundLayerTiles: []
+  OverworldnoiseScale: 0.5
+  OverworldnoiseIntensity: 1

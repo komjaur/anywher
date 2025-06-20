@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65f2d746e7a841d4bbc14f46681196ed, type: 3}
+  m_Name: Blueprint_IntrestingCave
+  m_EditorClassIdentifier: 
+  description: Optional notes
+  requiresFullInBounds: 0
+  canBePlacedInAir: 0
+  structureWidth: 1
+  structureHeight: 1
+  anchorIsCenter: 1
+  grassTile: {fileID: 11400000, guid: f5956595fe328914db8d218c10173c2b, type: 2}
+  vineTile: {fileID: 11400000, guid: de2272e6a6924914f8d2098c24fe523d, type: 2}
+  wallTile: {fileID: 11400000, guid: 8ba7893825cf72246b277fe817ce56a3, type: 2}
+  grassGrowChance: 0.8
+  vineHangChance: 0.25
+  vineMaxLength: 8
+  maxFloodSize: 12222
+  wallThickness: 5
+  branchCount: 3
+  branchLength: 35
+  branchRadius: 2
+  turnChance: 0.3

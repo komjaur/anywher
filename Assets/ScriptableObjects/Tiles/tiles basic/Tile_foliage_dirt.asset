@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6392e9782d4fad4498ffc831df3952c, type: 3}
+  m_Name: Tile_foliage_dirt
+  m_EditorClassIdentifier: 
+  tileID: 17
+  tileName: foliage dirt
+  color: {r: 0.745283, g: 0.46619812, b: 0, a: 1}
+  tileBase: {fileID: 11400000, guid: 717e34075e2aef141bf37317103c721a, type: 2}
+  behavior: 0
+  tag: 3
+  renderLayer: 5
+  unbreakable: 0
+  requiredToolPower: 0
+  health: 1
+  xpOnMine: 0
+  lightStrength: 0
+  lightColor: {r: 0.47318327, g: 1, b: 0, a: 1}
+  lightFalloff: 0.3
+  grassTile: {fileID: 0}
+  vineTile: {fileID: 0}
+  vineMinLength: 1
+  vineMaxLength: 6
+  canPlaceOnTiles:
+  - {fileID: 11400000, guid: a2b3a4216ebf8f44887be311fcb59e0a, type: 2}
+  BlueprintGrowableMatured: {fileID: 0}
+  dropItem: {fileID: 0}

@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35906e1a0b403b541b4b0d1aec2ccdec, type: 3}
+  m_Name: Area_OW_grass
+  m_EditorClassIdentifier: 
+  areaName: Grassland
+  color: {r: 0.3724635, g: 0.8490566, b: 0.37610164, a: 1}
+  zone: 1
+  biomes:
+  - {fileID: 11400000, guid: 4108bc4b8855e2a4a8e56167117acdb0, type: 2}
+  - {fileID: 11400000, guid: a046882dc57dfb84eb64543aa4c2f569, type: 2}
+  - {fileID: 11400000, guid: fe26fee6e6cd05c40a64587772ae6b98, type: 2}
+  areaNoiseFrequency: 0.05
+  Foliage:
+  - tile: {fileID: 11400000, guid: f5956595fe328914db8d218c10173c2b, type: 2}
+    weight: 5
+  - tile: {fileID: 11400000, guid: fbc5181a7f513c344bd4b61408e7b267, type: 2}
+    weight: 1
+  Decor:
+  - tile: {fileID: 11400000, guid: cb4700ff8fb9a4841a39f8d8cecac4f7, type: 2}
+    weight: 0.4
+  - tile: {fileID: 11400000, guid: 94ac1e1391497f348ab5f9febf9c1f90, type: 2}
+    weight: 0.05
+  - tile: {fileID: 11400000, guid: 9a4500be335590640a7ab9a10e208b19, type: 2}
+    weight: 0.3
+  - tile: {fileID: 11400000, guid: f4882452802f5494d8d1798ed3c262b6, type: 2}
+    weight: 0.05
+  - tile: {fileID: 11400000, guid: 71d60cd3feb5957409158fae96b8d12e, type: 2}
+    weight: 0.1
+  - tile: {fileID: 11400000, guid: 1f5e0113afc7b3c4c9d720e88d2d9c0e, type: 2}
+    weight: 0.03
+  Trees:
+  - prefab: {fileID: 11400000, guid: 2b24e289dd227ff418acf2019d277b4d, type: 2}
+    weight: 0.7
+  - prefab: {fileID: 11400000, guid: 5f95b63041746d54e9f1b72fc7c70c5d, type: 2}
+    weight: 0.3
+  - prefab: {fileID: 11400000, guid: 73aa7560de4a9f24b9ad07c6b8a3f9e0, type: 2}
+    weight: 0.1
+  Ores:
+  - oreName: 
+    oreTile: {fileID: 11400000, guid: bd422c85ed49916428a1a2048cde6cf2, type: 2}
+    noiseFrequency: 0.1
+    threshold: 0.627
+    chance: 0.755
+    noiseOffset: {x: 0, y: 0}
+    minDepthNorm: 0
+    maxDepthNorm: 0.722
+    allowedAreas: []
+    validHostTiles: []
+  Units:
+  - template: {fileID: 11400000, guid: f6e79d251461bc9499f90e32bd52f89a, type: 2}
+    weight: 0.8
+  - template: {fileID: 11400000, guid: 003ef7ef7e68b5946afa9971519b0b77, type: 2}
+    weight: 0.4
+  - template: {fileID: 11400000, guid: fca82f015b84c0245b0f925f53f1fe42, type: 2}
+    weight: 0.3
+  - template: {fileID: 11400000, guid: b02fac39ab7c05348baf185c6cfe0a48, type: 2}
+    weight: 0.5
+  - template: {fileID: 11400000, guid: b02fac39ab7c05348baf185c6cfe0a48, type: 2}
+    weight: 0.5
+  MusicPlaylist:
+  - path: welcome to explore.mid
+  - path: summer is about to come.mid
+  - path: magical forest - Orchestrated.mid
+  foliageSpawnChance: 1
+  decorSpawnChance: 0.134
+  vineSpawnChance: 0.724
+  treeSpawnChance: 0.425
+  defaultDirt: {fileID: 0}
+  defaultStone: {fileID: 0}
+  defaultGrass: {fileID: 0}
+  parallax: {fileID: 11400000, guid: 6377cc021698767449d8716eff6b3b35, type: 2}
+  skyCosOffset: 0
+  skyCosAmpMul: 0.5
+  skylineRuggedness: -1
+  heat: 0

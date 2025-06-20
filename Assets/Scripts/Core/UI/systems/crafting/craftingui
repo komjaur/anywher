@@ -1,0 +1,118 @@
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using System.Collections.Generic;
+using System.Linq;
+
+/// Light-weight Crafting UI: spawns one prefab per recipe.
+/// Attach this to a GameObject under the Canvas that already contains:
+/// • a CanvasGroup for the panel,
+/// • a Button that acts as the dim-screen scrim and closes the UI,
+/// • a Scroll View whose Content transform is assigned to `contentRoot`.
+public sealed class CraftingUI : MonoBehaviour
+{
+    /* ────────── Scene references ────────── */
+    [Header("Scene refs")]
+    [SerializeField] private CanvasGroup canvasGroup;   // panel CanvasGroup
+    [SerializeField] private Transform   contentRoot;   // Scroll-View Content
+    [SerializeField] private Button      scrimClose;    // scrim button
+
+    /* ────────── Runtime references ───────── */
+    [Header("Runtime data")]
+    [SerializeField] private CraftingManager crafting;
+    [SerializeField] private Inventory       inventory;
+
+    /* ────────── Prefab (exposed) ─────────── */
+    [SerializeField] public RecipeCard cardPrefab;      // drag prefab here
+
+    /* ─────────────────────────────────────── */
+    void Awake()
+    {
+
+
+        scrimClose.onClick.AddListener(Hide);
+        Hide();
+    }
+
+    /* ─────────────────────────────────────── */
+    public void Toggle(CraftingManager mgr, Inventory inv)
+    {
+        if (canvasGroup.alpha > 0.5f)
+            Hide();
+        else
+            Show(mgr, inv);
+    }
+
+    public void Show(CraftingManager mgr, Inventory inv)
+    {
+        crafting  = mgr;
+        inventory = inv;
+
+        Refresh();
+
+        canvasGroup.alpha          = 1f;
+        canvasGroup.interactable   = true;
+        canvasGroup.blocksRaycasts = true;
+        Time.timeScale             = 0f;   // pause world
+    }
+
+    public void Hide()
+    {
+        canvasGroup.alpha          = 0f;
+        canvasGroup.interactable   = false;
+        canvasGroup.blocksRaycasts = false;
+        Time.timeScale             = 1f;   // resume world
+    }
+
+    /* ─────────────────────────────────────── */
+    void Refresh()
+    {
+        /* clear old cards */
+        foreach (Transform child in contentRoot)
+            Destroy(child.gameObject);
+
+        if (crafting == null || inventory == null || cardPrefab == null)
+            return;
+
+        /* build new list */
+        IEnumerable<RecipeDefinition> list =
+            crafting.AllRecipes.OrderBy(r => r.resultItem.itemName);
+
+        foreach (RecipeDefinition r in list)
+        {
+            bool canCraft = crafting.CanCraft(inventory, r);
+
+            RecipeCard card = Instantiate(cardPrefab, contentRoot);
+
+            /* icon & label */
+            card.icon.sprite = r.resultItem.icon;
+            card.label.text  = BuildLabel(r);
+
+            /* colours / interactable */
+            card.SetState(canCraft);
+
+            /* click handler */
+            if (canCraft)
+            {
+                card.button.onClick.AddListener(() =>
+                {
+                    if (crafting.Craft(inventory, r))
+                        Refresh();                 // rebuild to update counts
+                });
+            }
+        }
+    }
+
+    /* ─────────────────────────────────────── */
+    static string BuildLabel(RecipeDefinition r)
+    {
+        var sb = new System.Text.StringBuilder();
+        sb.Append($"{r.resultAmount}× <b>{r.resultItem.itemName}</b>\n<size=12>");
+
+        foreach (var ing in r.ingredients)
+            sb.Append($"{ing.amount} {ing.item.itemName}   ");
+
+        sb.Append("</size>");
+        return sb.ToString();
+    }
+}

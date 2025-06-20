@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 23682fad0683e3a4ba297023672940c4
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 173680
+  packageName: Fluid MIDI Player
+  packageVersion: 1.1
+  assetPath: Assets/Fluid MIDI/SoundFonts/README.md
+  uploadId: 461094

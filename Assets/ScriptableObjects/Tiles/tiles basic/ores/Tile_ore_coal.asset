@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6392e9782d4fad4498ffc831df3952c, type: 3}
+  m_Name: Tile_ore_coal
+  m_EditorClassIdentifier: 
+  tileID: 8
+  tileName: coal ore
+  color: {r: 0.13207549, g: 0.11525455, b: 0.11525455, a: 1}
+  tileBase: {fileID: 11400000, guid: c1482e3b3082e864e87700d99e860ba4, type: 2}
+  behavior: 0
+  tag: 0
+  renderLayer: 3
+  unbreakable: 0
+  requiredToolPower: 1
+  health: 100
+  xpOnMine: 0
+  lightStrength: 0
+  lightColor: {r: 1, g: 0, b: 0, a: 1}
+  lightFalloff: 0.1
+  grassTile: {fileID: 0}
+  vineTile: {fileID: 0}
+  vineMinLength: 1
+  vineMaxLength: 6
+  canPlaceOnTiles: []
+  BlueprintGrowableMatured: {fileID: 0}
+  dropItem: {fileID: 0}

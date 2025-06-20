@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32ca262c2c7af764eb361ed7bc16fb79, type: 3}
+  m_Name: StructureDatabase
+  m_EditorClassIdentifier: 
+  structures:
+  - structureName: worm cave very long
+    structureBlueprint: {fileID: 11400000, guid: 33c356b324ce98343972deacf47fea97, type: 2}
+    maxSpawnsPerWorld: 3
+    allowedAreas: []
+    requiredFlags: 0
+  - structureName: miner mine
+    structureBlueprint: {fileID: 11400000, guid: f7c15ee71ddff934c9dd8360439706ad, type: 2}
+    maxSpawnsPerWorld: 5
+    allowedAreas: []
+    requiredFlags: 0
+  - structureName: underground house
+    structureBlueprint: {fileID: 11400000, guid: 924f8178c676f484d844d73527dcd6b0, type: 2}
+    maxSpawnsPerWorld: 40
+    allowedAreas: []
+    requiredFlags: 2
+  - structureName: egg
+    structureBlueprint: {fileID: 11400000, guid: 8a399884720131e408272814d72f3326, type: 2}
+    maxSpawnsPerWorld: 3
+    allowedAreas:
+    - {fileID: 11400000, guid: 45ae397d65fb15741b833848ceded983, type: 2}
+    - {fileID: 11400000, guid: c79d7789556976545bb336bd32fc0fdc, type: 2}
+    requiredFlags: 0
+  - structureName: ore vein
+    structureBlueprint: {fileID: 11400000, guid: 708e47fab27d4034b8d6246ef46633a6, type: 2}
+    maxSpawnsPerWorld: 60
+    allowedAreas: []
+    requiredFlags: 0
+  - structureName: spider cave
+    structureBlueprint: {fileID: 11400000, guid: 1e4aa8cb64c495d42a4f6fe90611e544, type: 2}
+    maxSpawnsPerWorld: 10
+    allowedAreas:
+    - {fileID: 11400000, guid: c79d7789556976545bb336bd32fc0fdc, type: 2}
+    - {fileID: 11400000, guid: 45ae397d65fb15741b833848ceded983, type: 2}
+    requiredFlags: 2
+  - structureName: maze
+    structureBlueprint: {fileID: 11400000, guid: 0af0a8f89f757a446bff218c2f7bdb47, type: 2}
+    maxSpawnsPerWorld: 1
+    allowedAreas:
+    - {fileID: 11400000, guid: cf0f918e7a71ad94a90a90bf4b81e904, type: 2}
+    - {fileID: 11400000, guid: 4c392e8217a56bb4182678f514e57a7d, type: 2}
+    - {fileID: 11400000, guid: c79d7789556976545bb336bd32fc0fdc, type: 2}
+    requiredFlags: 0
+  - structureName: underground forest
+    structureBlueprint: {fileID: 11400000, guid: 0006549088ae0ff4fb82c3987d6941fe, type: 2}
+    maxSpawnsPerWorld: 3
+    allowedAreas:
+    - {fileID: 11400000, guid: 45ae397d65fb15741b833848ceded983, type: 2}
+    - {fileID: 11400000, guid: 4c392e8217a56bb4182678f514e57a7d, type: 2}
+    - {fileID: 11400000, guid: c79d7789556976545bb336bd32fc0fdc, type: 2}
+    requiredFlags: 0
+  - structureName: lavaball
+    structureBlueprint: {fileID: 11400000, guid: 67431dc5de73c734a853ad0a50150fd4, type: 2}
+    maxSpawnsPerWorld: 8
+    allowedAreas:
+    - {fileID: 11400000, guid: c79d7789556976545bb336bd32fc0fdc, type: 2}
+    requiredFlags: 0
+  - structureName: random
+    structureBlueprint: {fileID: 11400000, guid: 56ed353e69d910944a22d954bbdf4919, type: 2}
+    maxSpawnsPerWorld: 5
+    allowedAreas:
+    - {fileID: 11400000, guid: 45ae397d65fb15741b833848ceded983, type: 2}
+    - {fileID: 11400000, guid: 89c4a5cf1815d0147874257b95c1df49, type: 2}
+    - {fileID: 11400000, guid: 6ffad8c02604c754ba6d231ed2839e0e, type: 2}
+    - {fileID: 11400000, guid: 4c392e8217a56bb4182678f514e57a7d, type: 2}
+    - {fileID: 11400000, guid: c79d7789556976545bb336bd32fc0fdc, type: 2}
+    - {fileID: 11400000, guid: 75d3a642b16bc2343bc0939d4acde523, type: 2}
+    requiredFlags: 0
+  - structureName: boxtrap
+    structureBlueprint: {fileID: 11400000, guid: 35ac44def94ccb4459a70fd5bb52e58f, type: 2}
+    maxSpawnsPerWorld: 5
+    allowedAreas:
+    - {fileID: 11400000, guid: c79d7789556976545bb336bd32fc0fdc, type: 2}
+    - {fileID: 11400000, guid: 45ae397d65fb15741b833848ceded983, type: 2}
+    requiredFlags: 0
+  - structureName: intresting cave
+    structureBlueprint: {fileID: 11400000, guid: a95821ad508530b4a8b2cae72499a156, type: 2}
+    maxSpawnsPerWorld: 2
+    allowedAreas:
+    - {fileID: 11400000, guid: c79d7789556976545bb336bd32fc0fdc, type: 2}
+    - {fileID: 11400000, guid: 45ae397d65fb15741b833848ceded983, type: 2}
+    requiredFlags: 2
+  - structureName: Spiral
+    structureBlueprint: {fileID: 11400000, guid: 582ddedd9dad5034294777155f7b712d, type: 2}
+    maxSpawnsPerWorld: 1
+    allowedAreas:
+    - {fileID: 11400000, guid: c79d7789556976545bb336bd32fc0fdc, type: 2}
+    requiredFlags: 0
+  - structureName: antcolony
+    structureBlueprint: {fileID: 11400000, guid: 8c6b5aa10f12cc144b63d41adc70a264, type: 2}
+    maxSpawnsPerWorld: 2
+    allowedAreas:
+    - {fileID: 11400000, guid: c79d7789556976545bb336bd32fc0fdc, type: 2}
+    requiredFlags: 0

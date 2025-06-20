@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 67ed3e3d57c1c7448a5a2abd91569a6d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 173680
+  packageName: Fluid MIDI Player
+  packageVersion: 1.1
+  assetPath: Assets/Fluid MIDI/Runtime/Playlist.cs
+  uploadId: 461094

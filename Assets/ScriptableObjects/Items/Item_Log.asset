@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: debacadbf4a5bb149865414ba064e536, type: 3}
+  m_Name: Item_Log
+  m_EditorClassIdentifier: 
+  itemID: 1
+  itemName: Log
+  icon: {fileID: 1462474126, guid: 3ef2a4675da512440af4cfe0be1cf8a1, type: 3}
+  description: 
+  type: 0
+  rarity: 0
+  maxStack: 32
+  valueCopper: 0
+  damage: 0
+  knockback: 0
+  attackSpeed: 1
+  pickaxePower: 0
+  axePower: 0
+  hammerPower: 0
+  placeableTile: {fileID: 11400000, guid: f579126c1073bb54e84c7f7e69b6a52c, type: 2}

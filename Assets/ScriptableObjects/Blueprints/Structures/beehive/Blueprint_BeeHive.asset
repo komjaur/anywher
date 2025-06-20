@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07abae438175696489a01cb59a106fae, type: 3}
+  m_Name: Blueprint_BeeHive
+  m_EditorClassIdentifier: 
+  description: Optional notes
+  requiresFullInBounds: 1
+  canBePlacedInAir: 0
+  structureWidth: 1
+  structureHeight: 1
+  anchorIsCenter: 1
+  sizeX: 34
+  sizeY: 26
+  contourNoise: 0.12
+  hiveBlockTile: {fileID: 11400000, guid: b94fd6e88465c0e43af74c1833eb8e0f, type: 2}
+  honeycombWallTile: {fileID: 11400000, guid: d992b5b12a12b5b49ba05c62b76a189a, type: 2}
+  honeyLiquidTile: {fileID: 11400000, guid: d91da634629bba84990c18cdbca81d57, type: 2}
+  airTileOverride: {fileID: 11400000, guid: aa8f19cb1eb61d3499f0f8372bc9a9d7, type: 2}
+  poolFillPercent: 0.3
+  pocketChance: 0.1

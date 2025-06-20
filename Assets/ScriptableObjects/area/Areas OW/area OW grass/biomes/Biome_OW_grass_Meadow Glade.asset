@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85829d3b5b6f11f4cb34e6be2ee2721d, type: 3}
+  m_Name: Biome_OW_grass_Meadow Glade
+  m_EditorClassIdentifier: 
+  biomeName: Meadow Glade
+  description: Peaceful fields near forests and springs, prime for settlement and
+    pollinators.
+  color: {r: 0.7201861, g: 0.9528302, b: 0.18427375, a: 1}
+  elevation: 0.74
+  worldNoiseThreshold: 0
+  areaNoiseBlend: 0
+  noiseType: 0
+  frequency: 0.07
+  strength: 1
+  stretch: {x: 1, y: 1}
+  octaves: 2
+  lacunarity: 2
+  persistence: 0.5
+  offset: {x: 0, y: 0}
+  FrontLayerTiles:
+    NoiseOffset: {x: 21.46, y: 0}
+    subTiles:
+    - tileData: {fileID: 11400000, guid: ab0c6e7bd221d5f4cb397dc65e80f7e6, type: 2}
+      threshold: 0.342
+    - tileData: {fileID: 11400000, guid: a2b3a4216ebf8f44887be311fcb59e0a, type: 2}
+      threshold: 1
+  BackgroundLayerTiles:
+    NoiseOffset: {x: 102, y: 0}
+    subTiles:
+    - tileData: {fileID: 11400000, guid: adb12e7bb2191f94f94a52aaec6fda06, type: 2}
+      threshold: 0.367
+    - tileData: {fileID: 11400000, guid: 973cd6f750a2c694a9228f9b9142869a, type: 2}
+      threshold: 0.851
+  Ores: []
+  Foliage: []
+  Decor: []
+  Trees: []
+  foliageChanceMul: 1
+  vineChanceMul: 1
+  treeChanceMul: 1
+  decorChanceMul: 1
+  overworldLayers:
+  - minDepth: 0
+    maxDepth: 14.2
+    FrontLayerTiles:
+    - tileData: {fileID: 11400000, guid: a2b3a4216ebf8f44887be311fcb59e0a, type: 2}
+      threshold: 0.672
+    - tileData: {fileID: 11400000, guid: ab0c6e7bd221d5f4cb397dc65e80f7e6, type: 2}
+      threshold: 1
+    BackgroundLayerTiles:
+    - tileData: {fileID: 11400000, guid: adb12e7bb2191f94f94a52aaec6fda06, type: 2}
+      threshold: 0.567
+  OverworldnoiseScale: 0.1
+  OverworldnoiseIntensity: 1

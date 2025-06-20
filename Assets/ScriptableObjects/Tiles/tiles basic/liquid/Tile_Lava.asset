@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6392e9782d4fad4498ffc831df3952c, type: 3}
+  m_Name: Tile_Lava
+  m_EditorClassIdentifier: 
+  tileID: 27
+  tileName: Lava
+  color: {r: 0.9433962, g: 0.7819198, b: 0.13794944, a: 1}
+  tileBase: {fileID: 11400000, guid: 0600ca5b275f75541b40595a31435aa3, type: 2}
+  behavior: 1
+  tag: 0
+  renderLayer: 2
+  unbreakable: 0
+  requiredToolPower: 1
+  health: 100
+  xpOnMine: 0
+  lightStrength: 1
+  lightColor: {r: 1, g: 0.4136189, b: 0, a: 1}
+  lightFalloff: 0.3
+  grassTile: {fileID: 0}
+  vineTile: {fileID: 0}
+  vineMinLength: 1
+  vineMaxLength: 6
+  canPlaceOnTiles: []
+  BlueprintGrowableMatured: {fileID: 0}
+  dropItem: {fileID: 0}

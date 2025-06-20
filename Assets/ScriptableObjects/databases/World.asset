@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3508ad3fe5cab3448877fbade217b2a, type: 3}
+  m_Name: World
+  m_EditorClassIdentifier: 
+  tileDatabase: {fileID: 11400000, guid: b68b9054294d06f40ac8c5f98f680415, type: 2}
+  areasDatabase: {fileID: 11400000, guid: 4a39d8ce53d47e64e92394f8fbd6a9be, type: 2}
+  biomeDatabase: {fileID: 11400000, guid: ce0ad718e7e381248b143bb2da1861f7, type: 2}
+  structureDatabase: {fileID: 11400000, guid: 553b20b792de4ba4e98ba5a146397295, type: 2}
+  oresDatabase: {fileID: 11400000, guid: d41cb465f4fb7bc4fb7a5a7d9f3a88dc, type: 2}
+  unitDatabase: {fileID: 11400000, guid: de1eb1beec2c4a84887c79502667b0e9, type: 2}
+  seed: 486
+  chunkSize: 8
+  widthInChunks: 50
+  heightInChunks: 50
+  overworldStarts: 0.95
+  overworldDepth: 0.4
+  worldNoiseFrequency: 0.08
+  areaGenerationSize: {x: 128, y: 128}
+  areaPointsCount: 700
+  areaOverworldStripes: 15
+  elevationGenerationSize: {x: 128, y: 128}
+  elevationNoiseScale: 0.1
+  elevationNoiseIntensity: 1.24
+  edgeNoiseScale: 0.04
+  edgeNoiseIntensity: 66
+  skyLineWaveScale: 0.04
+  skyLineWaveAmplitude: 0.01
+  skyLowFreq: 0.07
+  skyLowAmp: 0.002
+  skyRidgeFreq: 0.01
+  skyRidgeAmp: 0.001
+  skyMountainFreq: 0.01
+  skyMountainAmp: 1
+  skyValleyFactor: 0
+  borderSmoothWidth: 3

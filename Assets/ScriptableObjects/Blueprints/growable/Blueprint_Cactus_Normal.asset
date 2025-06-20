@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c41d457efda3d4a950a4870d25ee7c, type: 3}
+  m_Name: Blueprint_Cactus_Normal
+  m_EditorClassIdentifier: 
+  description: Optional notes
+  FreeHeightRequired: 3
+  FreeWidthRequired: 1
+  AllowedFreeTiles:
+  - {fileID: 11400000, guid: aa8f19cb1eb61d3499f0f8372bc9a9d7, type: 2}
+  cactusHeight: 3
+  cactusTile: {fileID: 11400000, guid: cde0083e8913f98429829639ff86f96a, type: 2}

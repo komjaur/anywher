@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2982038ac837345ab783ba77e44b80, type: 3}
+  m_Name: Biome_UW_Caverns 6
+  m_EditorClassIdentifier: 
+  biomeName: New Biome
+  description: A brief description of this biome...
+  color: {r: 0.41, g: 0.29627734, b: 0.14664231, a: 1}
+  elevation: 0.266
+  worldNoiseThreshold: 0
+  localOres: []
+  FrontLayerTiles:
+    NoiseOffset: {x: 0, y: 0}
+    subTiles:
+    - tileData: {fileID: 11400000, guid: dadc9d21c0bb446489aac85ba1147df8, type: 2}
+      threshold: 0.045
+    - tileData: {fileID: 11400000, guid: a2b3a4216ebf8f44887be311fcb59e0a, type: 2}
+      threshold: 0.085
+    - tileData: {fileID: 11400000, guid: 9d4490b140cedec43937e12897c1fd32, type: 2}
+      threshold: 0.547
+    - tileData: {fileID: 11400000, guid: ab0c6e7bd221d5f4cb397dc65e80f7e6, type: 2}
+      threshold: 0.771
+    - tileData: {fileID: 11400000, guid: 649c3883d3df8d649981cd86d351880a, type: 2}
+      threshold: 0.91
+  BackgroundLayerTiles:
+    NoiseOffset: {x: 66.97, y: 0}
+    subTiles:
+    - tileData: {fileID: 11400000, guid: adb12e7bb2191f94f94a52aaec6fda06, type: 2}
+      threshold: 0.185
+    - tileData: {fileID: 11400000, guid: 973cd6f750a2c694a9228f9b9142869a, type: 2}
+      threshold: 0.56
+  noiseType: 0
+  frequency: 0.14
+  strength: 1
+  stretch: {x: 1, y: 1}
+  octaves: 1
+  lacunarity: 2
+  persistence: 0.5
+  offset: {x: 0, y: 0}
+  areaNoiseBlend: 0
+  foliageSpawnChance: 0.809
+  foliageTiles:
+  - {fileID: 11400000, guid: fbc5181a7f513c344bd4b61408e7b267, type: 2}
+  - {fileID: 11400000, guid: 607c95f0e186770468d3e17dd4f29c3f, type: 2}
+  Trees: []
+  vineChance: 0.3
+  treeSpawnChance: 0.3
+  lavaFlowIntensity: 1

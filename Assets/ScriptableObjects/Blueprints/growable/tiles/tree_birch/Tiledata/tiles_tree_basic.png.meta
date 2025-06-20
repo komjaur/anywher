@@ -1,0 +1,605 @@
+fileFormatVersion: 2
+guid: 3ef2a4675da512440af4cfe0be1cf8a1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4680852723959172712
+    second: tiles_tree_basic_0
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 8
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: tiles_tree_basic_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 148
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8917e7e6f354a0fb0800000000000000
+      internalID: -4680852723959172712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tiles_tree_basic_1
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 148
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3d4296fc59378d4e844fa5085b3c5ff
+      internalID: -843592928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tiles_tree_basic_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 148
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18feb2c1962fb4b488bec749750f4891
+      internalID: 1027403963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tiles_tree_basic_3
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 148
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 763922b589b8b944faa3c9327b88f7c0
+      internalID: 412381311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tiles_tree_basic_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 148
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93ba869fa970e5641b5aadf94f8ff005
+      internalID: -417072594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tiles_tree_basic_6
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 148
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ae84efb6817ba14cae839ba89d8d353
+      internalID: 1219311416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tiles_tree_basic_12
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 136
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36315d48a43b0a04e99e29ab6773c22b
+      internalID: -1119127811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tiles_tree_basic_5
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 156
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c93fff76cbf078408f78eaf8f7bed4a
+      internalID: 1462474126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tiles_tree_basic_7
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 140
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd480b41cc02c3848bd1035ade50a842
+      internalID: 70401751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tiles_tree_basic_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 132
+        width: 32
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c907e0a9b4e0600428713b3f7a2bbc3f
+      internalID: 1187532373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tiles_tree_basic_10
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 132
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 135d7d4ba05ec354e8dd4093865b8ddc
+      internalID: -1696144120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tiles_tree_basic_14
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 140
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 986b94052ebb0de4e855d6225c4dbe27
+      internalID: 843193106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tiles_tree_basic_15
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 140
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e675163ba3086d443b5168fca1297609
+      internalID: 743534710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tiles_tree_basic_22
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 84
+        width: 29
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf66e4d516e81df46a7dad10c773028a
+      internalID: -1070529650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tiles_tree_basic_30
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 84
+        width: 30
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffdb1cbb1a94d27499dd1c358ab0c4d8
+      internalID: 1652964793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tiles_tree_basic_49
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 84
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3abda37da1410c84f8009339a22db1ed
+      internalID: 682674836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tiles_tree_basic_76
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 60
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dcd6c92060e5b642917db997706edff
+      internalID: -83989895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 72c119dfddb231f4fbf1269cf760e2fb
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      tiles_tree_basic_0: -4680852723959172712
+      tiles_tree_basic_1: -843592928
+      tiles_tree_basic_10: -1696144120
+      tiles_tree_basic_11: -1252525236
+      tiles_tree_basic_12: -1119127811
+      tiles_tree_basic_13: -533712756
+      tiles_tree_basic_14: 843193106
+      tiles_tree_basic_15: 743534710
+      tiles_tree_basic_16: 267467351
+      tiles_tree_basic_17: 831000939
+      tiles_tree_basic_18: 496376423
+      tiles_tree_basic_19: -1203618147
+      tiles_tree_basic_2: 1027403963
+      tiles_tree_basic_20: 540413915
+      tiles_tree_basic_21: 1593729447
+      tiles_tree_basic_22: -1070529650
+      tiles_tree_basic_23: 493047615
+      tiles_tree_basic_24: 1410400196
+      tiles_tree_basic_25: -1186687301
+      tiles_tree_basic_26: 1235061196
+      tiles_tree_basic_27: 720446249
+      tiles_tree_basic_28: 665465812
+      tiles_tree_basic_29: 330791160
+      tiles_tree_basic_3: 412381311
+      tiles_tree_basic_30: 1652964793
+      tiles_tree_basic_31: 85823561
+      tiles_tree_basic_32: 1844343595
+      tiles_tree_basic_33: -1283747446
+      tiles_tree_basic_34: 988269724
+      tiles_tree_basic_35: -2134397422
+      tiles_tree_basic_36: -615444482
+      tiles_tree_basic_37: 770631526
+      tiles_tree_basic_38: -1307286510
+      tiles_tree_basic_39: -2096426397
+      tiles_tree_basic_4: -417072594
+      tiles_tree_basic_40: 760763944
+      tiles_tree_basic_41: 398087450
+      tiles_tree_basic_42: -684491448
+      tiles_tree_basic_43: 1448598432
+      tiles_tree_basic_44: 340837902
+      tiles_tree_basic_45: 179944661
+      tiles_tree_basic_46: 612449068
+      tiles_tree_basic_47: -1929616283
+      tiles_tree_basic_48: 1984560336
+      tiles_tree_basic_49: 682674836
+      tiles_tree_basic_5: 1462474126
+      tiles_tree_basic_50: -1306009357
+      tiles_tree_basic_51: 898083787
+      tiles_tree_basic_52: 133513333
+      tiles_tree_basic_53: 1834820742
+      tiles_tree_basic_54: -1799481242
+      tiles_tree_basic_55: 1529247732
+      tiles_tree_basic_56: -2050460842
+      tiles_tree_basic_57: 1066544865
+      tiles_tree_basic_58: -1816756712
+      tiles_tree_basic_59: 1540827369
+      tiles_tree_basic_6: 1219311416
+      tiles_tree_basic_60: 155165369
+      tiles_tree_basic_61: 265647715
+      tiles_tree_basic_62: -2082441832
+      tiles_tree_basic_63: -1427037076
+      tiles_tree_basic_64: 2034319968
+      tiles_tree_basic_65: -561063600
+      tiles_tree_basic_66: 1770168759
+      tiles_tree_basic_67: -931001510
+      tiles_tree_basic_68: -607476505
+      tiles_tree_basic_69: -1635270317
+      tiles_tree_basic_7: 70401751
+      tiles_tree_basic_70: 968354691
+      tiles_tree_basic_71: -36924822
+      tiles_tree_basic_72: 1500665277
+      tiles_tree_basic_73: -1878824352
+      tiles_tree_basic_74: -676782257
+      tiles_tree_basic_75: -827902286
+      tiles_tree_basic_76: -83989895
+      tiles_tree_basic_77: -2053250690
+      tiles_tree_basic_78: -991608786
+      tiles_tree_basic_79: 829163644
+      tiles_tree_basic_8: 1187532373
+      tiles_tree_basic_80: -987917551
+      tiles_tree_basic_81: -2035512514
+      tiles_tree_basic_82: -322485490
+      tiles_tree_basic_83: 15600483
+      tiles_tree_basic_84: 370821719
+      tiles_tree_basic_9: 1179705777
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

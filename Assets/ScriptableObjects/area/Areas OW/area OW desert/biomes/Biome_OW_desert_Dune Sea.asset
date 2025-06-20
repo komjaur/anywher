@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85829d3b5b6f11f4cb34e6be2ee2721d, type: 3}
+  m_Name: Biome_OW_desert_Dune Sea
+  m_EditorClassIdentifier: 
+  biomeName: Sweeping dunes whipped by wind and sandstorms; scattered cacti hide
+    water reserves.
+  description: A brief description of this biome...
+  color: {r: 1, g: 0.96894145, b: 0.2028302, a: 1}
+  elevation: 0.635
+  worldNoiseThreshold: 0.252
+  localOres: []
+  FrontLayerTiles:
+    NoiseOffset: {x: 0, y: 0}
+    subTiles:
+    - tileData: {fileID: 11400000, guid: be1309ea934e9744a9895146b134f705, type: 2}
+      threshold: 0.577
+    - tileData: {fileID: 11400000, guid: f996dc00ed5bcc9449954c68f0fe6479, type: 2}
+      threshold: 0.664
+    - tileData: {fileID: 11400000, guid: 9d4490b140cedec43937e12897c1fd32, type: 2}
+      threshold: 0.792
+  BackgroundLayerTiles:
+    NoiseOffset: {x: 66.97, y: 0}
+    subTiles:
+    - tileData: {fileID: 11400000, guid: adb12e7bb2191f94f94a52aaec6fda06, type: 2}
+      threshold: 0.248
+    - tileData: {fileID: 11400000, guid: 973cd6f750a2c694a9228f9b9142869a, type: 2}
+      threshold: 0.53
+  noiseType: 0
+  frequency: 0.14
+  strength: 1
+  stretch: {x: 1, y: 1}
+  octaves: 1
+  lacunarity: 2
+  persistence: 0.5
+  offset: {x: 0, y: 0}
+  foliageSpawnChance: 0.4
+  foliageTiles: []
+  Trees: []
+  areaNoiseBlend: 0.174
+  vineChance: 0.3
+  treeSpawnChance: 0.3
+  overworldLayers:
+  - minDepth: 2.63
+    maxDepth: 37
+    FrontLayerTiles:
+    - tileData: {fileID: 11400000, guid: be1309ea934e9744a9895146b134f705, type: 2}
+      threshold: 0.477
+    - tileData: {fileID: 11400000, guid: f996dc00ed5bcc9449954c68f0fe6479, type: 2}
+      threshold: 0.654
+    - tileData: {fileID: 11400000, guid: 9d4490b140cedec43937e12897c1fd32, type: 2}
+      threshold: 0.708
+    BackgroundLayerTiles: []
+  OverworldnoiseScale: 0.3
+  OverworldnoiseIntensity: 1

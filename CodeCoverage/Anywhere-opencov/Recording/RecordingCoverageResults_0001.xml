@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CoverageSession xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="0.0.0.0">
+  <Summary numSequencePoints="378" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0.0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="4" visitedMethods="0" numMethods="36" />
+  <Modules>
+    <Module>
+      <Summary numSequencePoints="369" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0.0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="3" visitedMethods="0" numMethods="35" />
+      <ModuleTime>0001-01-01T00:00:00</ModuleTime>
+      <ModuleName>Assembly-CSharp-firstpass</ModuleName>
+      <Files>
+        <File uid="3" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Plugins/FastNoise/FastNoiseLite.cs" />
+        <File uid="4" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Plugins/VoronoiLib/FortunesAlgorithm.cs" />
+        <File uid="5" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Plugins/VoronoiLib/ParabolaMath.cs" />
+        <File uid="6" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Plugins/VoronoiLib/Structures/BeachLine.cs" />
+        <File uid="7" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Plugins/VoronoiLib/Structures/FortuneCircleEvent.cs" />
+        <File uid="8" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Plugins/VoronoiLib/Structures/FortuneSite.cs" />
+        <File uid="9" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Plugins/VoronoiLib/Structures/FortuneSiteEvent.cs" />
+        <File uid="10" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Plugins/VoronoiLib/Structures/MinHeap.cs" />
+        <File uid="11" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Plugins/VoronoiLib/Structures/RBTree.cs" />
+        <File uid="12" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Plugins/VoronoiLib/Structures/VEdge.cs" />
+        <File uid="13" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Plugins/VoronoiLib/Structures/VPoint.cs" />
+      </Files>
+      <Classes>
+        <Class>
+          <Summary numSequencePoints="95" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0.0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="1" visitedMethods="0" numMethods="12" />
+          <FullName>VoronoiLib.Structures.MinHeap[T]</FullName>
+          <Methods>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663425</MetadataToken>
+              <Name>System.Int32 VoronoiLib.Structures.MinHeap[T]::get_Capacity()</Name>
+              <FileRef uid="10" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8581" ordinal="0" offset="0" sl="9" sc="0" el="9" ec="0" bec="0" bev="0" fileid="10" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663426</MetadataToken>
+              <Name>System.Int32 VoronoiLib.Structures.MinHeap[T]::get_Count()</Name>
+              <FileRef uid="10" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8582" ordinal="0" offset="0" sl="10" sc="0" el="10" ec="0" bec="0" bev="0" fileid="10" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="true">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663427</MetadataToken>
+              <Name>System.Void VoronoiLib.Structures.MinHeap[T]::set_Count(System.Int32)</Name>
+              <FileRef uid="10" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8583" ordinal="0" offset="0" sl="10" sc="0" el="10" ec="0" bec="0" bev="0" fileid="10" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="8" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663429</MetadataToken>
+              <Name>System.Boolean VoronoiLib.Structures.MinHeap[T]::Insert(T)</Name>
+              <FileRef uid="10" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8584" ordinal="0" offset="0" sl="24" sc="0" el="24" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8585" ordinal="0" offset="1" sl="25" sc="0" el="25" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8586" ordinal="0" offset="19" sl="26" sc="0" el="26" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8587" ordinal="0" offset="23" sl="27" sc="0" el="27" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8588" ordinal="0" offset="41" sl="28" sc="0" el="28" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8589" ordinal="0" offset="58" sl="29" sc="0" el="29" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8590" ordinal="0" offset="73" sl="30" sc="0" el="30" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8591" ordinal="0" offset="77" sl="31" sc="0" el="31" ec="0" bec="0" bev="0" fileid="10" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="13" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663430</MetadataToken>
+              <Name>T VoronoiLib.Structures.MinHeap[T]::Pop()</Name>
+              <FileRef uid="10" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8592" ordinal="0" offset="0" sl="34" sc="0" el="34" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8593" ordinal="0" offset="1" sl="35" sc="0" el="35" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8594" ordinal="0" offset="14" sl="36" sc="0" el="36" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8595" ordinal="0" offset="25" sl="37" sc="0" el="37" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8596" ordinal="0" offset="38" sl="38" sc="0" el="38" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8597" ordinal="0" offset="39" sl="39" sc="0" el="39" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8598" ordinal="0" offset="56" sl="40" sc="0" el="40" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8599" ordinal="0" offset="77" sl="43" sc="0" el="43" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8600" ordinal="0" offset="90" sl="44" sc="0" el="44" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8601" ordinal="0" offset="121" sl="45" sc="0" el="45" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8602" ordinal="0" offset="138" sl="46" sc="0" el="46" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8603" ordinal="0" offset="146" sl="47" sc="0" el="47" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8604" ordinal="0" offset="151" sl="48" sc="0" el="48" ec="0" bec="0" bev="0" fileid="10" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="5" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663431</MetadataToken>
+              <Name>T VoronoiLib.Structures.MinHeap[T]::Peek()</Name>
+              <FileRef uid="10" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8605" ordinal="0" offset="0" sl="51" sc="0" el="51" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8606" ordinal="0" offset="1" sl="52" sc="0" el="52" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8607" ordinal="0" offset="14" sl="53" sc="0" el="53" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8608" ordinal="0" offset="25" sl="54" sc="0" el="54" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8609" ordinal="0" offset="40" sl="55" sc="0" el="55" ec="0" bec="0" bev="0" fileid="10" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="20" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663432</MetadataToken>
+              <Name>System.Boolean VoronoiLib.Structures.MinHeap[T]::Remove(T)</Name>
+              <FileRef uid="10" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8610" ordinal="0" offset="0" sl="60" sc="0" el="60" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8611" ordinal="0" offset="1" sl="61" sc="0" el="61" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8612" ordinal="0" offset="3" sl="62" sc="0" el="62" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8613" ordinal="0" offset="7" sl="63" sc="0" el="63" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8614" ordinal="0" offset="8" sl="64" sc="0" el="64" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8615" ordinal="0" offset="43" sl="65" sc="0" el="65" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8616" ordinal="0" offset="44" sl="66" sc="0" el="66" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8617" ordinal="0" offset="46" sl="67" sc="0" el="67" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8618" ordinal="0" offset="48" sl="69" sc="0" el="69" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8619" ordinal="0" offset="49" sl="62" sc="0" el="62" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8620" ordinal="0" offset="53" sl="62" sc="0" el="62" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8621" ordinal="0" offset="66" sl="71" sc="0" el="71" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8622" ordinal="0" offset="76" sl="72" sc="0" el="72" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8623" ordinal="0" offset="81" sl="74" sc="0" el="74" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8624" ordinal="0" offset="100" sl="75" sc="0" el="75" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8625" ordinal="0" offset="114" sl="76" sc="0" el="76" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8626" ordinal="0" offset="132" sl="77" sc="0" el="77" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8627" ordinal="0" offset="142" sl="79" sc="0" el="79" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8628" ordinal="0" offset="150" sl="80" sc="0" el="80" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8629" ordinal="0" offset="155" sl="81" sc="0" el="81" ec="0" bec="0" bev="0" fileid="10" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="16" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663433</MetadataToken>
+              <Name>System.Void VoronoiLib.Structures.MinHeap[T]::PercolateDown(System.Int32)</Name>
+              <FileRef uid="10" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8630" ordinal="0" offset="0" sl="84" sc="0" el="84" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8631" ordinal="0" offset="3" sl="86" sc="0" el="86" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8632" ordinal="0" offset="4" sl="87" sc="0" el="87" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8633" ordinal="0" offset="10" sl="88" sc="0" el="88" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8634" ordinal="0" offset="16" sl="89" sc="0" el="89" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8635" ordinal="0" offset="18" sl="91" sc="0" el="91" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8636" ordinal="0" offset="42" sl="92" sc="0" el="92" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8637" ordinal="0" offset="44" sl="93" sc="0" el="93" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8638" ordinal="0" offset="70" sl="94" sc="0" el="94" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8639" ordinal="0" offset="72" sl="95" sc="0" el="95" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8640" ordinal="0" offset="82" sl="96" sc="0" el="96" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8641" ordinal="0" offset="84" sl="97" sc="0" el="97" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8642" ordinal="0" offset="93" sl="98" sc="0" el="98" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8643" ordinal="0" offset="96" sl="99" sc="0" el="99" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8644" ordinal="0" offset="97" sl="85" sc="0" el="85" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8645" ordinal="0" offset="102" sl="100" sc="0" el="100" ec="0" bec="0" bev="0" fileid="10" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="12" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663434</MetadataToken>
+              <Name>System.Void VoronoiLib.Structures.MinHeap[T]::PercolateUp(System.Int32)</Name>
+              <FileRef uid="10" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8646" ordinal="0" offset="0" sl="103" sc="0" el="103" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8647" ordinal="0" offset="3" sl="105" sc="0" el="105" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8648" ordinal="0" offset="4" sl="106" sc="0" el="106" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8649" ordinal="0" offset="27" sl="107" sc="0" el="107" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8650" ordinal="0" offset="29" sl="108" sc="0" el="108" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8651" ordinal="0" offset="35" sl="110" sc="0" el="110" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8652" ordinal="0" offset="47" sl="111" sc="0" el="111" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8653" ordinal="0" offset="49" sl="113" sc="0" el="113" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8654" ordinal="0" offset="58" sl="114" sc="0" el="114" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8655" ordinal="0" offset="61" sl="115" sc="0" el="115" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8656" ordinal="0" offset="62" sl="104" sc="0" el="104" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8657" ordinal="0" offset="66" sl="116" sc="0" el="116" ec="0" bec="0" bev="0" fileid="10" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="3" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663435</MetadataToken>
+              <Name>System.Boolean VoronoiLib.Structures.MinHeap[T]::LeftLessThanRight(System.Int32, System.Int32)</Name>
+              <FileRef uid="10" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8658" ordinal="0" offset="0" sl="120" sc="0" el="120" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8659" ordinal="0" offset="1" sl="121" sc="0" el="121" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8660" ordinal="0" offset="44" sl="122" sc="0" el="122" ec="0" bec="0" bev="0" fileid="10" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="5" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663436</MetadataToken>
+              <Name>System.Void VoronoiLib.Structures.MinHeap[T]::Swap(System.Int32, System.Int32)</Name>
+              <FileRef uid="10" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8661" ordinal="0" offset="0" sl="125" sc="0" el="125" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8662" ordinal="0" offset="1" sl="126" sc="0" el="126" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8663" ordinal="0" offset="14" sl="127" sc="0" el="127" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8664" ordinal="0" offset="38" sl="128" sc="0" el="128" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8665" ordinal="0" offset="51" sl="129" sc="0" el="129" ec="0" bec="0" bev="0" fileid="10" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="true" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="10" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663428</MetadataToken>
+              <Name>VoronoiLib.Structures.MinHeap[T]::MinHeap(System.Int32)</Name>
+              <FileRef uid="10" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8666" ordinal="0" offset="0" sl="12" sc="0" el="12" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8667" ordinal="0" offset="7" sl="13" sc="0" el="13" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8668" ordinal="0" offset="8" sl="14" sc="0" el="14" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8669" ordinal="0" offset="16" sl="15" sc="0" el="15" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8670" ordinal="0" offset="17" sl="16" sc="0" el="16" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8671" ordinal="0" offset="20" sl="17" sc="0" el="17" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8672" ordinal="0" offset="21" sl="18" sc="0" el="18" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8673" ordinal="0" offset="28" sl="19" sc="0" el="19" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8674" ordinal="0" offset="45" sl="20" sc="0" el="20" ec="0" bec="0" bev="0" fileid="10" />
+                <SequencePoint vc="0" uspid="8675" ordinal="0" offset="53" sl="21" sc="0" el="21" ec="0" bec="0" bev="0" fileid="10" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+          </Methods>
+        </Class>
+        <Class>
+          <Summary numSequencePoints="17" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0.0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="1" visitedMethods="0" numMethods="15" />
+          <FullName>VoronoiLib.Structures.RBTreeNode[T]</FullName>
+          <Methods>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663437</MetadataToken>
+              <Name>T VoronoiLib.Structures.RBTreeNode[T]::get_Data()</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8676" ordinal="0" offset="0" sl="7" sc="0" el="7" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="true">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663438</MetadataToken>
+              <Name>System.Void VoronoiLib.Structures.RBTreeNode[T]::set_Data(T)</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8677" ordinal="0" offset="0" sl="7" sc="0" el="7" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663439</MetadataToken>
+              <Name>VoronoiLib.Structures.RBTreeNode[T] VoronoiLib.Structures.RBTreeNode[T]::get_Left()</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8678" ordinal="0" offset="0" sl="8" sc="0" el="8" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="true">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663440</MetadataToken>
+              <Name>System.Void VoronoiLib.Structures.RBTreeNode[T]::set_Left(VoronoiLib.Structures.RBTreeNode[T])</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8679" ordinal="0" offset="0" sl="8" sc="0" el="8" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663441</MetadataToken>
+              <Name>VoronoiLib.Structures.RBTreeNode[T] VoronoiLib.Structures.RBTreeNode[T]::get_Right()</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8680" ordinal="0" offset="0" sl="9" sc="0" el="9" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="true">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663442</MetadataToken>
+              <Name>System.Void VoronoiLib.Structures.RBTreeNode[T]::set_Right(VoronoiLib.Structures.RBTreeNode[T])</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8681" ordinal="0" offset="0" sl="9" sc="0" el="9" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663443</MetadataToken>
+              <Name>VoronoiLib.Structures.RBTreeNode[T] VoronoiLib.Structures.RBTreeNode[T]::get_Parent()</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8682" ordinal="0" offset="0" sl="10" sc="0" el="10" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="true">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663444</MetadataToken>
+              <Name>System.Void VoronoiLib.Structures.RBTreeNode[T]::set_Parent(VoronoiLib.Structures.RBTreeNode[T])</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8683" ordinal="0" offset="0" sl="10" sc="0" el="10" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663445</MetadataToken>
+              <Name>VoronoiLib.Structures.RBTreeNode[T] VoronoiLib.Structures.RBTreeNode[T]::get_Previous()</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8684" ordinal="0" offset="0" sl="13" sc="0" el="13" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="true">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663446</MetadataToken>
+              <Name>System.Void VoronoiLib.Structures.RBTreeNode[T]::set_Previous(VoronoiLib.Structures.RBTreeNode[T])</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8685" ordinal="0" offset="0" sl="13" sc="0" el="13" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663447</MetadataToken>
+              <Name>VoronoiLib.Structures.RBTreeNode[T] VoronoiLib.Structures.RBTreeNode[T]::get_Next()</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8686" ordinal="0" offset="0" sl="14" sc="0" el="14" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="true">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663448</MetadataToken>
+              <Name>System.Void VoronoiLib.Structures.RBTreeNode[T]::set_Next(VoronoiLib.Structures.RBTreeNode[T])</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8687" ordinal="0" offset="0" sl="14" sc="0" el="14" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663449</MetadataToken>
+              <Name>System.Boolean VoronoiLib.Structures.RBTreeNode[T]::get_Red()</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8688" ordinal="0" offset="0" sl="16" sc="0" el="16" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="true">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663450</MetadataToken>
+              <Name>System.Void VoronoiLib.Structures.RBTreeNode[T]::set_Red(System.Boolean)</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8689" ordinal="0" offset="0" sl="16" sc="0" el="16" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="true" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="3" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663451</MetadataToken>
+              <Name>VoronoiLib.Structures.RBTreeNode[T]::RBTreeNode()</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8690" ordinal="0" offset="0" sl="18" sc="0" el="18" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8691" ordinal="0" offset="7" sl="19" sc="0" el="19" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8692" ordinal="0" offset="8" sl="21" sc="0" el="21" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+          </Methods>
+        </Class>
+        <Class>
+          <Summary numSequencePoints="257" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0.0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="1" visitedMethods="0" numMethods="8" />
+          <FullName>VoronoiLib.Structures.RBTree[T]</FullName>
+          <Methods>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663452</MetadataToken>
+              <Name>VoronoiLib.Structures.RBTreeNode[T] VoronoiLib.Structures.RBTree[T]::get_Root()</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8693" ordinal="0" offset="0" sl="26" sc="0" el="26" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="true">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663453</MetadataToken>
+              <Name>System.Void VoronoiLib.Structures.RBTree[T]::set_Root(VoronoiLib.Structures.RBTreeNode[T])</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8694" ordinal="0" offset="0" sl="26" sc="0" el="26" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="85" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663454</MetadataToken>
+              <Name>VoronoiLib.Structures.RBTreeNode[T] VoronoiLib.Structures.RBTree[T]::InsertSuccessor(VoronoiLib.Structures.RBTreeNode[T], T)</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8695" ordinal="0" offset="0" sl="29" sc="0" el="29" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8696" ordinal="0" offset="1" sl="30" sc="0" el="30" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8697" ordinal="0" offset="15" sl="34" sc="0" el="34" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8698" ordinal="0" offset="25" sl="35" sc="0" el="35" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8699" ordinal="0" offset="26" sl="37" sc="0" el="37" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8700" ordinal="0" offset="34" sl="38" sc="0" el="38" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8701" ordinal="0" offset="47" sl="39" sc="0" el="39" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8702" ordinal="0" offset="62" sl="40" sc="0" el="40" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8703" ordinal="0" offset="75" sl="41" sc="0" el="41" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8704" ordinal="0" offset="83" sl="44" sc="0" el="44" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8705" ordinal="0" offset="98" sl="45" sc="0" el="45" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8706" ordinal="0" offset="99" sl="46" sc="0" el="46" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8707" ordinal="0" offset="112" sl="47" sc="0" el="47" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8708" ordinal="0" offset="120" sl="48" sc="0" el="48" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8709" ordinal="0" offset="123" sl="50" sc="0" el="50" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8710" ordinal="0" offset="124" sl="51" sc="0" el="51" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8711" ordinal="0" offset="132" sl="52" sc="0" el="52" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8712" ordinal="0" offset="133" sl="53" sc="0" el="53" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8713" ordinal="0" offset="135" sl="54" sc="0" el="54" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8714" ordinal="0" offset="138" sl="55" sc="0" el="55" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8715" ordinal="0" offset="153" sl="56" sc="0" el="56" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8716" ordinal="0" offset="154" sl="59" sc="0" el="59" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8717" ordinal="0" offset="167" sl="61" sc="0" el="61" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8718" ordinal="0" offset="175" sl="62" sc="0" el="62" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8719" ordinal="0" offset="183" sl="63" sc="0" el="63" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8720" ordinal="0" offset="191" sl="64" sc="0" el="64" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8721" ordinal="0" offset="193" sl="65" sc="0" el="65" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8722" ordinal="0" offset="196" sl="67" sc="0" el="67" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8723" ordinal="0" offset="197" sl="70" sc="0" el="70" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8724" ordinal="0" offset="205" sl="71" sc="0" el="71" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8725" ordinal="0" offset="207" sl="72" sc="0" el="72" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8726" ordinal="0" offset="208" sl="75" sc="0" el="75" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8727" ordinal="0" offset="216" sl="76" sc="0" el="76" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8728" ordinal="0" offset="224" sl="81" sc="0" el="81" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8729" ordinal="0" offset="232" sl="83" sc="0" el="83" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8730" ordinal="0" offset="233" sl="84" sc="0" el="84" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8731" ordinal="0" offset="240" sl="85" sc="0" el="85" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8732" ordinal="0" offset="255" sl="86" sc="0" el="86" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8733" ordinal="0" offset="256" sl="87" sc="0" el="87" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8734" ordinal="0" offset="263" sl="88" sc="0" el="88" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8735" ordinal="0" offset="281" sl="89" sc="0" el="89" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8736" ordinal="0" offset="282" sl="90" sc="0" el="90" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8737" ordinal="0" offset="290" sl="91" sc="0" el="91" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8738" ordinal="0" offset="298" sl="92" sc="0" el="92" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8739" ordinal="0" offset="306" sl="93" sc="0" el="93" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8740" ordinal="0" offset="309" sl="94" sc="0" el="94" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8741" ordinal="0" offset="312" sl="96" sc="0" el="96" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8742" ordinal="0" offset="313" sl="97" sc="0" el="97" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8743" ordinal="0" offset="328" sl="98" sc="0" el="98" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8744" ordinal="0" offset="329" sl="99" sc="0" el="99" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8745" ordinal="0" offset="337" sl="100" sc="0" el="100" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8746" ordinal="0" offset="340" sl="101" sc="0" el="101" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8747" ordinal="0" offset="347" sl="102" sc="0" el="102" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8748" ordinal="0" offset="348" sl="103" sc="0" el="103" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8749" ordinal="0" offset="356" sl="104" sc="0" el="104" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8750" ordinal="0" offset="364" sl="105" sc="0" el="105" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8751" ordinal="0" offset="372" sl="106" sc="0" el="106" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8752" ordinal="0" offset="373" sl="107" sc="0" el="107" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8753" ordinal="0" offset="376" sl="109" sc="0" el="109" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8754" ordinal="0" offset="377" sl="110" sc="0" el="110" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8755" ordinal="0" offset="384" sl="111" sc="0" el="111" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8756" ordinal="0" offset="402" sl="112" sc="0" el="112" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8757" ordinal="0" offset="403" sl="113" sc="0" el="113" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8758" ordinal="0" offset="411" sl="114" sc="0" el="114" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8759" ordinal="0" offset="419" sl="115" sc="0" el="115" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8760" ordinal="0" offset="427" sl="116" sc="0" el="116" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8761" ordinal="0" offset="430" sl="117" sc="0" el="117" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8762" ordinal="0" offset="433" sl="119" sc="0" el="119" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8763" ordinal="0" offset="434" sl="120" sc="0" el="120" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8764" ordinal="0" offset="449" sl="121" sc="0" el="121" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8765" ordinal="0" offset="450" sl="122" sc="0" el="122" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8766" ordinal="0" offset="458" sl="123" sc="0" el="123" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8767" ordinal="0" offset="461" sl="124" sc="0" el="124" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8768" ordinal="0" offset="468" sl="125" sc="0" el="125" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8769" ordinal="0" offset="469" sl="126" sc="0" el="126" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8770" ordinal="0" offset="477" sl="127" sc="0" el="127" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8771" ordinal="0" offset="485" sl="128" sc="0" el="128" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8772" ordinal="0" offset="493" sl="129" sc="0" el="129" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8773" ordinal="0" offset="494" sl="130" sc="0" el="130" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8774" ordinal="0" offset="495" sl="131" sc="0" el="131" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8775" ordinal="0" offset="502" sl="132" sc="0" el="132" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8776" ordinal="0" offset="503" sl="82" sc="0" el="82" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8777" ordinal="0" offset="524" sl="133" sc="0" el="133" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8778" ordinal="0" offset="537" sl="134" sc="0" el="134" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8779" ordinal="0" offset="542" sl="135" sc="0" el="135" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="120" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663455</MetadataToken>
+              <Name>System.Void VoronoiLib.Structures.RBTree[T]::RemoveNode(VoronoiLib.Structures.RBTreeNode[T])</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8780" ordinal="0" offset="0" sl="139" sc="0" el="139" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8781" ordinal="0" offset="1" sl="141" sc="0" el="141" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8782" ordinal="0" offset="16" sl="142" sc="0" el="142" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8783" ordinal="0" offset="34" sl="143" sc="0" el="143" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8784" ordinal="0" offset="49" sl="144" sc="0" el="144" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8785" ordinal="0" offset="67" sl="147" sc="0" el="147" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8786" ordinal="0" offset="69" sl="148" sc="0" el="148" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8787" ordinal="0" offset="76" sl="149" sc="0" el="149" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8788" ordinal="0" offset="83" sl="150" sc="0" el="150" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8789" ordinal="0" offset="90" sl="154" sc="0" el="154" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8790" ordinal="0" offset="100" sl="155" sc="0" el="155" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8791" ordinal="0" offset="105" sl="156" sc="0" el="156" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8792" ordinal="0" offset="115" sl="157" sc="0" el="157" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8793" ordinal="0" offset="120" sl="159" sc="0" el="159" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8794" ordinal="0" offset="128" sl="162" sc="0" el="162" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8795" ordinal="0" offset="138" sl="163" sc="0" el="163" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8796" ordinal="0" offset="139" sl="164" sc="0" el="164" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8797" ordinal="0" offset="154" sl="165" sc="0" el="165" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8798" ordinal="0" offset="165" sl="167" sc="0" el="167" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8799" ordinal="0" offset="174" sl="168" sc="0" el="168" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8800" ordinal="0" offset="177" sl="170" sc="0" el="170" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8801" ordinal="0" offset="178" sl="171" sc="0" el="171" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8802" ordinal="0" offset="187" sl="172" sc="0" el="172" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8803" ordinal="0" offset="188" sl="175" sc="0" el="175" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8804" ordinal="0" offset="207" sl="176" sc="0" el="176" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8805" ordinal="0" offset="208" sl="177" sc="0" el="177" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8806" ordinal="0" offset="217" sl="178" sc="0" el="178" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8807" ordinal="0" offset="231" sl="179" sc="0" el="179" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8808" ordinal="0" offset="240" sl="180" sc="0" el="180" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8809" ordinal="0" offset="249" sl="183" sc="0" el="183" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8810" ordinal="0" offset="263" sl="184" sc="0" el="184" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8811" ordinal="0" offset="264" sl="185" sc="0" el="185" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8812" ordinal="0" offset="272" sl="186" sc="0" el="186" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8813" ordinal="0" offset="286" sl="188" sc="0" el="188" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8814" ordinal="0" offset="295" sl="189" sc="0" el="189" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8815" ordinal="0" offset="303" sl="191" sc="0" el="191" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8816" ordinal="0" offset="312" sl="192" sc="0" el="192" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8817" ordinal="0" offset="321" sl="193" sc="0" el="193" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8818" ordinal="0" offset="324" sl="195" sc="0" el="195" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8819" ordinal="0" offset="325" sl="197" sc="0" el="197" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8820" ordinal="0" offset="334" sl="198" sc="0" el="198" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8821" ordinal="0" offset="337" sl="199" sc="0" el="199" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8822" ordinal="0" offset="346" sl="200" sc="0" el="200" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8823" ordinal="0" offset="347" sl="201" sc="0" el="201" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8824" ordinal="0" offset="350" sl="203" sc="0" el="203" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8825" ordinal="0" offset="351" sl="204" sc="0" el="204" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8826" ordinal="0" offset="359" sl="205" sc="0" el="205" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8827" ordinal="0" offset="363" sl="206" sc="0" el="206" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8828" ordinal="0" offset="364" sl="208" sc="0" el="208" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8829" ordinal="0" offset="374" sl="209" sc="0" el="209" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8830" ordinal="0" offset="375" sl="210" sc="0" el="210" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8831" ordinal="0" offset="383" sl="211" sc="0" el="211" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8832" ordinal="0" offset="384" sl="213" sc="0" el="213" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8833" ordinal="0" offset="392" sl="214" sc="0" el="214" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8834" ordinal="0" offset="393" sl="215" sc="0" el="215" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8835" ordinal="0" offset="398" sl="218" sc="0" el="218" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8836" ordinal="0" offset="416" sl="219" sc="0" el="219" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8837" ordinal="0" offset="417" sl="220" sc="0" el="220" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8838" ordinal="0" offset="425" sl="221" sc="0" el="221" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8839" ordinal="0" offset="430" sl="229" sc="0" el="229" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8840" ordinal="0" offset="433" sl="231" sc="0" el="231" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8841" ordinal="0" offset="434" sl="232" sc="0" el="232" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8842" ordinal="0" offset="449" sl="233" sc="0" el="233" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8843" ordinal="0" offset="454" sl="234" sc="0" el="234" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8844" ordinal="0" offset="472" sl="235" sc="0" el="235" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8845" ordinal="0" offset="473" sl="236" sc="0" el="236" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8846" ordinal="0" offset="481" sl="237" sc="0" el="237" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8847" ordinal="0" offset="494" sl="238" sc="0" el="238" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8848" ordinal="0" offset="495" sl="239" sc="0" el="239" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8849" ordinal="0" offset="504" sl="240" sc="0" el="240" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8850" ordinal="0" offset="512" sl="241" sc="0" el="241" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8851" ordinal="0" offset="520" sl="242" sc="0" el="242" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8852" ordinal="0" offset="528" sl="243" sc="0" el="243" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8853" ordinal="0" offset="529" sl="244" sc="0" el="244" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8854" ordinal="0" offset="588" sl="245" sc="0" el="245" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8855" ordinal="0" offset="589" sl="247" sc="0" el="247" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8856" ordinal="0" offset="622" sl="248" sc="0" el="248" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8857" ordinal="0" offset="623" sl="249" sc="0" el="249" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8858" ordinal="0" offset="637" sl="250" sc="0" el="250" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8859" ordinal="0" offset="646" sl="251" sc="0" el="251" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8860" ordinal="0" offset="655" sl="252" sc="0" el="252" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8861" ordinal="0" offset="663" sl="253" sc="0" el="253" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8862" ordinal="0" offset="664" sl="254" sc="0" el="254" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8863" ordinal="0" offset="678" sl="255" sc="0" el="255" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8864" ordinal="0" offset="704" sl="256" sc="0" el="256" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8865" ordinal="0" offset="712" sl="257" sc="0" el="257" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8866" ordinal="0" offset="720" sl="258" sc="0" el="258" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8867" ordinal="0" offset="725" sl="260" sc="0" el="260" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8868" ordinal="0" offset="731" sl="262" sc="0" el="262" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8869" ordinal="0" offset="732" sl="263" sc="0" el="263" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8870" ordinal="0" offset="740" sl="264" sc="0" el="264" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8871" ordinal="0" offset="753" sl="265" sc="0" el="265" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8872" ordinal="0" offset="754" sl="266" sc="0" el="266" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8873" ordinal="0" offset="763" sl="267" sc="0" el="267" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8874" ordinal="0" offset="771" sl="268" sc="0" el="268" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8875" ordinal="0" offset="779" sl="269" sc="0" el="269" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8876" ordinal="0" offset="787" sl="270" sc="0" el="270" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8877" ordinal="0" offset="788" sl="271" sc="0" el="271" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8878" ordinal="0" offset="847" sl="272" sc="0" el="272" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8879" ordinal="0" offset="848" sl="273" sc="0" el="273" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8880" ordinal="0" offset="881" sl="274" sc="0" el="274" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8881" ordinal="0" offset="882" sl="275" sc="0" el="275" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8882" ordinal="0" offset="896" sl="276" sc="0" el="276" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8883" ordinal="0" offset="905" sl="277" sc="0" el="277" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8884" ordinal="0" offset="914" sl="278" sc="0" el="278" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8885" ordinal="0" offset="922" sl="279" sc="0" el="279" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8886" ordinal="0" offset="923" sl="280" sc="0" el="280" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8887" ordinal="0" offset="937" sl="281" sc="0" el="281" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8888" ordinal="0" offset="963" sl="282" sc="0" el="282" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8889" ordinal="0" offset="971" sl="283" sc="0" el="283" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8890" ordinal="0" offset="979" sl="284" sc="0" el="284" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8891" ordinal="0" offset="981" sl="286" sc="0" el="286" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8892" ordinal="0" offset="982" sl="287" sc="0" el="287" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8893" ordinal="0" offset="991" sl="288" sc="0" el="288" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8894" ordinal="0" offset="994" sl="289" sc="0" el="289" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8895" ordinal="0" offset="1001" sl="290" sc="0" el="290" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8896" ordinal="0" offset="1002" sl="290" sc="0" el="290" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8897" ordinal="0" offset="1020" sl="292" sc="0" el="292" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8898" ordinal="0" offset="1030" sl="293" sc="0" el="293" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8899" ordinal="0" offset="1038" sl="295" sc="0" el="295" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="true" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="7" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663456</MetadataToken>
+              <Name>static VoronoiLib.Structures.RBTreeNode[T] VoronoiLib.Structures.RBTree[T]::GetFirst(VoronoiLib.Structures.RBTreeNode[T])</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8900" ordinal="0" offset="0" sl="298" sc="0" el="298" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8901" ordinal="0" offset="1" sl="299" sc="0" el="299" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8902" ordinal="0" offset="9" sl="300" sc="0" el="300" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8903" ordinal="0" offset="15" sl="302" sc="0" el="302" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8904" ordinal="0" offset="23" sl="301" sc="0" el="301" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8905" ordinal="0" offset="36" sl="303" sc="0" el="303" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8906" ordinal="0" offset="40" sl="304" sc="0" el="304" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="true" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="7" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663457</MetadataToken>
+              <Name>static VoronoiLib.Structures.RBTreeNode[T] VoronoiLib.Structures.RBTree[T]::GetLast(VoronoiLib.Structures.RBTreeNode[T])</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8907" ordinal="0" offset="0" sl="307" sc="0" el="307" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8908" ordinal="0" offset="1" sl="308" sc="0" el="308" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8909" ordinal="0" offset="9" sl="309" sc="0" el="309" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8910" ordinal="0" offset="15" sl="311" sc="0" el="311" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8911" ordinal="0" offset="23" sl="310" sc="0" el="310" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8912" ordinal="0" offset="36" sl="312" sc="0" el="312" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8913" ordinal="0" offset="40" sl="313" sc="0" el="313" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="18" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663458</MetadataToken>
+              <Name>System.Void VoronoiLib.Structures.RBTree[T]::RotateLeft(VoronoiLib.Structures.RBTreeNode[T])</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8914" ordinal="0" offset="0" sl="316" sc="0" el="316" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8915" ordinal="0" offset="1" sl="317" sc="0" el="317" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8916" ordinal="0" offset="3" sl="318" sc="0" el="318" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8917" ordinal="0" offset="10" sl="319" sc="0" el="319" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8918" ordinal="0" offset="17" sl="321" sc="0" el="321" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8919" ordinal="0" offset="25" sl="322" sc="0" el="322" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8920" ordinal="0" offset="26" sl="323" sc="0" el="323" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8921" ordinal="0" offset="41" sl="324" sc="0" el="324" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8922" ordinal="0" offset="51" sl="326" sc="0" el="326" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8923" ordinal="0" offset="59" sl="327" sc="0" el="327" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8924" ordinal="0" offset="62" sl="329" sc="0" el="329" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8925" ordinal="0" offset="70" sl="330" sc="0" el="330" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8926" ordinal="0" offset="78" sl="331" sc="0" el="331" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8927" ordinal="0" offset="86" sl="332" sc="0" el="332" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8928" ordinal="0" offset="99" sl="333" sc="0" el="333" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8929" ordinal="0" offset="114" sl="334" sc="0" el="334" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8930" ordinal="0" offset="127" sl="335" sc="0" el="335" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8931" ordinal="0" offset="135" sl="336" sc="0" el="336" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="18" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663459</MetadataToken>
+              <Name>System.Void VoronoiLib.Structures.RBTree[T]::RotateRight(VoronoiLib.Structures.RBTreeNode[T])</Name>
+              <FileRef uid="11" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="8932" ordinal="0" offset="0" sl="339" sc="0" el="339" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8933" ordinal="0" offset="1" sl="340" sc="0" el="340" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8934" ordinal="0" offset="3" sl="341" sc="0" el="341" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8935" ordinal="0" offset="10" sl="342" sc="0" el="342" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8936" ordinal="0" offset="17" sl="343" sc="0" el="343" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8937" ordinal="0" offset="25" sl="344" sc="0" el="344" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8938" ordinal="0" offset="26" sl="345" sc="0" el="345" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8939" ordinal="0" offset="41" sl="346" sc="0" el="346" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8940" ordinal="0" offset="51" sl="348" sc="0" el="348" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8941" ordinal="0" offset="59" sl="349" sc="0" el="349" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8942" ordinal="0" offset="62" sl="351" sc="0" el="351" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8943" ordinal="0" offset="70" sl="352" sc="0" el="352" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8944" ordinal="0" offset="78" sl="353" sc="0" el="353" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8945" ordinal="0" offset="86" sl="354" sc="0" el="354" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8946" ordinal="0" offset="99" sl="355" sc="0" el="355" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8947" ordinal="0" offset="114" sl="356" sc="0" el="356" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8948" ordinal="0" offset="127" sl="357" sc="0" el="357" ec="0" bec="0" bev="0" fileid="11" />
+                <SequencePoint vc="0" uspid="8949" ordinal="0" offset="135" sl="358" sc="0" el="358" ec="0" bec="0" bev="0" fileid="11" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+          </Methods>
+        </Class>
+      </Classes>
+    </Module>
+    <Module>
+      <Summary numSequencePoints="9" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0.0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="1" visitedMethods="0" numMethods="1" />
+      <ModuleTime>0001-01-01T00:00:00</ModuleTime>
+      <ModuleName>Assembly-CSharp</ModuleName>
+      <Files>
+        <File uid="14" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/noise test/test1/MapPreviewer.cs" />
+        <File uid="15" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/ScriptableObjects/old/scripts/FastNoise2.cs" />
+        <File uid="16" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/ScriptableObjects/old/scripts/worldbuilder33.cs" />
+        <File uid="17" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/ScriptableObjects/old/scripts/WorldTester.cs" />
+        <File uid="18" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/ScriptableObjects/old/scripts/WorldTester2Notifier.cs" />
+        <File uid="19" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Core/Managers/GameManager.cs" />
+        <File uid="20" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Core/Managers/UIManager.cs" />
+        <File uid="21" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Core/Managers/WorldManager.cs" />
+        <File uid="22" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprint.cs" />
+        <File uid="23" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprints/Growable/BlueprintCactus.cs" />
+        <File uid="24" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprints/Growable/BlueprintGrowable.cs" />
+        <File uid="25" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprints/Growable/BlueprintTree.cs" />
+        <File uid="26" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprints/Structures/BlueprintAbandonedShip.cs" />
+        <File uid="27" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprints/Structures/BlueprintBigWormCave.cs" />
+        <File uid="28" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprints/Structures/BlueprintEggShape.cs" />
+        <File uid="29" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprints/Structures/BlueprintFloatingIsland.cs" />
+        <File uid="30" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprints/Structures/BlueprintHouse.cs" />
+        <File uid="31" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprints/Structures/BlueprintIceTemple.cs" />
+        <File uid="32" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprints/Structures/BlueprintMaze.cs" />
+        <File uid="33" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprints/Structures/BlueprintMinerMine.cs" />
+        <File uid="34" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprints/Structures/BlueprintOreVein.cs" />
+        <File uid="35" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprints/Structures/BlueprintPyramid.cs" />
+        <File uid="36" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprints/Structures/BlueprintSpiderCave.cs" />
+        <File uid="37" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprints/Structures/BlueprintStructure.cs" />
+        <File uid="38" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprints/Structures/BlueprintUndergroundForest.cs" />
+        <File uid="39" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/BlueprintData/Blueprints/Structures/BlueprintUndergroundTree.cs" />
+        <File uid="40" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/World/Area/AreaData.cs" />
+        <File uid="41" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/World/Area/AreaOverworldData.cs" />
+        <File uid="42" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/World/Area/AreaSkyworldData.cs" />
+        <File uid="43" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/World/Area/AreaUnderworldData.cs" />
+        <File uid="44" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/World/Biome/BiomeData.cs" />
+        <File uid="45" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/World/Biome/BiomeOverworldData.cs" />
+        <File uid="46" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/World/Biome/BiomeSkyworldData.cs" />
+        <File uid="47" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/World/Biome/BiomeUnderworldData.cs" />
+        <File uid="48" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/World/TileData.cs" />
+        <File uid="49" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Data/World/WorldData.cs" />
+        <File uid="50" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Databases/AreaDatabase.cs" />
+        <File uid="51" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Databases/biomeDatabase.cs" />
+        <File uid="52" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Databases/OresDatabase.cs" />
+        <File uid="53" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Databases/StructureDatabase.cs" />
+        <File uid="54" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/Database/Databases/TileDatabase.cs" />
+        <File uid="55" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/World/BiomeMapGenerator.cs" />
+        <File uid="56" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/World/World.cs" />
+        <File uid="57" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/World/WorldMapGenerator.cs" />
+        <File uid="58" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/World/WorldMapPOIGenerator.cs" />
+        <File uid="59" fullPath="C:/Users/komja_5iitwgq/Documents/UnityProjects/unity games/Anywhere/Assets/Scripts/World/WorldMapPostGenerator.cs" />
+      </Files>
+      <Classes>
+        <Class>
+          <Summary numSequencePoints="9" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0.0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="1" visitedMethods="0" numMethods="1" />
+          <FullName>WorldMapPOIGenerator</FullName>
+          <Methods>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="true" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="9" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663596</MetadataToken>
+              <Name>static System.Void WorldMapPOIGenerator::ShuffleList[T](System.Collections.Generic.List[T])</Name>
+              <FileRef uid="58" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="12418" ordinal="0" offset="0" sl="238" sc="0" el="238" ec="0" bec="0" bev="0" fileid="58" />
+                <SequencePoint vc="0" uspid="12419" ordinal="0" offset="1" sl="239" sc="0" el="239" ec="0" bec="0" bev="0" fileid="58" />
+                <SequencePoint vc="0" uspid="12420" ordinal="0" offset="12" sl="240" sc="0" el="240" ec="0" bec="0" bev="0" fileid="58" />
+                <SequencePoint vc="0" uspid="12421" ordinal="0" offset="13" sl="241" sc="0" el="241" ec="0" bec="0" bev="0" fileid="58" />
+                <SequencePoint vc="0" uspid="12422" ordinal="0" offset="23" sl="242" sc="0" el="242" ec="0" bec="0" bev="0" fileid="58" />
+                <SequencePoint vc="0" uspid="12423" ordinal="0" offset="75" sl="243" sc="0" el="243" ec="0" bec="0" bev="0" fileid="58" />
+                <SequencePoint vc="0" uspid="12424" ordinal="0" offset="76" sl="239" sc="0" el="239" ec="0" bec="0" bev="0" fileid="58" />
+                <SequencePoint vc="0" uspid="12425" ordinal="0" offset="80" sl="239" sc="0" el="239" ec="0" bec="0" bev="0" fileid="58" />
+                <SequencePoint vc="0" uspid="12426" ordinal="0" offset="90" sl="244" sc="0" el="244" ec="0" bec="0" bev="0" fileid="58" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+          </Methods>
+        </Class>
+      </Classes>
+    </Module>
+  </Modules>
+</CoverageSession>

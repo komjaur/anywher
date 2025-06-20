@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e0e0209c4ed494495b0d22fced2519, type: 3}
+  m_Name: Blueprint_UndergroundForest
+  m_EditorClassIdentifier: 
+  description: Optional notes
+  requiresFullInBounds: 0
+  canBePlacedInAir: 0
+  structureWidth: 1
+  structureHeight: 1
+  anchorIsCenter: 1
+  caveLength: 60
+  caveRadius: 10
+  verticalAmplitude: 4
+  noiseScale: 0.1
+  grassTile: {fileID: 11400000, guid: 8ba7893825cf72246b277fe817ce56a3, type: 2}
+  dirtTile: {fileID: 11400000, guid: a2b3a4216ebf8f44887be311fcb59e0a, type: 2}
+  dirtDepth: 6
+  foliageTile: {fileID: 0}
+  foliageFillChance: 0.4
+  treeBlueprints:
+  - prefab: {fileID: 11400000, guid: 2b24e289dd227ff418acf2019d277b4d, type: 2}
+    weight: 1
+  treeChance: 0.2
+  wallThickness: 2

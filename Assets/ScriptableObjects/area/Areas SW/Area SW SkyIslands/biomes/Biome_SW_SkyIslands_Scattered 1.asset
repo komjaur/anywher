@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2919fb0dd86b85041be2c7862f5cf3ef, type: 3}
+  m_Name: Biome_SW_SkyIslands_Scattered 1
+  m_EditorClassIdentifier: 
+  biomeName: "New\_Biome"
+  description: "Short biome blurb\u2026"
+  color: {r: 0.0102794655, g: 0.22059606, b: 0.31132078, a: 1}
+  elevation: 0.253
+  worldNoiseThreshold: 0.649
+  localOres: []
+  FrontLayerTiles:
+    NoiseOffset: {x: 0, y: 0}
+    subTiles:
+    - tileData: {fileID: 11400000, guid: 0bd94b64ada996c4eab1f18fb94620c1, type: 2}
+      threshold: 0.516
+    - tileData: {fileID: 11400000, guid: e65269b0aac700b4a897ff9429756622, type: 2}
+      threshold: 0.709
+    - tileData: {fileID: 11400000, guid: d1e5f878605e21940bee3bdc96503828, type: 2}
+      threshold: 0.865
+  BackgroundLayerTiles:
+    NoiseOffset: {x: 0, y: 0}
+    subTiles: []
+  noiseType: 0
+  frequency: 0.04
+  strength: 1
+  stretch: {x: 1, y: 1}
+  octaves: 3
+  lacunarity: 2
+  persistence: 0.5
+  offset: {x: 0, y: 0}
+  Trees:
+  - {fileID: 11400000, guid: 811f1672dd5428c4b999af0206ed16ae, type: 2}
+  areaNoiseBlend: 0.539
+  vineChance: 0.3
+  treeSpawnChance: 0.3
+  cloudCoverage: 0.5

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5550195f613630042bef2216e98d0a54, type: 3}
+  m_Name: Blueprint_Pyramid
+  m_EditorClassIdentifier: 
+  description: Optional notes
+  requiresFullInBounds: 1
+  canBePlacedInAir: 0
+  structureWidth: 30
+  structureHeight: 30
+  anchorIsCenter: 1
+  pyramidHeight: 30
+  xOffset: 0
+  yOffset: 0
+  pyramidTile: {fileID: 11400000, guid: cde0083e8913f98429829639ff86f96a, type: 2}
+  backgroundWallTile: {fileID: 11400000, guid: 3190c915a42303c4189ccba7e7a44d0b, type: 2}
+  airTile: {fileID: 11400000, guid: aa8f19cb1eb61d3499f0f8372bc9a9d7, type: 2}
+  chestTile: {fileID: 11400000, guid: 7784af26a70cb5444a574c4738f27f53, type: 2}
+  hollowInside: 0

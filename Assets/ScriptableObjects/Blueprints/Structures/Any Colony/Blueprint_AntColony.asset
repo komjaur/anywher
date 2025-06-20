@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3fc95916d34a14798eacf6fca962e1, type: 3}
+  m_Name: Blueprint_AntColony
+  m_EditorClassIdentifier: 
+  description: Optional notes
+  requiresFullInBounds: 1
+  canBePlacedInAir: 0
+  structureWidth: 1
+  structureHeight: 1
+  anchorIsCenter: 1
+  colonyRadius: 60
+  roomCount: 15
+  roomRadius: 9
+  tunnelRadius: 2
+  curviness: 0.4
+  clearMargin: 2
+  childSpawnChance: 0.7
+  wallThickness: 4
+  airTile: {fileID: 11400000, guid: 9d4490b140cedec43937e12897c1fd32, type: 2}
+  wallTile: {fileID: 11400000, guid: ab0c6e7bd221d5f4cb397dc65e80f7e6, type: 2}

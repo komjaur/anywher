@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de277336d9f41ac478e6ba17420d5adc, type: 3}
+  m_Name: Blueprint_RandomBlob
+  m_EditorClassIdentifier: 
+  description: Optional notes
+  requiresFullInBounds: 0
+  canBePlacedInAir: 0
+  structureWidth: 25
+  structureHeight: 25
+  anchorIsCenter: 1
+  useBlobFill: 1
+  useColumn: 1
+  useSnakeTunnel: 1
+  minSize: 16
+  maxSize: 16
+  blobNoiseCutoff: 0.55
+  blobNoiseFreq: 0.25
+  undergroundAir: {fileID: 11400000, guid: 9d4490b140cedec43937e12897c1fd32, type: 2}

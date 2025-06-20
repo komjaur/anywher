@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63eccce61854a514cb33975a3223bac3, type: 3}
+  m_Name: Area_UW_Caverns
+  m_EditorClassIdentifier: 
+  areaName: 
+  color: {r: 0.7830189, g: 0.44197726, b: 0, a: 1}
+  zone: 2
+  biomes:
+  - {fileID: 11400000, guid: 9fb657428782508469945dfade2f56f9, type: 2}
+  - {fileID: 11400000, guid: eca0753b66108a541a50000f70425640, type: 2}
+  - {fileID: 11400000, guid: 0861fe786271b9347ab866350e1b5b68, type: 2}
+  - {fileID: 11400000, guid: 53198a77f20280d4a8843026962ee3cf, type: 2}
+  - {fileID: 11400000, guid: 8318a3358c9501a419e13f9bf80ca6ce, type: 2}
+  - {fileID: 11400000, guid: 71948a97518ff0f48a6a17cb4deacdc9, type: 2}
+  areaNoiseFrequency: 0.05
+  Foliage:
+  - tile: {fileID: 11400000, guid: 607c95f0e186770468d3e17dd4f29c3f, type: 2}
+    weight: 1
+  - tile: {fileID: 11400000, guid: fbc5181a7f513c344bd4b61408e7b267, type: 2}
+    weight: 1
+  Decor:
+  - tile: {fileID: 11400000, guid: cb4700ff8fb9a4841a39f8d8cecac4f7, type: 2}
+    weight: 0.4
+  - tile: {fileID: 11400000, guid: 94ac1e1391497f348ab5f9febf9c1f90, type: 2}
+    weight: 0.05
+  - tile: {fileID: 11400000, guid: 9a4500be335590640a7ab9a10e208b19, type: 2}
+    weight: 0.3
+  - tile: {fileID: 11400000, guid: f4882452802f5494d8d1798ed3c262b6, type: 2}
+    weight: 0.05
+  - tile: {fileID: 11400000, guid: 71d60cd3feb5957409158fae96b8d12e, type: 2}
+    weight: 0.1
+  - tile: {fileID: 11400000, guid: 1f5e0113afc7b3c4c9d720e88d2d9c0e, type: 2}
+    weight: 0.1
+  Trees: []
+  Ores: []
+  Units: []
+  MusicPlaylist:
+  - path: icier.mid
+  - path: "ko\u0303rbetuuled, viivuks ilmunud oaas, tuultesse kadunud taas.mid"
+  - path: "veel ei ko\u0303la kokku.mid"
+  foliageSpawnChance: 0.4
+  decorSpawnChance: 0.15
+  vineSpawnChance: 0.3
+  treeSpawnChance: 0.3
+  defaultDirt: {fileID: 0}
+  defaultStone: {fileID: 0}
+  defaultGrass: {fileID: 0}
+  parallax: {fileID: 0}
+  minDepth: 0
+  maxDepth: 0.946
+  minHeat: -1
+  maxHeat: 1

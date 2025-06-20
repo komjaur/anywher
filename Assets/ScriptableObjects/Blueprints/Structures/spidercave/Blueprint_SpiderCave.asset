@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc71d4f0208adf43b698f884be694f1, type: 3}
+  m_Name: Blueprint_SpiderCave
+  m_EditorClassIdentifier: 
+  description: Optional notes
+  requiresFullInBounds: 0
+  canBePlacedInAir: 0
+  structureWidth: 1
+  structureHeight: 1
+  anchorIsCenter: 1
+  webTile: {fileID: 11400000, guid: 897192b288876e142b3b1f8ead598fd6, type: 2}
+  wallTile: {fileID: 11400000, guid: 0c0519c3663d5444cb2be5404530a2fa, type: 2}
+  webFillChance: 0.672
+  maxFloodSize: 500
+  wallThickness: 2

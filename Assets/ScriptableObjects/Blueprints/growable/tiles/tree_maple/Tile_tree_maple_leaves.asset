@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6392e9782d4fad4498ffc831df3952c, type: 3}
+  m_Name: Tile_tree_maple_leaves
+  m_EditorClassIdentifier: 
+  tileID: 34
+  tileName: New Tile 56
+  color: {r: 0.7264151, g: 0.36543825, b: 0.23642756, a: 1}
+  tileBase: {fileID: 11400000, guid: 9cac1bf95f210da409f3393abbf5d0a1, type: 2}
+  behavior: 0
+  tag: 1
+  renderLayer: 1
+  unbreakable: 0
+  requiredToolPower: 2
+  health: 200
+  xpOnMine: 0
+  lightStrength: 0
+  lightColor: {r: 1, g: 1, b: 1, a: 1}
+  lightFalloff: 0.1
+  grassTile: {fileID: 0}
+  vineTile: {fileID: 0}
+  vineMinLength: 1
+  vineMaxLength: 6
+  canPlaceOnTiles: []
+  BlueprintGrowableMatured: {fileID: 0}
+  dropItem: {fileID: 0}

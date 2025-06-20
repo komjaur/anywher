@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63eccce61854a514cb33975a3223bac3, type: 3}
+  m_Name: Area_UW_Caverns 2
+  m_EditorClassIdentifier: 
+  areaName: 
+  color: {r: 0.5377358, g: 0.3865737, b: 0.19023673, a: 1}
+  zone: 2
+  biomes:
+  - {fileID: 11400000, guid: 371b6d970f8a7ce479ac4f36437fca0f, type: 2}
+  - {fileID: 11400000, guid: 0cc05300816a7764cb563051a015befa, type: 2}
+  - {fileID: 11400000, guid: 8df96e1c1f86f2c47bdff2c1fd156275, type: 2}
+  - {fileID: 11400000, guid: 04a74dc9451b5db488cc503f333d21f0, type: 2}
+  - {fileID: 11400000, guid: 124fad432b25fcc468a9659020293b7e, type: 2}
+  - {fileID: 11400000, guid: 76d7e5e96cd7b3a478bd7c26733cc058, type: 2}
+  areaNoiseFrequency: 0.2
+  Foliage:
+  - tile: {fileID: 11400000, guid: 607c95f0e186770468d3e17dd4f29c3f, type: 2}
+    weight: 1
+  - tile: {fileID: 11400000, guid: fbc5181a7f513c344bd4b61408e7b267, type: 2}
+    weight: 1
+  Decor:
+  - tile: {fileID: 11400000, guid: cb4700ff8fb9a4841a39f8d8cecac4f7, type: 2}
+    weight: 0.4
+  - tile: {fileID: 11400000, guid: 94ac1e1391497f348ab5f9febf9c1f90, type: 2}
+    weight: 0.05
+  - tile: {fileID: 11400000, guid: 9a4500be335590640a7ab9a10e208b19, type: 2}
+    weight: 0.3
+  - tile: {fileID: 11400000, guid: f4882452802f5494d8d1798ed3c262b6, type: 2}
+    weight: 0.05
+  - tile: {fileID: 11400000, guid: 71d60cd3feb5957409158fae96b8d12e, type: 2}
+    weight: 0.1
+  - tile: {fileID: 11400000, guid: 1f5e0113afc7b3c4c9d720e88d2d9c0e, type: 2}
+    weight: 0.1
+  Trees: []
+  Ores: []
+  foliageSpawnChance: 1
+  decorSpawnChance: 0.15
+  vineSpawnChance: 0.3
+  treeSpawnChance: 0.3
+  defaultDirt: {fileID: 0}
+  defaultStone: {fileID: 0}
+  defaultGrass: {fileID: 0}
+  parallax: {fileID: 0}
+  minDepth: 0
+  maxDepth: 0.926
+  minHeat: -1
+  maxHeat: 1

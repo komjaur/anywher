@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7bc72852839d9641a382ea76d3d7899, type: 3}
+  m_Name: Area_SW_SkyIsland
+  m_EditorClassIdentifier: 
+  areaName: 
+  color: {r: 0, g: 0.56835246, b: 1, a: 1}
+  zone: 0
+  biomes:
+  - {fileID: 11400000, guid: a0903da62da05d845b8821c9560a241a, type: 2}
+  - {fileID: 11400000, guid: 1b8e50a15530416408552037d32087e9, type: 2}
+  - {fileID: 11400000, guid: 88d3fe115482ee74e8b3520bdd4787c2, type: 2}
+  - {fileID: 11400000, guid: 16976e110e383f0499e889fc4fc1c406, type: 2}
+  areaNoiseFrequency: 0.05
+  Foliage: []
+  Decor: []
+  Trees: []
+  Ores: []
+  foliageSpawnChance: 0.4
+  decorSpawnChance: 0.15
+  vineSpawnChance: 0.3
+  treeSpawnChance: 0.3
+  defaultDirt: {fileID: 0}
+  defaultStone: {fileID: 0}
+  defaultGrass: {fileID: 0}
+  parallax: {fileID: 0}
+  minDepth: 0.581
+  maxDepth: 1
+  minHeat: -1
+  maxHeat: 0.14

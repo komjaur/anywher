@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1bdaeed3d078e4f8a8f09b1131621a, type: 3}
+  m_Name: Blueprint_Spiral
+  m_EditorClassIdentifier: 
+  description: Optional notes
+  requiresFullInBounds: 1
+  canBePlacedInAir: 0
+  structureWidth: 60
+  structureHeight: 60
+  anchorIsCenter: 1
+  revolutions: 4
+  spiralRadius: 60
+  pathThickness: 3
+  noiseScale: 0
+  verticalJitter: 0
+  entranceAirFraction: 0.12
+  airTile: {fileID: 11400000, guid: 9d4490b140cedec43937e12897c1fd32, type: 2}
+  chestTile: {fileID: 11400000, guid: 1f5e0113afc7b3c4c9d720e88d2d9c0e, type: 2}
+  tier1:
+    block: {fileID: 11400000, guid: 8ba7893825cf72246b277fe817ce56a3, type: 2}
+    ore: {fileID: 11400000, guid: e622ebf8a37f54a4590d1d93bda6395d, type: 2}
+    oreChance: 0.069
+  tier2:
+    block: {fileID: 11400000, guid: f996dc00ed5bcc9449954c68f0fe6479, type: 2}
+    ore: {fileID: 11400000, guid: 649c3883d3df8d649981cd86d351880a, type: 2}
+    oreChance: 0.054
+  tier3:
+    block: {fileID: 11400000, guid: 71e37a212d3cd58418b4863ed33ab21c, type: 2}
+    ore: {fileID: 11400000, guid: dadc9d21c0bb446489aac85ba1147df8, type: 2}
+    oreChance: 0.045
+  waterTile: {fileID: 11400000, guid: 3352dab8fc01a2b4699455b6eeb3b647, type: 2}
+  waterChance: 0.001
+  waterPocketRadius: 2
+  wallTile: {fileID: 11400000, guid: ab0c6e7bd221d5f4cb397dc65e80f7e6, type: 2}
+  wallThickness: 2
+  endOpenRadius: 6

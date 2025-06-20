@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35906e1a0b403b541b4b0d1aec2ccdec, type: 3}
+  m_Name: Area_OW_Desert
+  m_EditorClassIdentifier: 
+  areaName: Desert
+  color: {r: 1, g: 0.9666667, b: 0, a: 1}
+  zone: 1
+  biomes:
+  - {fileID: 11400000, guid: 23615de58c368ed40b34763a40944991, type: 2}
+  - {fileID: 11400000, guid: 56c20cb01ca589546acca895921eb53e, type: 2}
+  - {fileID: 11400000, guid: ea776ef1f25215b44a0580c41f016849, type: 2}
+  areaNoiseFrequency: 0.2
+  Foliage: []
+  Decor: []
+  Trees: []
+  Ores: []
+  foliageSpawnChance: 0.4
+  decorSpawnChance: 0.15
+  vineSpawnChance: 0.3
+  treeSpawnChance: 0.3
+  defaultDirt: {fileID: 0}
+  defaultStone: {fileID: 0}
+  defaultGrass: {fileID: 0}
+  parallax: {fileID: 0}
+  skyCosOffset: 0
+  skyCosAmpMul: 1
+  skylineRuggedness: -1
+  heat: 0.8
