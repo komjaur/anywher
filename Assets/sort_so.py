@@ -85,10 +85,7 @@ def classify_area(asset_name: str) -> Path | None:
             DIMENSION.get(dim_code, dim_code) / pascal_case(area) / asset_name)
 
 def classify_biome(asset_name: str) -> Path | None:
-    """
-    Biome_OW_desert_Dune Sea.asset  =>
-    Assets/Content/Areas/Overworld/Desert/Biomes/DuneSea.asset
-    """
+    """Biome_OW_Desert_Dune Sea.asset → Assets/Content/Areas/Overworld/Desert/Biomes/DuneSea.asset"""
     m = re.fullmatch(r"Biome_(\w{2})_(\w+?)_(.+)\.asset", asset_name, re.I)
     if not m:
         return None
@@ -97,8 +94,29 @@ def classify_biome(asset_name: str) -> Path | None:
             DIMENSION.get(dim_code, dim_code) / pascal_case(area) / "Biomes" /
             f"{pascal_case(biome)}.asset")
 
+
+def classify_item(asset_name: str) -> Path | None:
+    """Item_Log.asset → Assets/Content/Items/Log.asset"""
+    m = re.fullmatch(r"Item_(.+)\.asset", asset_name, re.I)
+    if not m:
+        return None
+    return PROJECT_ROOT / DEF_ASSETS / "Content" / "Items" / f"{pascal_case(m.group(1))}.asset"
+
+
+def classify_tile(asset_name: str) -> Path | None:
+    """Tile_Dirt.asset → Assets/Content/Tiles/Dirt.asset"""
+    m = re.fullmatch(r"Tile_(.+)\.asset", asset_name, re.I)
+    if not m:
+        return None
+    return PROJECT_ROOT / DEF_ASSETS / "Content" / "Tiles" / f"{pascal_case(m.group(1))}.asset"
+
 # Put additional classify_* functions above and append them here.
-CLASSIFIERS = (classify_area, classify_biome)
+CLASSIFIERS = (
+    classify_area,
+    classify_biome,
+    classify_item,
+    classify_tile,
+)
 
 # ---------------------------------------------------------------------------
 #  Main

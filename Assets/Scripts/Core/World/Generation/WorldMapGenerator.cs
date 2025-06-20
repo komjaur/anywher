@@ -18,6 +18,11 @@ public static class WorldMapGenerator
     static bool[]    _isSolid, _isLiquid;            // tileID → bool
     static TileData[] _tileCache;                    // tileID → TileData
 
+    // chunk-column noise caches reused between chunks
+    static float[] s_cosCache;
+    static float[] s_fbmCache;
+    static float[] s_ridgeCache;
+
     static void BuildTileMeta(TileDatabase db)
     {
         int max = db.tiles.Length;                   // IDs == indices (after your sorter)
@@ -84,9 +89,278 @@ public static class WorldMapGenerator
         return n * n;
     }
 
+    /* ------------------------------------------------------------------ */
+    /*  Small helper containers                                           */
+    /* ------------------------------------------------------------------ */
+    struct ColumnNoise
+    {
+        public float[] Cos, Fbm, Ridge;
+    }
+
+    static ColumnNoise BuildNoiseCache(int wx0, int cs, int seed, WorldData d)
+    {
+        if (s_cosCache == null || s_cosCache.Length != cs)
+        {
+            s_cosCache   = new float[cs];
+            s_fbmCache   = new float[cs];
+            s_ridgeCache = new float[cs];
+        }
+
+        ColumnNoise n;
+        n.Cos   = s_cosCache;
+        n.Fbm   = s_fbmCache;
+        n.Ridge = s_ridgeCache;
+
+        float lowFreq   = d.skyLowFreq;
+        float ridgeFreq = d.skyRidgeFreq;
+
+        for (int lx = 0; lx < cs; ++lx)
+        {
+            int wx = wx0 + lx;
+            n.Cos[lx] = Mathf.Cos((wx + seed) * d.skyLineWaveScale) *
+                        0.5f * d.skyLineWaveAmplitude;
+            n.Fbm[lx]   = FBM((wx + seed) * lowFreq);
+            n.Ridge[lx] = Ridge((wx + seed) * ridgeFreq);
+        }
+
+        return n;
+    }
+
+    static (AreaOverworldData main, AreaOverworldData blend, float blendT) GetAreaBlend(
+        Chunk chunk, int lx, int ly, int smoothW)
+    {
+        byte areaIx = chunk.areaIDs[lx, ly];
+        AreaOverworldData aMain = (areaIx < _areas?.Length)
+                                 ? _areas[areaIx] as AreaOverworldData
+                                 : null;
+
+        float blendT = 0f;
+        AreaOverworldData aBlend = null;
+
+        if (lx > 0)
+        {
+            byte leftIx = chunk.areaIDs[lx - 1, ly];
+            if (leftIx != areaIx)
+            {
+                int dist = 0;
+                for (int dx = 1; dx <= smoothW && lx - dx >= 0; ++dx)
+                    if (chunk.areaIDs[lx - dx, ly] == leftIx) dist++; else break;
+
+                aBlend = (leftIx < _areas?.Length)
+                        ? _areas[leftIx] as AreaOverworldData : null;
+                blendT = 1f - (float)dist / (smoothW + 1);
+            }
+        }
+
+        if (aBlend == null && lx < chunk.size - 1)
+        {
+            byte rightIx = chunk.areaIDs[lx + 1, ly];
+            if (rightIx != areaIx)
+            {
+                int dist = 0;
+                for (int dx = 1; dx <= smoothW && lx + dx < chunk.size; ++dx)
+                    if (chunk.areaIDs[lx + dx, ly] == rightIx) dist++; else break;
+
+                aBlend = (rightIx < _areas?.Length)
+                        ? _areas[rightIx] as AreaOverworldData : null;
+                blendT = (float)dist / (smoothW + 1);
+            }
+        }
+
+        return (aMain, aBlend, blendT);
+    }
+
+    static float ComputeSkyline(WorldData d,
+                                AreaOverworldData main,
+                                AreaOverworldData blend,
+                                float blendT,
+                                float cosBase, float fbmBase, float ridgeBase,
+                                int wx, int wy, int seed,
+                                float baseSkyNorm)
+    {
+        float lowFreq   = d.skyLowFreq,   lowAmp   = d.skyLowAmp;
+        float ridgeFreq = d.skyRidgeFreq, ridgeAmp = d.skyRidgeAmp;
+        float cosMul = main ? main.skyCosAmpMul : 1f;
+        float cosOff = main ? main.skyCosOffset : 0f;
+
+        float rugMain  = (main && main.skylineRuggedness >= 0f)
+                         ? main.skylineRuggedness : 0.5f;
+        float rugBlend = 0.5f;
+        if (blend) rugBlend = (blend.skylineRuggedness >= 0f)
+                               ? blend.skylineRuggedness : 0.5f;
+
+        if (blend && blendT > 0f)
+        {
+            cosMul  = Mathf.Lerp(cosMul,  blend.skyCosAmpMul, blendT);
+            cosOff  = Mathf.Lerp(cosOff,  blend.skyCosOffset, blendT);
+            rugMain = Mathf.Lerp(rugMain, rugBlend,           blendT);
+        }
+
+        float ampMul = Mathf.Lerp(0.3f, 1.7f, rugMain);
+        lowAmp   *= ampMul;
+        ridgeAmp *= ampMul;
+        float mountainAmpLocal = d.skyMountainAmp * ampMul;
+
+        float cosWave = cosBase * cosMul + cosOff;
+        float fbm    = fbmBase   * lowAmp;
+        float ridges = ridgeBase * ridgeAmp;
+
+        float mNoise = Mathf.PerlinNoise((wx + seed) * d.skyMountainFreq,
+                                         (wy + seed) * d.skyMountainFreq);
+
+        float mountain = 0f;
+        if (mNoise > 0.6f)
+        {
+            float t = (mNoise - 0.6f) / 0.4f;
+            mountain = t * t * mountainAmpLocal;
+        }
+        else if (mNoise < 0.3f)
+        {
+            float t = (0.3f - mNoise) / 0.3f;
+            mountain = -t * t * mountainAmpLocal * d.skyValleyFactor;
+        }
+
+        return baseSkyNorm + cosWave + fbm + ridges + mountain;
+    }
+
+    static (bool frontMasked, float areaNoise, float blendNoise) ComputeMaskAndAreaNoise(
+        int wx, int wy, int seed, BiomeData biome, AreaData area,
+        bool useWorldMask, WorldData d)
+    {
+        bool frontMasked = false;
+        if (useWorldMask && biome != null && biome.worldNoiseThreshold > 0f)
+        {
+            float m = Mathf.PerlinNoise((wx + seed) * d.worldNoiseFrequency,
+                                        (wy + seed) * d.worldNoiseFrequency);
+            if (m < biome.worldNoiseThreshold) frontMasked = true;
+        }
+
+        float blendNoise = biome?.areaNoiseBlend ?? 0f;
+        float areaNoise  = 0f;
+        if (blendNoise > 0f)
+        {
+            float areaFreq = area ? area.areaNoiseFrequency : 0.003f;
+            areaNoise = Mathf.PerlinNoise((wx + seed) * areaFreq,
+                                          (wy + seed) * areaFreq);
+        }
+
+        return (frontMasked, areaNoise, blendNoise);
+    }
+
+    static void PickTiles(
+        BiomeData biome, AreaData area,
+        float nY, float skyNorm, bool frontMasked,
+        float areaNoise, float blendNoise,
+        int wx, int wy, int seed,
+        ref bool skyFound, ref bool ugAirFound, ref bool solidFound,
+        out int front, out int back, WorldData d)
+    {
+        front = back = -1;
+        bool isAboveSky = nY > skyNorm;
+        bool biomeIsSky = area != null && area.zone == ZoneType.Sky;
+
+        if (isAboveSky && !biomeIsSky)
+        {
+            front = SafeID(d.tileDatabase.SkyAirTile);
+            back  = 0;
+            skyFound = true;
+        }
+        else
+        {
+            float depthPx = Mathf.Max(0f, skyNorm * (d.heightInChunks * d.chunkSize) - wy);
+
+            bool usedLayer = biome is BiomeOverworldData ow &&
+                             ow.overworldLayers is { Length: > 0 } &&
+                             TryPickOverworldLayer(
+                                 ow, depthPx, wx, wy, seed,
+                                 areaNoise, blendNoise,
+                                 out front, out back);
+
+            if (!usedLayer)
+            {
+                front = PickFromBlock(biome?.FrontLayerTiles, biome,
+                                      wx, wy, seed, areaNoise, blendNoise);
+
+                back  = PickFromBlock(biome?.BackgroundLayerTiles, biome,
+                                      wx, wy, seed, areaNoise, blendNoise);
+            }
+
+            if (front < 0)
+                front = SafeID(isAboveSky
+                               ? d.tileDatabase.SkyAirTile
+                               : d.tileDatabase.UndergroundAirTile);
+
+            if (back < 0)
+                back = 0;
+
+            if (!frontMasked && IsSolidFast(front))
+            {
+                if (biome?.Ores is { Length: > 0 })
+                    TryInjectLocalOre(ref front, biome.Ores, nY,
+                                      wx, wy, seed, area, d);
+
+                if (_ores is { Length: > 0 })
+                    TryInjectGlobalOre(ref front, _ores, nY,
+                                       wx, wy, seed, area, d);
+            }
+
+            if (IsUGAir(front, d) || IsUGAir(back, d))  ugAirFound  = true;
+            if (IsSolidFast(front) || IsSolidFast(back)) solidFound = true;
+        }
+
+        if (back == d.tileDatabase.SkyAirTile?.tileID ||
+            back == d.tileDatabase.UndergroundAirTile?.tileID)
+            back = 0;
+
+        if (frontMasked)
+            front = SafeID(d.tileDatabase.UndergroundAirTile);
+    }
+
+    static void WriteLayers(Chunk chunk, int lx, int ly, int front, int back,
+                            ref bool liquidFound, WorldData d)
+    {
+        bool fLiquid = IsLiquidFast(front);
+
+        if (fLiquid)
+        {
+            chunk.liquidLayerTileIndexes[lx, ly] = front;
+            chunk.frontLayerTileIndexes [lx, ly] = 0;
+        }
+        else
+        {
+            chunk.frontLayerTileIndexes [lx, ly] = front;
+            chunk.liquidLayerTileIndexes[lx, ly] = 0;
+        }
+
+        chunk.backgroundLayerTileIndexes[lx, ly] = back;
+
+        if (fLiquid) liquidFound = true;
+    }
+
+    static void SetChunkFlags(Chunk chunk, WorldData d,
+                              bool skyFound, bool ugAirFound,
+                              bool solidFound, bool liquidFound)
+    {
+        ChunkFlags cf = ChunkFlags.None;
+
+        if (chunk.IsCompletelySky(d.tileDatabase.SkyAirTile))
+            cf |= ChunkFlags.ClearSky;
+        else if (chunk.IsCompletelyUndergroundAir(d.tileDatabase.UndergroundAirTile))
+            cf |= ChunkFlags.CaveAir;
+
+        if (skyFound && solidFound && !cf.HasFlag(ChunkFlags.ClearSky))
+            cf |= ChunkFlags.Surface;
+
+        if (ugAirFound && solidFound && !cf.HasFlag(ChunkFlags.CaveAir))
+            cf |= ChunkFlags.Cave;
+
+        if (liquidFound) cf |= ChunkFlags.Liquids;
+
+        chunk.SetFlags(cf);
+    }
+
 public static void FillChunkTiles(Chunk chunk, WorldData d, int seed)
 {
-    /* ─── reset & boiler-plate ───────────────────────────────────── */
     chunk.SetFlags(ChunkFlags.None);
 
     int  cs   = chunk.size;
@@ -98,242 +372,46 @@ public static void FillChunkTiles(Chunk chunk, WorldData d, int seed)
     bool  useWorldMask = d.worldNoiseFrequency > 0f;
     int   smoothW      = Mathf.Clamp(d.borderSmoothWidth, 0, cs - 1);
 
-    /* ─── bookkeeping for flag logic ─────────────────────────────── */
-    bool skyFound    = false;   // any tile above skyline
-    bool ugAirFound  = false;   // any underground-air tile
-    bool solidFound  = false;   // any solid block
-    bool liquidFound = false;   // any liquid tile
+    ColumnNoise n = BuildNoiseCache(wx0, cs, seed, d);
 
-    /* ─── tile loop ──────────────────────────────────────────────── */
+    bool skyFound = false, ugAirFound = false,
+         solidFound = false, liquidFound = false;
+
     for (int ly = 0; ly < cs; ++ly)
     {
-        int   wy   = wy0 + ly;
-        float nY   = (float)wy / mapH;           // depth norm (0 top, 1 bottom)
+        int   wy = wy0 + ly;
+        float nY = (float)wy / mapH;
 
         for (int lx = 0; lx < cs; ++lx)
         {
             int wx = wx0 + lx;
 
-            /* ── area & blend look-ups (unchanged) ───────────────── */
-            byte areaIx   = chunk.areaIDs[lx, ly];
-            AreaOverworldData aMain = (areaIx < _areas?.Length)
-                                      ? _areas[areaIx] as AreaOverworldData
-                                      : null;
+            var (aMain, aBlend, blendT) = GetAreaBlend(chunk, lx, ly, smoothW);
 
-            float blendT = 0f;
-            AreaOverworldData aBlend = null;
+            float skyNorm = ComputeSkyline(d, aMain, aBlend, blendT,
+                                           n.Cos[lx], n.Fbm[lx], n.Ridge[lx],
+                                           wx, wy, seed, baseSkyNorm);
 
-            // left border scan
-            if (lx > 0)
-            {
-                byte leftIx = chunk.areaIDs[lx - 1, ly];
-                if (leftIx != areaIx)
-                {
-                    int dist = 0;
-                    for (int dx = 1; dx <= smoothW && lx - dx >= 0; ++dx)
-                        if (chunk.areaIDs[lx - dx, ly] == leftIx) dist++; else break;
-
-                    aBlend = (leftIx < _areas?.Length)
-                             ? _areas[leftIx] as AreaOverworldData : null;
-                    blendT = 1f - (float)dist / (smoothW + 1);
-                }
-            }
-
-            // right border scan
-            if (aBlend == null && lx < cs - 1)
-            {
-                byte rightIx = chunk.areaIDs[lx + 1, ly];
-                if (rightIx != areaIx)
-                {
-                    int dist = 0;
-                    for (int dx = 1; dx <= smoothW && lx + dx < cs; ++dx)
-                        if (chunk.areaIDs[lx + dx, ly] == rightIx) dist++; else break;
-
-                    aBlend = (rightIx < _areas?.Length)
-                             ? _areas[rightIx] as AreaOverworldData : null;
-                    blendT = (float)dist / (smoothW + 1);
-                }
-            }
-
-            /* ── skyline parameters & noise (unchanged) ──────────── */
-            float lowFreq   = d.skyLowFreq,   lowAmp   = d.skyLowAmp;
-            float ridgeFreq = d.skyRidgeFreq, ridgeAmp = d.skyRidgeAmp;
-            float cosMul = aMain ? aMain.skyCosAmpMul : 1f;
-            float cosOff = aMain ? aMain.skyCosOffset : 0f;
-
-            float rugMain  = (aMain && aMain.skylineRuggedness >= 0f)
-                             ? aMain.skylineRuggedness : 0.5f;
-            float rugBlend = 0.5f;
-            if (aBlend) rugBlend = (aBlend.skylineRuggedness >= 0f)
-                                   ? aBlend.skylineRuggedness : 0.5f;
-
-            if (aBlend && blendT > 0f)
-            {
-                cosMul  = Mathf.Lerp(cosMul,  aBlend.skyCosAmpMul, blendT);
-                cosOff  = Mathf.Lerp(cosOff,  aBlend.skyCosOffset, blendT);
-                rugMain = Mathf.Lerp(rugMain, rugBlend,           blendT);
-            }
-
-            float ampMul = Mathf.Lerp(0.3f, 1.7f, rugMain);
-            lowAmp   *= ampMul;
-            ridgeAmp *= ampMul;
-            float mountainAmpLocal = d.skyMountainAmp * ampMul;
-
-            float cosWave = Mathf.Cos((wx + seed) * d.skyLineWaveScale)
-                          * 0.5f * d.skyLineWaveAmplitude;
-            cosWave = cosWave * cosMul + cosOff;
-            float fbm    = FBM((wx + seed) * lowFreq)     * lowAmp;
-            float ridges = Ridge((wx + seed) * ridgeFreq) * ridgeAmp;
-
-            float mNoise = Mathf.PerlinNoise((wx + seed) * d.skyMountainFreq,
-                                             (wy + seed) * d.skyMountainFreq);
-
-            float mountain = 0f;
-            if (mNoise > 0.6f)
-            {
-                float t = (mNoise - 0.6f) / 0.4f;
-                mountain = t * t * mountainAmpLocal;
-            }
-            else if (mNoise < 0.3f)
-            {
-                float t = (0.3f - mNoise) / 0.3f;
-                mountain = -t * t * mountainAmpLocal * d.skyValleyFactor;
-            }
-
-            float skyNorm = baseSkyNorm + cosWave + fbm + ridges + mountain;
-
-            /* ── biome / area look-ups ─────────────────────────── */
             byte biomeIx = chunk.biomeIDs[lx, ly];
             BiomeData biome = (biomeIx < _biomes?.Length) ? _biomes[biomeIx] : null;
-            AreaData  area  = aMain ?? ((areaIx < _areas?.Length) ? _areas[areaIx] : null);
+            AreaData  area  = aMain ?? ((chunk.areaIDs[lx, ly] < _areas?.Length)
+                                         ? _areas[chunk.areaIDs[lx, ly]] : null);
 
-            /* ── world mask ───────────────────────────────────── */
-            bool frontMasked = false;
-            if (useWorldMask && biome != null && biome.worldNoiseThreshold > 0f)
-            {
-                float m = Mathf.PerlinNoise((wx + seed) * d.worldNoiseFrequency,
-                                            (wy + seed) * d.worldNoiseFrequency);
-                if (m < biome.worldNoiseThreshold) frontMasked = true;
-            }
+            var maskArea = ComputeMaskAndAreaNoise(wx, wy, seed, biome, area,
+                                                   useWorldMask, d);
 
-            /* ── area blend noise ─────────────────────────────── */
-            float blendNoise = biome?.areaNoiseBlend ?? 0f;
-            float areaNoise  = 0f;
-            if (blendNoise > 0f)
-            {
-                float areaFreq = area ? area.areaNoiseFrequency : 0.003f;
-                areaNoise = Mathf.PerlinNoise((wx + seed) * areaFreq,
-                                              (wy + seed) * areaFreq);
-            }
+            int front, back;
+            PickTiles(biome, area, nY, skyNorm, maskArea.frontMasked,
+                      maskArea.areaNoise, maskArea.blendNoise,
+                      wx, wy, seed,
+                      ref skyFound, ref ugAirFound, ref solidFound,
+                      out front, out back, d);
 
-        /* ── decide tiles ─────────────────────────────────── */
-int front = -1, back = -1;
-bool isAboveSky = nY > skyNorm;
-bool biomeIsSky = area != null && area.zone == ZoneType.Sky;
-
-if (isAboveSky && !biomeIsSky)
-{
-    // Above the skyline: put Sky-air on the FRONT only.
-    front = SafeID(d.tileDatabase.SkyAirTile);
-    back  = 0;
-    skyFound = true;
-}
-else
-{
-    /* ---------- pick front / back from biome rules ---------- */
-    float depthPx = Mathf.Max(0f, skyNorm * mapH - wy);
-
-    bool usedLayer = biome is BiomeOverworldData ow &&
-                     ow.overworldLayers is { Length: > 0 } &&
-                     TryPickOverworldLayer(
-                         ow, depthPx, wx, wy, seed,
-                         areaNoise, blendNoise,
-                         out front, out back);
-
-    if (!usedLayer)
-    {
-        front = PickFromBlock(biome?.FrontLayerTiles, biome,
-                              wx, wy, seed, areaNoise, blendNoise);
-
-        back  = PickFromBlock(biome?.BackgroundLayerTiles, biome,
-                              wx, wy, seed, areaNoise, blendNoise);
-    }
-
-    /* ---------- defaults if picker returned “none” ---------- */
-    if (front < 0)
-        front = SafeID(isAboveSky
-                       ? d.tileDatabase.SkyAirTile
-                       : d.tileDatabase.UndergroundAirTile);
-
-    if (back < 0)
-        back = 0;
-
-    /* ---------- inject local ores only into solid front tiles ---------- */
-    if (!frontMasked && IsSolidFast(front) &&
-        biome?.Ores is { Length: > 0 })
-    {
-        TryInjectLocalOre(ref front, biome.Ores, nY,
-                          wx, wy, seed, area, d);
-    }
-
-    if (IsUGAir(front, d) || IsUGAir(back, d))  ugAirFound  = true;
-    if (IsSolidFast(front) || IsSolidFast(back)) solidFound = true;
-}
-
-/* ---------- universal safeguard: background must never be air ---------- */
-if (back == d.tileDatabase.SkyAirTile?.tileID ||
-    back == d.tileDatabase.UndergroundAirTile?.tileID)
-{
-    back = 0;
-}
-
-if (frontMasked)
-    front = SafeID(d.tileDatabase.UndergroundAirTile);
-
-         /* ── write to layers ─────────────────────────────── */
-        bool fLiquid = IsLiquidFast(front);   // only the FRONT tile can ever be liquid
-
-        if (fLiquid)
-        {
-            // put the liquid in the dedicated liquid layer
-            chunk.liquidLayerTileIndexes[lx, ly] = front;
-            chunk.frontLayerTileIndexes [lx, ly] = 0;      // nothing in the front layer
-        }
-        else
-        {
-            // solid / air in the front
-            chunk.frontLayerTileIndexes [lx, ly] = front;
-            chunk.liquidLayerTileIndexes[lx, ly] = 0;      // clear residuals
-        }
-
-        /* the background layer is never liquid – it is either a wall block or NULL */
-        chunk.backgroundLayerTileIndexes[lx, ly] = back;
-
-        if (fLiquid) liquidFound = true;
-
+            WriteLayers(chunk, lx, ly, front, back, ref liquidFound, d);
         }
     }
 
-    /* ─── flags ──────────────────────────────────────────────────── */
-    ChunkFlags cf = ChunkFlags.None;
-
-    // whole-chunk conditions
-    if (chunk.IsCompletelySky(d.tileDatabase.SkyAirTile))
-        cf |= ChunkFlags.ClearSky;
-    else if (chunk.IsCompletelyUndergroundAir(d.tileDatabase.UndergroundAirTile))
-        cf |= ChunkFlags.CaveAir;
-
-    // surface: must have sky-air AND solid, but not pure sky
-    if (skyFound && solidFound && !cf.HasFlag(ChunkFlags.ClearSky))   // ← MODIFIED
-        cf |= ChunkFlags.Surface;
-
-    // cave (UG-air + solid, but not pure UG-air)
-    if (ugAirFound && solidFound && !cf.HasFlag(ChunkFlags.CaveAir))
-        cf |= ChunkFlags.Cave;
-
-    if (liquidFound) cf |= ChunkFlags.Liquids;
-
-    chunk.SetFlags(cf);
+    SetChunkFlags(chunk, d, skyFound, ugAirFound, solidFound, liquidFound);
 }
 
 
@@ -425,6 +503,43 @@ if (frontMasked)
             if (n > o.threshold && Random.value < o.chance)
             {
                 front = o.oreTile.tileID;
+                return;
+            }
+        }
+    }
+
+    /* ------------------------------------------------------------------ */
+    /*  global-ore injection                                              */
+    /* ------------------------------------------------------------------ */
+    static void TryInjectGlobalOre(
+        ref int front,
+        OreSetting[] ores,
+        float depthNorm,
+        int wx, int wy, int seed,
+        AreaData area,
+        WorldData d)
+    {
+        if (!IsSolidFast(front) || ores == null || ores.Length == 0) return;
+
+        TileData host = _tileCache[front];
+
+        foreach (var g in ores)
+        {
+            if (!g.oreTile) continue;
+            if (depthNorm < g.minDepthNorm || depthNorm > g.maxDepthNorm) continue;
+            if (g.allowedAreas != null && g.allowedAreas.Count > 0 &&
+                (area == null || !g.allowedAreas.Contains(area)))
+                continue;
+            if (g.validHostTiles?.Count > 0 && !g.validHostTiles.Contains(host))
+                continue;
+
+            float n = Mathf.PerlinNoise(
+                        (wx + seed + g.noiseOffset.x) * g.noiseFrequency,
+                        (wy + seed + g.noiseOffset.y) * g.noiseFrequency);
+
+            if (n > g.threshold && Random.value < g.chance)
+            {
+                front = g.oreTile.tileID;
                 return;
             }
         }
