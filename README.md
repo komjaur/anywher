@@ -78,3 +78,9 @@ progress into a JSON file under Unity's persistent data path. Use
 `SaveLoadSystem.Instance.LoadGame(GameManager.Instance)` to store or restore a
 session.
 
+## Skill system
+The `SkillManager` tracks experience for each skill and now supports XP removal
+via `RemoveXp`. It also exposes `GetProgress` to compute the player's progress
+towards the next level. UI elements such as `SkillStatsUI` use these helpers to
+display percentage progress.
+

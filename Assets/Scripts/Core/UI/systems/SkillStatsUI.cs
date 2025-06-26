@@ -28,7 +28,9 @@ public sealed class SkillStatsUI : MonoBehaviour
         BuildUI();
 
         sm.OnXpGained += (_, __) => Redraw();
+        sm.OnXpLost   += (_, __) => Redraw();
         sm.OnLevelUp  += (_, __) => Redraw();
+        sm.OnLevelDown+= (_, __) => Redraw();
     }
 
     /* -------- prefab helpers ------- */
@@ -96,9 +98,10 @@ public sealed class SkillStatsUI : MonoBehaviour
             int xp    = sm.GetXp  (d.id);
             int next  = d.GetXpForLevel(Mathf.Min(lvl + 1, SkillDefinition.MaxLevel));
             int left  = next - xp;
+            float prog = sm.GetProgress(d.id);
 
             rows[d.id].text =
-                $"{d.id,-12} Lv {lvl,2}  {xp:N0} XP  ← {left:N0}";
+                $"{d.id,-12} Lv {lvl,2}  {xp:N0} XP  ← {left:N0}  ({prog:P0})";
         }
     }
 }
