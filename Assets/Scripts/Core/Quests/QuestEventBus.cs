@@ -4,6 +4,7 @@ using UnityEngine;
 public static class QuestEventBus
 {
     public static Action<string,int> OnItemCollected;            // (itemID, amount)
+    public static Action<string,int> OnItemCrafted;              // (itemID, amount)
     public static Action<string>     OnEnemyKilled;              // enemyID
     public static Action<int>        OnTileMined;                // tileID
     public static Action<ChunkFlags> OnChunkEntered;

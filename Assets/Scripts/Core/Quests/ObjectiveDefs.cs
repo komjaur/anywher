@@ -43,3 +43,11 @@ public class TalkToNpcObjectiveDef : ObjectiveDef
     public string npcID;
     public override ObjectiveTracker CreateTracker() => new TalkToNpcTracker(this);
 }
+
+[CreateAssetMenu(menuName = "Game/Quests/Objective/Craft Item")]
+public class CraftItemObjectiveDef : ObjectiveDef
+{
+    public string itemID;
+    public int    amount = 1;
+    public override ObjectiveTracker CreateTracker() => new CraftItemTracker(this);
+}

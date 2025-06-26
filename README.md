@@ -60,3 +60,21 @@ Pull requests are welcome. Ensure the project opens and runs correctly in a clea
   helper utilities to populate databases and check assets
 
 These and many other scripts can be used as starting points for your own features.
+
+## Tutorial quest chain
+The project includes three introductory quests demonstrating core mechanics:
+
+1. **Gather Some Wood** – collect five Logs.
+2. **Craft a Torch** – use gathered wood to craft your first light source.
+3. **Mine Stone** – try out your new tool on stone blocks.
+
+Completing each step automatically unlocks the next through `QuestDatabase` and
+`QuestManager`.
+
+## Persistent saving
+The `SaveLoadSystem` serialises the current world, player inventory and quest
+progress into a JSON file under Unity's persistent data path. Use
+`SaveLoadSystem.Instance.SaveGame(GameManager.Instance)` and
+`SaveLoadSystem.Instance.LoadGame(GameManager.Instance)` to store or restore a
+session.
+

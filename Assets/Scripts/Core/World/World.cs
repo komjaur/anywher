@@ -196,6 +196,9 @@ public class World
                 AddChunk(new Vector2Int(cx, cy));
     }
 
+    /// <summary>Enumerate all existing chunks with their coordinates.</summary>
+    public IEnumerable<KeyValuePair<Vector2Int, Chunk>> GetAllChunks() => chunks;
+
     /* ─────────────  TILE ACCESS BY LAYER  ───────────── */
     public int GetTileID(int wx, int wy, ChunkLayer layer = ChunkLayer.Front)
     {
