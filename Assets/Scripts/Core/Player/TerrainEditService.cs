@@ -352,6 +352,9 @@ void RemoveWholeTree(int rootX, int rootY, int treeId, int airId)
     /* ───────────── FX / drops / XP ───────────── */
     void PostEffects(int wx,int wy,int oldId,int newId,TileData oldData)
     {
+        if(oldId > 0 && oldId != newId)
+            QuestEventBus.OnTileMined?.Invoke(oldId);
+
         if (oldData?.dropItem != null)
         {
             if (ItemManager.Instance == null) ItemManager.Initialize();

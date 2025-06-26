@@ -18,6 +18,11 @@ public abstract class Entity : MonoBehaviour
     {
         if (Dead || dmg <= 0) return;
         HP = Mathf.Max(HP - dmg, 0);
-        if (Dead) Destroy(gameObject);
+        if (Dead)
+        {
+            if(this is Unit u && !(u is PlayerUnit))
+                QuestEventBus.OnEnemyKilled?.Invoke(u.template ? u.template.displayName : u.name);
+            Destroy(gameObject);
+        }
     }
 }
