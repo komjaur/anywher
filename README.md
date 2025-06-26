@@ -1,27 +1,33 @@
-# Anywhere Unity Project
+# Anywhere
 
-This repository hosts the source for **Anywhere**, a Unity-based game prototype used for experimenting with 2D mechanics and systems. It contains a variety of scripts and assets that can serve as a starting point for new gameplay features or learning how Unity projects are structured.
+Anywhere is a small 2D exploration and crafting prototype built with Unity. The project focuses on procedurally generated tile maps, collecting resources and crafting new items while exploring the world. It comes with a selection of ready-made systems (inventory, quests, environment management and more) that you can reuse or extend in your own experiments.
 
 ## Requirements
-- Unity **6000.0.41f1** or newer (see `ProjectSettings/ProjectVersion.txt`).
-- Python 3 for running tooling scripts.
+- Unity **6000.0.41f1** or newer (see `ProjectSettings/ProjectVersion.txt`)
+- Python 3 for running some tooling scripts
 
-## Repository Layout
-- `Assets/` – game content, C# scripts, prefabs and editor tools. Notable subfolders include:
-  - `Scripts/` – runtime and editor code such as inventory, crafting and environment systems.
-  - `ScriptableObjects/` – data assets that can be organised via the sorting script below.
-  - `Prefabs/`, `Scenes/`, `Resources/` – typical Unity asset folders.
-- `Packages/` – package manifest referencing Unity packages (URP, Input System, etc.).
-- `ProjectSettings/` – Unity project configuration files.
-- `CodeCoverage/` – example coverage reports produced by the Unity Test Framework.
+## Repository structure
+- `Assets/` – game assets and code
+  - `Scripts/` – runtime and editor scripts
+    - `Core/` – major systems like Inventory, Items, Crafting, Quests, World generation and AI
+    - `Database/` – ScriptableObject definitions and managers that store game data
+    - `Editor/` – utilities for the Unity editor (for example, auto-populating databases)
+  - `Custom/` – shaders used for lighting and sprite effects
+  - `Fluid MIDI/` – third-party MIDI playback library
+  - `Plugins/` – other third-party libraries (noise generation, Voronoi, etc.)
+  - `Prefabs/`, `Scenes/`, `ScriptableObjects/` – typical Unity asset folders
+  - `sort_so.py` – helper script to organise ScriptableObject assets
+- `Packages/` – Unity package manifest
+- `ProjectSettings/` – Unity project configuration
+- `CodeCoverage/` – example reports from the Unity Test Framework
 
-## Getting Started
-1. Install a compatible Unity Editor version.
-2. Clone this repository and open it with Unity.
-3. Press **Play** to run the current scene or open *File › Build Settings* to create a build.
+## Getting started
+1. Install the Unity version listed above
+2. Clone the repository and open the project in Unity
+3. Press **Play** to run the current scene or create a build via *File › Build Settings*
 
-### ScriptableObject Sorter
-`Assets/sort_so.py` reorganises ScriptableObject assets into a unified folder structure. Run it without arguments to preview the planned moves:
+### ScriptableObject sorter
+`Assets/sort_so.py` reorganises ScriptableObjects into a unified folder structure. Run it without arguments to preview the planned moves:
 
 ```bash
 python Assets/sort_so.py
@@ -37,4 +43,20 @@ Add `--apply` to actually move files. The classifier recognises asset names like
 Extend `sort_so.py` with additional `classify_*` functions to support new asset types.
 
 ## Contributing
-Pull requests are welcome. Ensure that the project opens and runs correctly in a clean checkout before submitting changes.
+Pull requests are welcome. Ensure the project opens and runs correctly in a clean checkout before submitting changes.
+
+## Notable Scripts
+- **Inventory** (`Assets/Scripts/Core/Inventory`)
+  manages the player's items and UI
+- **Crafting** (`Assets/Scripts/Core/Crafting`)
+  defines recipes and the crafting manager
+- **Item** (`Assets/Scripts/Core/Item`)
+  holds item data and the item manager
+- **World Generation** (`Assets/Scripts/Core/World/Generation`)
+  creates the procedural maps and biome layout
+- **Quests** (`Assets/Scripts/Core/Quests`)
+  quest definitions, objectives and the quest manager
+- **Editor Tools** (`Assets/Scripts/Editor`)
+  helper utilities to populate databases and check assets
+
+These and many other scripts can be used as starting points for your own features.
