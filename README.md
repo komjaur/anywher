@@ -1,6 +1,9 @@
 # Anywhere Unity Project
 
-This repository hosts the source for **Anywhere**, a Unity-based game prototype used for experimenting with 2D mechanics and systems. It contains a variety of scripts and assets that can serve as a starting point for new gameplay features or learning how Unity projects are structured.
+This repository hosts the source for **Anywhere**, a Unity-based game prototype. The project explores 2D mechanics through the lens of controlling a small robot. Players steer an autonomous rover, gather parts and trigger quests that teach the basics of the in‑game world. The code base is lightweight and well suited for extending with new robotic behaviours or custom simulation features.
+
+## About the Game
+The rover starts in a minimalist environment and can be upgraded with collected components. Quests provide short objectives such as locating items or navigating to specific coordinates. Each quest can define optional start requirements like player skills, prerequisite quests and a time‑of‑day window. These elements combine to showcase a modular approach to creating robot-driven challenges in Unity.
 
 ## Requirements
 - Unity **6000.0.41f1** or newer (see `ProjectSettings/ProjectVersion.txt`).
