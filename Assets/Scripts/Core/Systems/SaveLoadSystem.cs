@@ -24,6 +24,7 @@ public sealed class SaveLoadSystem : MonoBehaviour
         public List<QuestState> activeQuests = new();
         public List<string> completedQuests = new();
         public WorldState world = new();
+        public PlayerState player = new();
     }
 
     [System.Serializable]
@@ -47,6 +48,14 @@ public sealed class SaveLoadSystem : MonoBehaviour
     }
 
     [System.Serializable]
+    public class PlayerState
+    {
+        public Vector3 position;
+        public Vector3 scale;
+        public int hp;
+    }
+
+    [System.Serializable]
     public class ChunkData
     {
         public Vector2Int coord;
@@ -64,6 +73,7 @@ public sealed class SaveLoadSystem : MonoBehaviour
         SaveInventory(gm.PlayerManager.PlayerInventory, data);
         SaveQuests(gm.QuestManager, data);
         SaveWorld(gm.WorldManager.GetCurrentWorld(), data);
+        SavePlayer(gm.PlayerManager, data);
 
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(GetSavePath(), json);
@@ -83,6 +93,7 @@ public sealed class SaveLoadSystem : MonoBehaviour
         LoadInventory(gm.PlayerManager.PlayerInventory, data);
         LoadQuests(gm.QuestManager, data);
         LoadWorld(gm.WorldManager.GetCurrentWorld(), data);
+        LoadPlayer(gm.PlayerManager, data);
         Debug.Log("SaveLoadSystem: game loaded");
     }
 
@@ -195,5 +206,29 @@ public sealed class SaveLoadSystem : MonoBehaviour
                     chunk.SetTile(ChunkLayer.Background, x, y, cd.back[idx]);
                 }
         }
+    }
+
+    /* ---------------- player ---------------- */
+    void SavePlayer(PlayerManager pm, SaveData data)
+    {
+        if (pm == null || pm.PlayerTransform == null) return;
+        var state = new PlayerState
+        {
+            position = pm.PlayerTransform.position,
+            scale    = pm.PlayerTransform.localScale
+        };
+        if (pm.PlayerTransform.TryGetComponent<PlayerUnit>(out var unit))
+            state.hp = unit.HP;
+        data.player = state;
+    }
+
+    void LoadPlayer(PlayerManager pm, SaveData data)
+    {
+        if (pm == null || pm.PlayerTransform == null) return;
+        var state = data.player;
+        pm.PlayerTransform.position    = state.position;
+        pm.PlayerTransform.localScale  = state.scale;
+        if (pm.PlayerTransform.TryGetComponent<PlayerUnit>(out var unit) && state.hp > 0)
+            unit.HP = state.hp;
     }
 }

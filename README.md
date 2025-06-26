@@ -72,9 +72,9 @@ Completing each step automatically unlocks the next through `QuestDatabase` and
 `QuestManager`.
 
 ## Persistent saving
-The `SaveLoadSystem` serialises the current world, player inventory and quest
-progress into a JSON file under Unity's persistent data path. Use
-`SaveLoadSystem.Instance.SaveGame(GameManager.Instance)` and
-`SaveLoadSystem.Instance.LoadGame(GameManager.Instance)` to store or restore a
-session.
+The `SaveLoadSystem` serialises the current world, the player inventory,
+active quests and the player\'s latest position into a JSON file under
+Unity\'s persistent data path. Call
+`SaveLoadSystem.Instance.SaveGame(GameManager.Instance)` to write the file and
+`SaveLoadSystem.Instance.LoadGame(GameManager.Instance)` to restore a session.
 
