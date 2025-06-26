@@ -25,6 +25,7 @@ public sealed class GameManager : MonoBehaviour
     public AudioManager AudioManager { get; private set; }
     public ItemManager ItemManager { get; private set; }   // ← NEW
     public SkillManager SkillManager { get; private set; }   // add near the other managers
+    public QuestManager QuestManager { get; private set; }
 
     public WorldTilemapViewer WorldTilemapViewer { get; private set; }
 
@@ -51,6 +52,7 @@ public sealed class GameManager : MonoBehaviour
         UnitManager = gameObject.AddComponent<UnitManager>();
         WorldTilemapViewer = gameObject.AddComponent<WorldTilemapViewer>();
         ItemManager = gameObject.AddComponent<ItemManager>();  // ← NEW
+        QuestManager = gameObject.AddComponent<QuestManager>();
         /* player and camera (lazy-initialised) */
         PlayerManager = gameObject.AddComponent<PlayerManager>();
         SkillManager = gameObject.AddComponent<SkillManager>();
@@ -89,7 +91,8 @@ public sealed class GameManager : MonoBehaviour
             PlayerManager.Initialize();
             UnitManager.Initialize();
             ItemManager.Initialize();
-            
+            QuestManager.Initialize();
+
             AudioManager.Initialize(gameData.levelUpClip);   // ← NEW
             //MusicManager.Initialize(gameData.soundFont);
         }
@@ -106,5 +109,7 @@ public sealed class GameManager : MonoBehaviour
     void OnWorldFinished()
     {
         UIManager.DisplayWorldMap(WorldManager.GetCurrentWorld());
+        if(QuestManager != null)
+            QuestManager.Initialize();
     }
 }

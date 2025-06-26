@@ -42,6 +42,8 @@ public sealed class Item : MonoBehaviour
         if (inv == null) return;
 
         int stored = inv.TryAddItem(data, amount);
+        if(stored > 0)
+            QuestEventBus.OnItemCollected?.Invoke(data.itemName, stored);
         amount -= stored;
         if (amount <= 0) Destroy(gameObject);
     }

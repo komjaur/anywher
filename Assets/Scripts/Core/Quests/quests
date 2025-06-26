@@ -53,6 +53,21 @@ public class ReachChunkFlagObjectiveDef : ObjectiveDef
     public override ObjectiveTracker CreateTracker() => new ReachChunkFlagTracker(this);
 }
 
+[CreateAssetMenu(menuName = "Game/Quests/Objective/Mine Tile")]
+public class MineTileObjectiveDef : ObjectiveDef
+{
+    public TileData tile;
+    public int      amount = 1;
+    public override ObjectiveTracker CreateTracker() => new MineTileTracker(this);
+}
+
+[CreateAssetMenu(menuName = "Game/Quests/Objective/Talk To NPC")]
+public class TalkToNpcObjectiveDef : ObjectiveDef
+{
+    public string npcID;
+    public override ObjectiveTracker CreateTracker() => new TalkToNpcTracker(this);
+}
+
 // ───────────────────────────────────  QUEST DEF  ──────────────────────────────────────
 [Serializable]
 public class QuestStep
@@ -60,6 +75,40 @@ public class QuestStep
     [TextArea] public string narrative;
     public ObjectiveLogic   logic   = ObjectiveLogic.All;
     public ObjectiveDef[]   objectives;
+}
+
+[Serializable]
+public struct SkillRequirement
+{
+    public SkillId skill;
+    public int     level;
+}
+
+[Serializable]
+public struct ItemRequirement
+{
+    public string itemID;
+    public int    amount;
+}
+
+[Serializable]
+public struct KillRequirement
+{
+    public string enemyID;
+    public int    amount;
+}
+
+[Serializable]
+public struct DayRequirement
+{
+    [Min(1)] public int day;
+}
+
+[Serializable]
+public struct TimeOfDayRequirement
+{
+    [Range(0f,24f)] public float startHour;
+    [Range(0f,24f)] public float endHour;
 }
 
 [CreateAssetMenu(menuName = "Game/Quest")]
@@ -70,6 +119,14 @@ public class QuestDef : ScriptableObject
     public string displayName;
     [TextArea] public string description;
     public bool   repeatable;
+
+    [Header("Requirements")]
+    public SkillRequirement[] skillRequirements;
+    public string[]           prerequisiteQuestIDs;
+    public ItemRequirement[]  itemRequirements;
+    public KillRequirement[]  killRequirements;
+    public DayRequirement     dayRequirement;
+    public TimeOfDayRequirement timeRequirement;
 
     [Header("Flow")]
     public QuestStep[] steps;
@@ -83,6 +140,7 @@ public static class QuestEventBus
 {
     public static Action<string,int> OnItemCollected;            // (itemID, amount)
     public static Action<string>     OnEnemyKilled;              // enemyID
+    public static Action<int>        OnTileMined;                // tileID
     public static Action<ChunkFlags> OnChunkEntered;
     public static Action<string>     OnNPCDialogueFinished;      // npcID
     public static Action<string,object> OnCustom;                // (eventKey, payload)
@@ -134,6 +192,24 @@ public sealed class ReachChunkFlagTracker : ObjectiveTracker
     public override void Activate(){ base.Activate(); QuestEventBus.OnChunkEntered += Check; }
     public override void Deactivate(){ QuestEventBus.OnChunkEntered -= Check; base.Deactivate(); }
     void Check(ChunkFlags f){ if(f.HasFlag(def.targetFlag)) Add(); }
+}
+
+public sealed class MineTileTracker : ObjectiveTracker
+{
+    readonly MineTileObjectiveDef def;
+    public MineTileTracker(MineTileObjectiveDef d){ def=d; Target=d.amount; }
+    public override void Activate(){ base.Activate(); QuestEventBus.OnTileMined += Check; }
+    public override void Deactivate(){ QuestEventBus.OnTileMined -= Check; base.Deactivate(); }
+    void Check(int id){ if(def.tile==null || id==def.tile.tileID) Add(); }
+}
+
+public sealed class TalkToNpcTracker : ObjectiveTracker
+{
+    readonly TalkToNpcObjectiveDef def;
+    public TalkToNpcTracker(TalkToNpcObjectiveDef d){ def=d; Target=1; }
+    public override void Activate(){ base.Activate(); QuestEventBus.OnNPCDialogueFinished += Check; }
+    public override void Deactivate(){ QuestEventBus.OnNPCDialogueFinished -= Check; base.Deactivate(); }
+    void Check(string id){ if(id==def.npcID) Add(); }
 }
 
 // ───────────────────────────────────  QUEST (runtime)  ────────────────────────────────
@@ -223,22 +299,116 @@ public sealed class QuestManager : MonoBehaviour
     readonly List<Quest>    active     = new();
     readonly HashSet<string> completed = new();
     readonly HashSet<string> failed    = new();
+    readonly Dictionary<string,int> itemTotals = new();
+    readonly Dictionary<string,int> killTotals = new();
 
     public event Action<Quest> OnStarted, OnCompleted, OnFailed;
     public IEnumerable<Quest> ActiveQuests => active;
 
     void Awake()
-    { if(Instance){Destroy(gameObject);return;} Instance=this; }
+    {
+        if(Instance){Destroy(gameObject);return;}
+        Instance = this;
+        QuestEventBus.OnItemCollected += OnItemCollected;
+        QuestEventBus.OnEnemyKilled   += OnEnemyKilled;
+        var env = GameManager.Instance?.EnvironmentManager;
+        if(env) env.OnDayBegin += OnDayBegin;
+        var sm = GameManager.Instance?.SkillManager;
+        if(sm) sm.OnLevelUp += OnSkillLevelUp;
+    }
+
+    void OnDestroy()
+    {
+        if(Instance==this)
+        {
+            QuestEventBus.OnItemCollected -= OnItemCollected;
+            QuestEventBus.OnEnemyKilled   -= OnEnemyKilled;
+            var env = GameManager.Instance?.EnvironmentManager;
+            if(env) env.OnDayBegin -= OnDayBegin;
+            var sm = GameManager.Instance?.SkillManager;
+            if(sm) sm.OnLevelUp -= OnSkillLevelUp;
+        }
+    }
+
+    void OnItemCollected(string id,int amount)
+    {
+        if(string.IsNullOrEmpty(id) || amount<=0) return;
+        itemTotals.TryGetValue(id,out int cur);
+        itemTotals[id] = cur + amount;
+        TryStartAvailableQuests();
+    }
+
+    void OnEnemyKilled(string id)
+    {
+        if(string.IsNullOrEmpty(id)) return;
+        killTotals.TryGetValue(id,out int cur);
+        killTotals[id] = cur + 1;
+        TryStartAvailableQuests();
+    }
+
+    void OnDayBegin(int day)
+    {
+        TryStartAvailableQuests();
+    }
+
+    void OnSkillLevelUp(SkillId id,int lv)
+    {
+        TryStartAvailableQuests();
+    }
+
+    void TryStartAvailableQuests()
+    {
+        foreach(var def in questDatabase.quests)
+            if(MayStart(def)) StartQuest(def);
+    }
 
     public void Initialize()
     {
-        foreach(var def in questDatabase.quests)
-            if (MayStart(def)) StartQuest(def);
+        TryStartAvailableQuests();
     }
 
-    bool MayStart(QuestDef d)=>
-        (!completed.Contains(d.questID) || d.repeatable) &&
-         !active.Exists(q=>q.Def==d);
+    bool MayStart(QuestDef d)
+    {
+        if(active.Exists(q=>q.Def==d)) return false;
+        if(completed.Contains(d.questID) && !d.repeatable) return false;
+
+        foreach(var req in d.skillRequirements)
+            if(GameManager.Instance.SkillManager.GetLevel(req.skill) < req.level)
+                return false;
+
+        foreach(var id in d.prerequisiteQuestIDs)
+            if(!completed.Contains(id)) return false;
+
+        foreach(var req in d.itemRequirements)
+        {
+            itemTotals.TryGetValue(req.itemID, out int have);
+            if(have < req.amount) return false;
+        }
+
+        foreach(var req in d.killRequirements)
+        {
+            killTotals.TryGetValue(req.enemyID, out int have);
+            if(have < req.amount) return false;
+        }
+
+        if(d.dayRequirement.day > 0)
+        {
+            int currentDay = GameManager.Instance.EnvironmentManager.DayCount + 1;
+            if(currentDay < d.dayRequirement.day) return false;
+        }
+
+        var tr = d.timeRequirement;
+        if(tr.startHour != 0f || tr.endHour != 0f)
+        {
+            float hour = GameManager.Instance.EnvironmentManager.TimeOfDayHours;
+            bool within = tr.endHour >= tr.startHour
+                ? hour >= tr.startHour && hour < tr.endHour
+                : hour >= tr.startHour || hour < tr.endHour;
+            if(!within) return false;
+        }
+
+        return true;
+    }
 
     public void StartQuest(QuestDef def)
     {
