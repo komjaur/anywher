@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e2aa340b10448c09717d424a08d5cb2, type: 3}
+  m_Name: Quest_GatherWood
+  m_EditorClassIdentifier:
+  questID: tutorial_gather_wood
+  displayName: Gather Some Wood
+  description: Collect a few logs to learn how gathering works.
+  repeatable: 0
+  skillRequirements: []
+  prerequisiteQuestIDs: []
+  restrictTimeOfDay: 0
+  timeOfDay:
+    startHour: 0
+    endHour: 0
+  steps:
+  - narrative: Pick up 5 logs
+    logic: 0
+    objectives:
+    - {fileID: 11400000, guid: 015fdcaaf0a34cc1841eed37fb50b284, type: 2}
+  rewards: []
+  followUpQuestIDs:
+  - tutorial_craft_torch
+  timeLimitSeconds: 0

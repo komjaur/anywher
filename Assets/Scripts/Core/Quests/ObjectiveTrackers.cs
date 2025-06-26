@@ -65,3 +65,12 @@ public sealed class TalkToNpcTracker : ObjectiveTracker
     public override void Deactivate(){ QuestEventBus.OnNPCDialogueFinished -= Check; base.Deactivate(); }
     void Check(string id){ if(id==def.npcID) Add(); }
 }
+
+public sealed class CraftItemTracker : ObjectiveTracker
+{
+    readonly CraftItemObjectiveDef def;
+    public CraftItemTracker(CraftItemObjectiveDef d){ def=d; Target=d.amount; }
+    public override void Activate(){ base.Activate(); QuestEventBus.OnItemCrafted += Check; }
+    public override void Deactivate(){ QuestEventBus.OnItemCrafted -= Check; base.Deactivate(); }
+    void Check(string id,int amt){ if(id==def.itemID) Add(amt); }
+}

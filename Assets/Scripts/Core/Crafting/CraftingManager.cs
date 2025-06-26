@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public sealed class CraftingManager : MonoBehaviour
 {
@@ -62,6 +63,9 @@ public sealed class CraftingManager : MonoBehaviour
         /* award XP */
         if (skillManager && recipe.xpReward > 0)
             skillManager.AddXp(recipe.rewardSkill, recipe.xpReward);
+
+        QuestEventBus.OnItemCrafted?.Invoke(
+            recipe.resultItem.itemName, recipe.resultAmount);
 
         return true;
     }
