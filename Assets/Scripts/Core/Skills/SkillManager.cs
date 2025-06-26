@@ -13,7 +13,9 @@ public sealed class SkillManager : MonoBehaviour
 {
     /* ───────── events ───────── */
     public event Action<SkillId, int> OnXpGained;
+    public event Action<SkillId, int> OnXpLost;
     public event Action<SkillId, int> OnLevelUp;
+    public event Action<SkillId, int> OnLevelDown;
 
     /* ───────── public API ───────── */
     public int  GetXp       (SkillId id) => data.Get(id);
@@ -29,6 +31,20 @@ public sealed class SkillManager : MonoBehaviour
 
         int next = def.GetXpForLevel(lv + 1);
         return next - GetXp(id);
+    }
+
+    public float GetProgress(SkillId id)
+    {
+        if (!TryGetDef(id, out var def)) return 0f;
+
+        int xp = GetXp(id);
+        int lvl = def.GetLevelForXp(xp);
+        if (lvl >= SkillDefinition.MaxLevel)
+            return 1f;
+
+        int cur = def.GetXpForLevel(lvl);
+        int next = def.GetXpForLevel(lvl + 1);
+        return Mathf.InverseLerp(cur, next, xp);
     }
 
     public int TotalXp
@@ -55,6 +71,25 @@ public sealed class SkillManager : MonoBehaviour
         int newLevel = def.GetLevelForXp(GetXp(id));
         if (newLevel > beforeLevel)
             OnLevelUp?.Invoke(id, newLevel);
+
+        return newLevel;
+    }
+
+    /// Remove XP. If the SkillId has no definition it is ignored.
+    public int RemoveXp(SkillId id, int delta)
+    {
+        if (delta <= 0 || !TryGetDef(id, out var def)) return GetLevel(id);
+
+        int beforeLevel = def.GetLevelForXp(GetXp(id));
+
+        data.Add(id, -delta);
+        data.Set(id, Mathf.Max(GetXp(id), 0));
+
+        OnXpLost?.Invoke(id, delta);
+
+        int newLevel = def.GetLevelForXp(GetXp(id));
+        if (newLevel < beforeLevel)
+            OnLevelDown?.Invoke(id, newLevel);
 
         return newLevel;
     }
