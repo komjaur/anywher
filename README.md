@@ -77,3 +77,4 @@ progress into a JSON file under Unity's persistent data path. Use
 `SaveLoadSystem.Instance.SaveGame(GameManager.Instance)` and
 `SaveLoadSystem.Instance.LoadGame(GameManager.Instance)` to store or restore a
 session.
+
