@@ -84,6 +84,21 @@ public struct SkillRequirement
     public int     level;
 }
 
+// Restrict quest availability to a time-of-day window
+[Serializable]
+public struct TimeOfDayRequirement
+{
+    [Range(0f,24f)] public float startHour;  // inclusive
+    [Range(0f,24f)] public float endHour;    // exclusive
+
+    public bool IsMet(float currentHour)
+    {
+        return endHour >= startHour
+            ? currentHour >= startHour && currentHour < endHour
+            : currentHour >= startHour || currentHour < endHour;
+    }
+}
+
 [CreateAssetMenu(menuName = "Game/Quest")]
 public class QuestDef : ScriptableObject
 {
@@ -96,6 +111,8 @@ public class QuestDef : ScriptableObject
     [Header("Requirements")]
     public SkillRequirement[] skillRequirements;
     public string[]           prerequisiteQuestIDs;
+    public bool               restrictTimeOfDay;
+    public TimeOfDayRequirement timeOfDay;
 
     [Header("Flow")]
     public QuestStep[] steps;
@@ -292,6 +309,13 @@ public sealed class QuestManager : MonoBehaviour
 
         foreach(var id in d.prerequisiteQuestIDs)
             if(!completed.Contains(id)) return false;
+
+        if(d.restrictTimeOfDay)
+        {
+            float hour = GameManager.Instance.EnvironmentManager.TimeOfDayHours;
+            if(!d.timeOfDay.IsMet(hour))
+                return false;
+        }
 
         return true;
     }
