@@ -144,4 +144,16 @@ public bool TryRemoveItem(ItemData data, int amount)
         if (next < 0) next += hotbarSize;
         SetActiveHotbarIndex(next);
     }
+
+    // Allow external systems to refresh UI after direct slot changes
+    public void NotifySlotChanged(int index)
+    {
+        OnSlotChanged?.Invoke(index);
+    }
+
+    // Allow external systems to refresh the hotbar state
+    public void NotifyHotbarChanged(int index)
+    {
+        OnHotbarChanged?.Invoke(index);
+    }
 }

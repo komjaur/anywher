@@ -9,6 +9,7 @@
  *  • Guarantees inventory ↔ world sync (no “infinite” blocks)
  * ======================================================================= */
 using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(GameManager))]
 public sealed class PlayerManager : MonoBehaviour
@@ -25,6 +26,9 @@ public sealed class PlayerManager : MonoBehaviour
     public Transform  PlayerTransform { get; private set; }
     public GameCamera ActiveCamera    { get; private set; }
     public Inventory  PlayerInventory { get; private set; }
+    public int        Currency        { get; private set; }
+    public int        Experience      { get; private set; }
+    public HashSet<string> Unlocks { get; } = new();
 
     /* ───────── Biome / Area for HUD ───────── */
     public BiomeData CurrentBiome { get; private set; }
@@ -238,6 +242,25 @@ public sealed class PlayerManager : MonoBehaviour
 
     void BuildCamera() =>
         ActiveCamera = GameCamera.Initialize(PlayerTransform, name: "MainCamera");
+
+    // ------------------------------------------------------------------
+    // Reward helpers (currency, XP, unlocks)
+    // ------------------------------------------------------------------
+    public void AddCurrency(int amount)
+    {
+        Currency += Mathf.Max(0, amount);
+    }
+
+    public void AddXP(int amount)
+    {
+        Experience += Mathf.Max(0, amount);
+    }
+
+    public void AddUnlock(string id)
+    {
+        if (!string.IsNullOrEmpty(id))
+            Unlocks.Add(id);
+    }
 
     #endregion
 }

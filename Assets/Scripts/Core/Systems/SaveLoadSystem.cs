@@ -111,7 +111,7 @@ public sealed class SaveLoadSystem : MonoBehaviour
             var sd = data.inventory[i];
             slot.amount = sd.amount;
             slot.item = map.TryGetValue(sd.itemID, out var it) ? it : null;
-            inv.OnSlotChanged?.Invoke(i);
+            inv.NotifySlotChanged(i);
         }
     }
 
