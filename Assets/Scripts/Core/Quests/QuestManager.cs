@@ -94,7 +94,9 @@ public sealed class QuestManager : MonoBehaviour
         {
             switch(r.type)
             {
-                case RewardType.Item:       GameManager.Instance.PlayerManager.PlayerInventory?.AddItem(r.id,r.amount); break;
+                case RewardType.Item:
+                    GameManager.Instance.PlayerManager.PlayerInventory?.AddItem(r.id, r.amount);
+                    break;
                 case RewardType.Currency:   GameManager.Instance.PlayerManager.AddCurrency(r.amount);             break;
                 case RewardType.Experience: GameManager.Instance.PlayerManager.AddXP(r.amount);                  break;
                 case RewardType.Unlock:     GameManager.Instance.PlayerManager.AddUnlock(r.id);                  break;
